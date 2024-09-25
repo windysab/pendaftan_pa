@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\GugatanController;
 
 
@@ -11,15 +12,26 @@ Route::get('/dashboard-general-dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
 });
 
-
-
-
 Route::get('/gugatan-form', function () {
     return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
 });
-Route::get('/gugatan-detail-pernikahan', function () {
-    return view('pages.gugatan-detail-pernikahan', ['type_menu' => 'gugatan']);
-})->name('gugatan.detail-pernikahan');
+
+
+Route::post('/gugatan-page2', function (Request $request) {
+    return view('pages.gugatan-page2', ['type_menu' => 'gugatan', 'data' => $request->all()]);
+})->name('gugatan.page2');
+
+
+Route::post('/gugatan-page3', function (Request $request) {
+    return view('pages.gugatan-page3', ['type_menu' => 'gugatan', 'data' => $request->all()]);
+})->name('gugatan.page3');
+
+Route::post('/gugatan-page4', function (Request $request) {
+    return view('pages.gugatan-page4', ['type_menu' => 'gugatan', 'data' => $request->all()]);
+})->name('gugatan.page4');
+// Route::get('/gugatan-detail-pernikahan', function () {
+//     return view('pages.gugatan-detail-pernikahan', ['type_menu' => 'gugatan']);
+// })->name('gugatan.detail-pernikahan');
 
 Route::post('/gugatan-store', [GugatanController::class, 'store'])->name('gugatan.store');
 

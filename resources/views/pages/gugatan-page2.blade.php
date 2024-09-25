@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gugatan - Data Penggugat')
+@section('title', 'Gugatan - Data Tergugat')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -19,47 +19,47 @@
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Formulir Gugatan - Data Penggugat</h2>
+                <h2 class="section-title">Formulir Gugatan - Data Tergugat</h2>
                 <p class="section-lead">
-                    Silahkan isi data penggugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
+                    Silahkan isi data tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
                 </p>
 
-                <form method="POST" action="{{ route('gugatan.page2') }}">
+                <form method="POST" action="{{ route('gugatan.page3') }}">
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="text-center-custom">Data Penggugat</h4>
+                                    <h4 class="text-center-custom">Data Tergugat</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="nama_penggugat">Nama Penggugat</label>
-                                        <input id="nama_penggugat" name="nama_penggugat" class="form-control" required>
+                                        <label for="nama_tergugat">Nama Tergugat</label>
+                                        <input id="nama_tergugat" name="nama_tergugat" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="binti_penggugat">Binti Penggugat</label>
-                                        <input id="binti_penggugat" name="binti_penggugat" class="form-control" required>
+                                        <label for="bin_tergugat">Bin Tergugat</label>
+                                        <input id="bin_tergugat" name="bin_tergugat" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="umur_penggugat">Umur Penggugat</label>
-                                        <input id="umur_penggugat" name="umur_penggugat" class="form-control" required>
+                                        <label for="umur_tergugat">Umur Tergugat</label>
+                                        <input id="umur_tergugat" name="umur_tergugat" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="agama_penggugat">Agama Penggugat</label>
-                                        <input id="agama_penggugat" name="agama_penggugat" class="form-control" required>
+                                        <label for="agama_tergugat">Agama Tergugat</label>
+                                        <input id="agama_tergugat" name="agama_tergugat" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pekerjaan_penggugat">Pekerjaan Penggugat</label>
-                                        <input id="pekerjaan_penggugat" name="pekerjaan_penggugat" class="form-control" required>
+                                        <label for="pekerjaan_tergugat">Pekerjaan Tergugat</label>
+                                        <input id="pekerjaan_tergugat" name="pekerjaan_tergugat" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pendidikan_penggugat">Pendidikan Penggugat</label>
-                                        <input id="pendidikan_penggugat" name="pendidikan_penggugat" class="form-control" required>
+                                        <label for="pendidikan_tergugat">Pendidikan Tergugat</label>
+                                        <input id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="alamat_penggugat">Alamat Penggugat</label>
-                                        <textarea id="alamat_penggugat" name="alamat_penggugat" class="form-control" data-height="150" required></textarea>
+                                        <label for="alamat_tergugat">Alamat Tergugat</label>
+                                        <textarea id="alamat_tergugat" name="alamat_tergugat" class="form-control" data-height="150" required></textarea>
                                     </div>
                                 </div>
                             </div>
