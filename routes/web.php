@@ -17,6 +17,9 @@ Route::get('/dashboard-general-dashboard', function () {
 Route::get('/gugatan-form', function () {
     return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
 });
+Route::get('/gugatan-detail-pernikahan', function () {
+    return view('pages.gugatan-detail-pernikahan', ['type_menu' => 'gugatan']);
+})->name('gugatan.detail-pernikahan');
 
 Route::post('/gugatan-store', [GugatanController::class, 'store'])->name('gugatan.store');
 
