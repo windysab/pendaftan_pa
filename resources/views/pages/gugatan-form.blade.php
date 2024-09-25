@@ -4,6 +4,7 @@
 
 @push('style')
 <!-- CSS Libraries -->
+
 @endpush
 
 @section('main')
@@ -81,10 +82,10 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6"> 
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Tergugat</h4>
+                            <h4 class="text-center-custom">Data Tergugat</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">

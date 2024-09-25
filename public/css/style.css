@@ -3510,6 +3510,9 @@ body.layout-3 .main-footer {
   width: 100%;
   position: relative;
 }
+.text-center-custom {
+    text-align: center;
+}
 
 .main-footer {
   padding: 20px 30px 20px 280px;
