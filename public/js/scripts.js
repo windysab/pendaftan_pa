@@ -614,3 +614,17 @@ $(function() {
     });
   }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const detailPernikahanSection = document.querySelector('.detail-pernikahan-section');
+    const toggleButton = document.querySelector('#toggle-detail-pernikahan');
+
+    toggleButton.addEventListener('click', function() {
+        if (detailPernikahanSection.style.display === 'none') {
+            detailPernikahanSection.style.display = 'block';
+        } else {
+            detailPernikahanSection.style.display = 'none';
+        }
+    });
+});
