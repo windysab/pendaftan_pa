@@ -644,94 +644,197 @@ document.getElementById('jumlah_anak').addEventListener('input', function() {
 });
 
 // public/js/form-validation.js
-new Vue({
-    el: '#app',
-    data: {
-        form: {
-            nama_penggugat: '',
-            binti_penggugat: '',
-            umur_penggugat: '',
-            agama_penggugat: '',
-            pekerjaan_penggugat: '',
-            pendidikan_penggugat: '',
-            alamat_penggugat: '',
-            nama_tergugat: '',
-            bin_tergugat: '',
-            umur_tergugat: '',
-            agama_tergugat: '',
-            pekerjaan_tergugat: '',
-            pendidikan_tergugat: '',
-            alamat_tergugat: ''
-        },
-        errors: {},
-        showModal: false,
-        showPenggugatModal: false,
-        address: {
-            jalan: '',
-            no: '',
-            rt: '',
-            rw: '',
-            desa: '',
-            kecamatan: '',
-            kabupaten: ''
-        },
-        penggugatAddress: {
-            jalan: '',
-            no: '',
-            rt: '',
-            rw: '',
-            desa: '',
-            kecamatan: '',
-            kabupaten: ''
+// new Vue({
+//     el: '#app',
+//     data: {
+//         form: {
+//             nama_penggugat: '',
+//             binti_penggugat: '',
+//             umur_penggugat: '',
+//             agama_penggugat: '',
+//             pekerjaan_penggugat: '',
+//             pendidikan_penggugat: '',
+//             alamat_penggugat: '',
+//             nama_tergugat: '',
+//             bin_tergugat: '',
+//             umur_tergugat: '',
+//             agama_tergugat: '',
+//             pekerjaan_tergugat: '',
+//             pendidikan_tergugat: '',
+//             alamat_tergugat: ''
+//         },
+//         errors: {},
+//         showModal: false,
+//         showPenggugatModal: false,
+//         address: {
+//             jalan: '',
+//             no: '',
+//             rt: '',
+//             rw: '',
+//             desa: '',
+//             kecamatan: '',
+//             kabupaten: ''
+//         },
+//         penggugatAddress: {
+//             jalan: '',
+//             no: '',
+//             rt: '',
+//             rw: '',
+//             desa: '',
+//             kecamatan: '',
+//             kabupaten: ''
+//         }
+//     },
+//     mounted() {
+//         this.showModal = false;
+//         this.showPenggugatModal = false;
+//     },
+//     methods: {
+//         validateForm() {
+//             this.errors = {};
+
+//             const requiredFields = [
+//                 'nama_penggugat', 'binti_penggugat', 'umur_penggugat', 'agama_penggugat',
+//                 'pekerjaan_penggugat', 'pendidikan_penggugat', 'alamat_penggugat',
+//                 'nama_tergugat', 'bin_tergugat', 'umur_tergugat', 'agama_tergugat',
+//                 'pekerjaan_tergugat', 'pendidikan_tergugat', 'alamat_tergugat'
+//             ];
+
+//             requiredFields.forEach(field => {
+//                 if (!this.form[field]) {
+//                     this.errors[field] = `${field.replace('_', ' ')} wajib diisi.`;
+//                 }
+//             });
+
+//             if (Object.keys(this.errors).length === 0) {
+//                 this.$refs.form.submit();
+//             }
+//         },
+//         openAddressModal() {
+//             this.showModal = true;
+//         },
+//         closeAddressModal() {
+//             this.showModal = false;
+//         },
+//         saveAddress() {
+//             this.form.alamat_tergugat = `Jalan ${this.address.jalan}, No ${this.address.no}, RT ${this.address.rt}, RW ${this.address.rw}, Desa ${this.address.desa}, Kecamatan ${this.address.kecamatan}, Kabupaten ${this.address.kabupaten}`;
+//             this.closeAddressModal();
+//         },
+//         openPenggugatAddressModal() {
+//             this.showPenggugatModal = true;
+//         },
+//         closePenggugatAddressModal() {
+//             this.showPenggugatModal = false;
+//         },
+//         savePenggugatAddress() {
+//             this.form.alamat_penggugat = `Jalan ${this.penggugatAddress.jalan}, No ${this.penggugatAddress.no}, RT ${this.penggugatAddress.rt}, RW ${this.penggugatAddress.rw}, Desa ${this.penggugatAddress.desa}, Kecamatan ${this.penggugatAddress.kecamatan}, Kabupaten ${this.penggugatAddress.kabupaten}`;
+//             this.closePenggugatAddressModal();
+//         }
+//     }
+// });
+
+"use strict";
+
+// Fungsi untuk membuka modal alamat tergugat
+function openAddressModal() {
+    document.getElementById('tergugatModal').style.display = 'block';
+}
+
+// Fungsi untuk menutup modal alamat tergugat
+function closeAddressModal() {
+    document.getElementById('tergugatModal').style.display = 'none';
+}
+
+// Fungsi untuk menyimpan alamat tergugat
+function saveAddress(event) {
+    event.preventDefault();
+    const form = document.getElementById('tergugatForm');
+    const jalan = form.querySelector('#jalan').value;
+    const no = form.querySelector('#no').value;
+    const rt = form.querySelector('#rt').value;
+    const rw = form.querySelector('#rw').value;
+    const desa = form.querySelector('#desa').value;
+    const kecamatan = form.querySelector('#kecamatan').value;
+    const kabupaten = form.querySelector('#kabupaten').value;
+
+    document.getElementById('alamat_tergugat').value = `Jalan ${jalan}, No ${no}, RT ${rt}, RW ${rw}, Desa ${desa}, Kecamatan ${kecamatan}, Kabupaten ${kabupaten}`;
+    closeAddressModal();
+}
+
+// Fungsi untuk membuka modal alamat penggugat
+function openPenggugatAddressModal() {
+    document.getElementById('penggugatModal').style.display = 'block';
+}
+
+// Fungsi untuk menutup modal alamat penggugat
+function closePenggugatAddressModal() {
+    document.getElementById('penggugatModal').style.display = 'none';
+}
+
+// Fungsi untuk menyimpan alamat penggugat
+function savePenggugatAddress(event) {
+    event.preventDefault();
+    const form = document.getElementById('penggugatForm');
+    const jalan = form.querySelector('#jalan_penggugat').value;
+    const no = form.querySelector('#no_penggugat').value;
+    const rt = form.querySelector('#rt_penggugat').value;
+    const rw = form.querySelector('#rw_penggugat').value;
+    const desa = form.querySelector('#desa_penggugat').value;
+    const kecamatan = form.querySelector('#kecamatan_penggugat').value;
+    const kabupaten = form.querySelector('#kabupaten_penggugat').value;
+
+    document.getElementById('alamat_penggugat').value = `Jalan ${jalan}, No ${no}, RT ${rt}, RW ${rw}, Desa ${desa}, Kecamatan ${kecamatan}, Kabupaten ${kabupaten}`;
+    closePenggugatAddressModal();
+}
+
+// Fungsi untuk validasi form
+"use strict";
+
+// Fungsi untuk validasi form
+function validateForm(event) {
+    event.preventDefault();
+    const form = document.getElementById('gugatanForm');
+    const errors = {};
+
+    const requiredFields = [
+        'nama_penggugat', 'binti_penggugat', 'umur_penggugat', 'agama_penggugat',
+        'pekerjaan_penggugat', 'pendidikan_penggugat', 'alamat_penggugat',
+        'nama_tergugat', 'bin_tergugat', 'umur_tergugat', 'agama_tergugat',
+        'pekerjaan_tergugat', 'pendidikan_tergugat', 'alamat_tergugat'
+    ];
+
+    requiredFields.forEach(field => {
+        const input = form.querySelector(`[name="${field}"]`);
+        if (!input.value) {
+            errors[field] = `${field.replace('_', ' ')} wajib diisi.`;
+            document.getElementById(`error_${field}`).textContent = errors[field];
+        } else {
+            document.getElementById(`error_${field}`).textContent = '';
         }
-    },
-    mounted() {
-        this.showModal = false;
-        this.showPenggugatModal = false;
-    },
-    methods: {
-        validateForm() {
-            this.errors = {};
+    });
 
-            const requiredFields = [
-                'nama_penggugat', 'binti_penggugat', 'umur_penggugat', 'agama_penggugat',
-                'pekerjaan_penggugat', 'pendidikan_penggugat', 'alamat_penggugat',
-                'nama_tergugat', 'bin_tergugat', 'umur_tergugat', 'agama_tergugat',
-                'pekerjaan_tergugat', 'pendidikan_tergugat', 'alamat_tergugat'
-            ];
-
-            requiredFields.forEach(field => {
-                if (!this.form[field]) {
-                    this.errors[field] = `${field.replace('_', ' ')} wajib diisi.`;
-                }
-            });
-
-            if (Object.keys(this.errors).length === 0) {
-                this.$refs.form.submit();
-            }
-        },
-        openAddressModal() {
-            this.showModal = true;
-        },
-        closeAddressModal() {
-            this.showModal = false;
-        },
-        saveAddress() {
-            this.form.alamat_tergugat = `Jalan ${this.address.jalan}, No ${this.address.no}, RT ${this.address.rt}, RW ${this.address.rw}, Desa ${this.address.desa}, Kecamatan ${this.address.kecamatan}, Kabupaten ${this.address.kabupaten}`;
-            this.closeAddressModal();
-        },
-        openPenggugatAddressModal() {
-            this.showPenggugatModal = true;
-        },
-        closePenggugatAddressModal() {
-            this.showPenggugatModal = false;
-        },
-        savePenggugatAddress() {
-            this.form.alamat_penggugat = `Jalan ${this.penggugatAddress.jalan}, No ${this.penggugatAddress.no}, RT ${this.penggugatAddress.rt}, RW ${this.penggugatAddress.rw}, Desa ${this.penggugatAddress.desa}, Kecamatan ${this.penggugatAddress.kecamatan}, Kabupaten ${this.penggugatAddress.kabupaten}`;
-            this.closePenggugatAddressModal();
-        }
+    // Jika tidak ada error, submit form
+    if (Object.keys(errors).length === 0) {
+        form.submit();
     }
+}
+
+// Tambahkan event listener untuk menghapus pesan error saat mengetik
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('gugatanForm');
+    const requiredFields = [
+        'nama_penggugat', 'binti_penggugat', 'umur_penggugat', 'agama_penggugat',
+        'pekerjaan_penggugat', 'pendidikan_penggugat', 'alamat_penggugat',
+        'nama_tergugat', 'bin_tergugat', 'umur_tergugat', 'agama_tergugat',
+        'pekerjaan_tergugat', 'pendidikan_tergugat', 'alamat_tergugat'
+    ];
+
+    requiredFields.forEach(field => {
+        const input = form.querySelector(`[name="${field}"]`);
+        input.addEventListener('input', function() {
+            if (input.value) {
+                document.getElementById(`error_${field}`).textContent = '';
+            }
+        });
+    });
 });
-
-
-
