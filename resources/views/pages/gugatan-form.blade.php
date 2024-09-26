@@ -4,7 +4,7 @@
 
 @push('style')
 <!-- CSS Libraries -->
-
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 @endpush
 
 @section('main')
@@ -329,10 +329,6 @@
 
 @push('scripts')
 <!-- JS Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-
-
-{{-- <script src="{{ asset('js/scripts.js') }}"></script> --}}
 
 
 @endpush
