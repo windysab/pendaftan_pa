@@ -239,8 +239,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Next</button>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Selanjutnya</button>
+                    </div>
                 </form>
             </div>
         </section>
