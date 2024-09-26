@@ -636,7 +636,12 @@ document.getElementById('tanggal_pernikahan').addEventListener('change', functio
     const dayName = days[date.getUTCDay()];
     document.getElementById('hari_pernikahan').value = dayName;
 });
-
+document.getElementById('jumlah_anak').addEventListener('input', function() {
+    const jumlahAnak = parseInt(this.value, 10);
+    for (let i = 1; i <= 10; i++) {
+        document.getElementById(`anak_${i}_fields`).style.display = i <= jumlahAnak ? 'flex' : 'none';
+    }
+});
 
 // public/js/form-validation.js
 new Vue({

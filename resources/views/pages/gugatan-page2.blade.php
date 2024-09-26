@@ -166,48 +166,23 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                @for ($i = 1; $i <= 10; $i++)
+                                <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="anak_1">1. Nama Anak</label>
-                                            <input type="text" id="anak_1" name="anak_1" class="form-control" placeholder="Nama Anak">
+                                            <label for="anak_{{ $i }}"> {{ $i }}. Nama Anak</label>
+                                            <input type="text" id="anak_{{ $i }}" name="anak_{{ $i }}" class="form-control" placeholder="Nama Anak">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="tanggal_lahir_anak_1">Tanggal Lahir</label>
-                                            <input type="date" id="tanggal_lahir_anak_1" name="tanggal_lahir_anak_1" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="anak_2">2. Nama Anak</label>
-                                            <input type="text" id="anak_2" name="anak_2" class="form-control" placeholder="Nama Anak">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tanggal_lahir_anak_2">Tanggal Lahir</label>
-                                            <input type="date" id="tanggal_lahir_anak_2" name="tanggal_lahir_anak_2" class="form-control">
+                                            <label for="tanggal_lahir_anak_{{ $i }}">Tanggal Lahir</label>
+                                            <input type="date" id="tanggal_lahir_anak_{{ $i }}" name="tanggal_lahir_anak_{{ $i }}" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="anak_3">3. Nama Anak</label>
-                                            <input type="text" id="anak_3" name="anak_3" class="form-control" placeholder="Nama Anak">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tanggal_lahir_anak_3">Tanggal Lahir</label>
-                                            <input type="date" id="tanggal_lahir_anak_3" name="tanggal_lahir_anak_3" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
+                                @endfor
+                            </div>
                             </div>
                         </div>
                     </div>
