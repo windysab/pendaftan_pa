@@ -615,18 +615,19 @@ $(function() {
   }
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     const detailPernikahanSection = document.querySelector('.detail-pernikahan-section');
     const toggleButton = document.querySelector('#toggle-detail-pernikahan');
 
-    toggleButton.addEventListener('click', function() {
-        if (detailPernikahanSection.style.display === 'none') {
-            detailPernikahanSection.style.display = 'block';
-        } else {
-            detailPernikahanSection.style.display = 'none';
-        }
-    });
+    if (toggleButton) {
+        toggleButton.addEventListener('click', function() {
+            if (detailPernikahanSection.style.display === 'none') {
+                detailPernikahanSection.style.display = 'block';
+            } else {
+                detailPernikahanSection.style.display = 'none';
+            }
+        });
+    }
 });
 
 
@@ -672,52 +673,26 @@ new Vue({
             kabupaten: ''
         }
     },
+    mounted() {
+        this.showModal = false;
+        this.showPenggugatModal = false;
+    },
     methods: {
         validateForm() {
             this.errors = {};
 
-            if (!this.form.nama_penggugat) {
-                this.errors.nama_penggugat = 'Nama Penggugat wajib diisi.';
-            }
-            if (!this.form.binti_penggugat) {
-                this.errors.binti_penggugat = 'Binti Penggugat wajib diisi.';
-            }
-            if (!this.form.umur_penggugat) {
-                this.errors.umur_penggugat = 'Umur Penggugat wajib diisi.';
-            }
-            if (!this.form.agama_penggugat) {
-                this.errors.agama_penggugat = 'Agama Penggugat wajib diisi.';
-            }
-            if (!this.form.pekerjaan_penggugat) {
-                this.errors.pekerjaan_penggugat = 'Pekerjaan Penggugat wajib diisi.';
-            }
-            if (!this.form.pendidikan_penggugat) {
-                this.errors.pendidikan_penggugat = 'Pendidikan Penggugat wajib diisi.';
-            }
-            if (!this.form.alamat_penggugat) {
-                this.errors.alamat_penggugat = 'Alamat Penggugat wajib diisi.';
-            }
-            if (!this.form.nama_tergugat) {
-                this.errors.nama_tergugat = 'Nama Tergugat wajib diisi.';
-            }
-            if (!this.form.bin_tergugat) {
-                this.errors.bin_tergugat = 'Bin Tergugat wajib diisi.';
-            }
-            if (!this.form.umur_tergugat) {
-                this.errors.umur_tergugat = 'Umur Tergugat wajib diisi.';
-            }
-            if (!this.form.agama_tergugat) {
-                this.errors.agama_tergugat = 'Agama Tergugat wajib diisi.';
-            }
-            if (!this.form.pekerjaan_tergugat) {
-                this.errors.pekerjaan_tergugat = 'Pekerjaan Tergugat wajib diisi.';
-            }
-            if (!this.form.pendidikan_tergugat) {
-                this.errors.pendidikan_tergugat = 'Pendidikan Tergugat wajib diisi.';
-            }
-            if (!this.form.alamat_tergugat) {
-                this.errors.alamat_tergugat = 'Alamat Tergugat wajib diisi.';
-            }
+            const requiredFields = [
+                'nama_penggugat', 'binti_penggugat', 'umur_penggugat', 'agama_penggugat',
+                'pekerjaan_penggugat', 'pendidikan_penggugat', 'alamat_penggugat',
+                'nama_tergugat', 'bin_tergugat', 'umur_tergugat', 'agama_tergugat',
+                'pekerjaan_tergugat', 'pendidikan_tergugat', 'alamat_tergugat'
+            ];
+
+            requiredFields.forEach(field => {
+                if (!this.form[field]) {
+                    this.errors[field] = `${field.replace('_', ' ')} wajib diisi.`;
+                }
+            });
 
             if (Object.keys(this.errors).length === 0) {
                 this.$refs.form.submit();

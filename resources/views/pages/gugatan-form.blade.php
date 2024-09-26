@@ -192,47 +192,67 @@
         </div>
     </section>
 
+
     <!-- Modal for Tergugat -->
-    <div v-if="showModal" class="modal" tabindex="-1" role="dialog" style="display: block;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+    <div v-if="showModal" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title">Alamat Lengkap Tergugat</h5>
-                    <button type="button" class="close" @click="closeAddressModal">
+                    <button type="button" class="close text-white" @click="closeAddressModal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form @submit.prevent="saveAddress">
-                        <div class="form-group">
-                            <label for="jalan">Jalan</label>
-                            <input type="text" id="jalan" v-model="address.jalan" class="form-control">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jalan">Jalan</label>
+                                    <input type="text" id="jalan" v-model="address.jalan" class="form-control" placeholder="Masukkan nama jalan">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="no">No</label>
+                                    <input type="text" id="no" v-model="address.no" class="form-control" placeholder="No Rumah">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="rt">RT</label>
+                                    <input type="text" id="rt" v-model="address.rt" class="form-control" placeholder="RT">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="rw">RW</label>
+                                    <input type="text" id="rw" v-model="address.rw" class="form-control" placeholder="RW">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="desa">Desa</label>
+                                    <input type="text" id="desa" v-model="address.desa" class="form-control" placeholder="Nama Desa">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="kecamatan">Kecamatan</label>
+                                    <input type="text" id="kecamatan" v-model="address.kecamatan" class="form-control" placeholder="Nama Kecamatan">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="kabupaten">Kabupaten</label>
+                                    <input type="text" id="kabupaten" v-model="address.kabupaten" class="form-control" placeholder="Nama Kabupaten">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="no">No</label>
-                            <input type="text" id="no" v-model="address.no" class="form-control">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                            <button type="button" class="btn btn-secondary" @click="closeAddressModal">Batal</button>
                         </div>
-                        <div class="form-group">
-                            <label for="rt">RT</label>
-                            <input type="text" id="rt" v-model="address.rt" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="rw">RW</label>
-                            <input type="text" id="rw" v-model="address.rw" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="desa">Desa</label>
-                            <input type="text" id="desa" v-model="address.desa" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="kecamatan">Kecamatan</label>
-                            <input type="text" id="kecamatan" v-model="address.kecamatan" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="kabupaten">Kabupaten</label>
-                            <input type="text" id="kabupaten" v-model="address.kabupaten" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
             </div>
@@ -240,46 +260,65 @@
     </div>
 
     <!-- Modal for Penggugat -->
-    <div v-if="showPenggugatModal" class="modal" tabindex="-1" role="dialog" style="display: block;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+    <div v-if="showPenggugatModal" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header bg-info text-white">
                     <h5 class="modal-title">Alamat Lengkap Penggugat</h5>
-                    <button type="button" class="close" @click="closePenggugatAddressModal">
+                    <button type="button" class="close text-white" @click="closePenggugatAddressModal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form @submit.prevent="savePenggugatAddress">
-                        <div class="form-group">
-                            <label for="jalan_penggugat">Jalan</label>
-                            <input type="text" id="jalan_penggugat" v-model="penggugatAddress.jalan" class="form-control">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="jalan_penggugat">Jalan</label>
+                                    <input type="text" id="jalan_penggugat" v-model="penggugatAddress.jalan" class="form-control" placeholder="Masukkan nama jalan">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="no_penggugat">No</label>
+                                    <input type="text" id="no_penggugat" v-model="penggugatAddress.no" class="form-control" placeholder="No Rumah">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="rt_penggugat">RT</label>
+                                    <input type="text" id="rt_penggugat" v-model="penggugatAddress.rt" class="form-control" placeholder="RT">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="rw_penggugat">RW</label>
+                                    <input type="text" id="rw_penggugat" v-model="penggugatAddress.rw" class="form-control" placeholder="RW">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="desa_penggugat">Desa</label>
+                                    <input type="text" id="desa_penggugat" v-model="penggugatAddress.desa" class="form-control" placeholder="Nama Desa">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="kecamatan_penggugat">Kecamatan</label>
+                                    <input type="text" id="kecamatan_penggugat" v-model="penggugatAddress.kecamatan" class="form-control" placeholder="Nama Kecamatan">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="kabupaten_penggugat">Kabupaten</label>
+                                    <input type="text" id="kabupaten_penggugat" v-model="penggugatAddress.kabupaten" class="form-control" placeholder="Nama Kabupaten">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="no_penggugat">No</label>
-                            <input type="text" id="no_penggugat" v-model="penggugatAddress.no" class="form-control">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                            <button type="button" class="btn btn-secondary" @click="closePenggugatAddressModal">Batal</button>
                         </div>
-                        <div class="form-group">
-                            <label for="rt_penggugat">RT</label>
-                            <input type="text" id="rt_penggugat" v-model="penggugatAddress.rt" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="rw_penggugat">RW</label>
-                            <input type="text" id="rw_penggugat" v-model="penggugatAddress.rw" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="desa_penggugat">Desa</label>
-                            <input type="text" id="desa_penggugat" v-model="penggugatAddress.desa" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="kecamatan_penggugat">Kecamatan</label>
-                            <input type="text" id="kecamatan_penggugat" v-model="penggugatAddress.kecamatan" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="kabupaten_penggugat">Kabupaten</label>
-                            <input type="text" id="kabupaten_penggugat" v-model="penggugatAddress.kabupaten" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
             </div>
