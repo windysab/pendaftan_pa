@@ -628,3 +628,123 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+// public/js/form-validation.js
+new Vue({
+    el: '#app',
+    data: {
+        form: {
+            nama_penggugat: '',
+            binti_penggugat: '',
+            umur_penggugat: '',
+            agama_penggugat: '',
+            pekerjaan_penggugat: '',
+            pendidikan_penggugat: '',
+            alamat_penggugat: '',
+            nama_tergugat: '',
+            bin_tergugat: '',
+            umur_tergugat: '',
+            agama_tergugat: '',
+            pekerjaan_tergugat: '',
+            pendidikan_tergugat: '',
+            alamat_tergugat: ''
+        },
+        errors: {},
+        showModal: false,
+        showPenggugatModal: false,
+        address: {
+            jalan: '',
+            no: '',
+            rt: '',
+            rw: '',
+            desa: '',
+            kecamatan: '',
+            kabupaten: ''
+        },
+        penggugatAddress: {
+            jalan: '',
+            no: '',
+            rt: '',
+            rw: '',
+            desa: '',
+            kecamatan: '',
+            kabupaten: ''
+        }
+    },
+    methods: {
+        validateForm() {
+            this.errors = {};
+
+            if (!this.form.nama_penggugat) {
+                this.errors.nama_penggugat = 'Nama Penggugat wajib diisi.';
+            }
+            if (!this.form.binti_penggugat) {
+                this.errors.binti_penggugat = 'Binti Penggugat wajib diisi.';
+            }
+            if (!this.form.umur_penggugat) {
+                this.errors.umur_penggugat = 'Umur Penggugat wajib diisi.';
+            }
+            if (!this.form.agama_penggugat) {
+                this.errors.agama_penggugat = 'Agama Penggugat wajib diisi.';
+            }
+            if (!this.form.pekerjaan_penggugat) {
+                this.errors.pekerjaan_penggugat = 'Pekerjaan Penggugat wajib diisi.';
+            }
+            if (!this.form.pendidikan_penggugat) {
+                this.errors.pendidikan_penggugat = 'Pendidikan Penggugat wajib diisi.';
+            }
+            if (!this.form.alamat_penggugat) {
+                this.errors.alamat_penggugat = 'Alamat Penggugat wajib diisi.';
+            }
+            if (!this.form.nama_tergugat) {
+                this.errors.nama_tergugat = 'Nama Tergugat wajib diisi.';
+            }
+            if (!this.form.bin_tergugat) {
+                this.errors.bin_tergugat = 'Bin Tergugat wajib diisi.';
+            }
+            if (!this.form.umur_tergugat) {
+                this.errors.umur_tergugat = 'Umur Tergugat wajib diisi.';
+            }
+            if (!this.form.agama_tergugat) {
+                this.errors.agama_tergugat = 'Agama Tergugat wajib diisi.';
+            }
+            if (!this.form.pekerjaan_tergugat) {
+                this.errors.pekerjaan_tergugat = 'Pekerjaan Tergugat wajib diisi.';
+            }
+            if (!this.form.pendidikan_tergugat) {
+                this.errors.pendidikan_tergugat = 'Pendidikan Tergugat wajib diisi.';
+            }
+            if (!this.form.alamat_tergugat) {
+                this.errors.alamat_tergugat = 'Alamat Tergugat wajib diisi.';
+            }
+
+            if (Object.keys(this.errors).length === 0) {
+                this.$refs.form.submit();
+            }
+        },
+        openAddressModal() {
+            this.showModal = true;
+        },
+        closeAddressModal() {
+            this.showModal = false;
+        },
+        saveAddress() {
+            this.form.alamat_tergugat = `Jalan ${this.address.jalan}, No ${this.address.no}, RT ${this.address.rt}, RW ${this.address.rw}, Desa ${this.address.desa}, Kecamatan ${this.address.kecamatan}, Kabupaten ${this.address.kabupaten}`;
+            this.closeAddressModal();
+        },
+        openPenggugatAddressModal() {
+            this.showPenggugatModal = true;
+        },
+        closePenggugatAddressModal() {
+            this.showPenggugatModal = false;
+        },
+        savePenggugatAddress() {
+            this.form.alamat_penggugat = `Jalan ${this.penggugatAddress.jalan}, No ${this.penggugatAddress.no}, RT ${this.penggugatAddress.rt}, RW ${this.penggugatAddress.rw}, Desa ${this.penggugatAddress.desa}, Kecamatan ${this.penggugatAddress.kecamatan}, Kabupaten ${this.penggugatAddress.kabupaten}`;
+            this.closePenggugatAddressModal();
+        }
+    }
+});
+
+
+
