@@ -630,6 +630,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.getElementById('tanggal_pernikahan').addEventListener('change', function() {
+    const date = new Date(this.value);
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const dayName = days[date.getUTCDay()];
+    document.getElementById('hari_pernikahan').value = dayName;
+});
+
 
 // public/js/form-validation.js
 new Vue({
