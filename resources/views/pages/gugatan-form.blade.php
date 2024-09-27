@@ -36,14 +36,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nama_penggugat">Nama Penggugat</label>
+                                            <label for="nama_penggugat"><b>Nama Penggugat</b></label>
                                             <input type="text" id="nama_penggugat" name="nama_penggugat" class="form-control">
                                             <span id="error_nama_penggugat" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="binti_penggugat">Binti Penggugat</label>
+                                            <label for="binti_penggugat"><b>Binti Penggugat</b></label>
                                             <input type="text" id="binti_penggugat" name="binti_penggugat" class="form-control">
                                             <span id="error_binti_penggugat" class="text-danger"></span>
                                         </div>
@@ -52,14 +52,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="umur_penggugat">Umur Penggugat</label>
+                                            <label for="umur_penggugat"><b>Umur Penggugat</b></label>
                                             <input type="text" id="umur_penggugat" name="umur_penggugat" class="form-control">
                                             <span id="error_umur_penggugat" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="agama_penggugat">Agama Penggugat</label>
+                                            <label for="agama_penggugat"><b>Agama Penggugat</b></label>
                                             <select id="agama_penggugat" name="agama_penggugat" class="form-control" v-model="form.agama_penggugat">
                                                 <option>Islam</option>
                                                 <option>Kristen</option>
@@ -74,14 +74,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="pekerjaan_penggugat">Pekerjaan Penggugat</label>
+                                            <label for="pekerjaan_penggugat"><b>Pekerjaan Penggugat</b></label>
                                             <input type="text" id="pekerjaan_penggugat" name="pekerjaan_penggugat" class="form-control">
                                             <span id="error_pekerjaan_penggugat" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="pendidikan_penggugat">Pendidikan Penggugat</label>
+                                            <label for="pendidikan_penggugat"><b>Pendidikan Penggugat</b></label>
                                             <select id="pendidikan_penggugat" name="pendidikan_penggugat" class="form-control" v-model="form.pendidikan_penggugat">
                                                 <option>Tidak Tamat SD</option>
                                                 <option>SD</option>
@@ -114,14 +114,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nama_tergugat">Nama Tergugat</label>
+                                            <label for="nama_tergugat"><b>Nama Tergugat</b></label>
                                             <input type="text" id="nama_tergugat" name="nama_tergugat" class="form-control">
                                             <span id="error_nama_tergugat" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="bin_tergugat">Bin Tergugat</label>
+                                            <label for="bin_tergugat"><b>Bin Tergugat</b></label>
                                             <input type="text" id="bin_tergugat" name="bin_tergugat" class="form-control">
                                             <span id="error_bin_tergugat" class="text-danger"></span>
                                         </div>
@@ -130,14 +130,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="umur_tergugat">Umur Tergugat</label>
+                                            <label for="umur_tergugat"><b>Umur Tergugat</b></label>
                                             <input type="text" id="umur_tergugat" name="umur_tergugat" class="form-control">
                                             <span id="error_umur_tergugat" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="agama_tergugat">Agama Tergugat</label>
+                                            <label for="agama_tergugat"><b>Agama Tergugat</b></label>
                                             <select id="agama_tergugat" name="agama_tergugat" class="form-control" v-model="form.agama_tergugat">
                                                 <option>Islam</option>
                                                 <option>Kristen</option>
@@ -152,14 +152,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="pekerjaan_tergugat">Pekerjaan Tergugat</label>
+                                            <label for="pekerjaan_tergugat"><b>Pekerjaan Tergugat</b></label>
                                             <input type="text" id="pekerjaan_tergugat" name="pekerjaan_tergugat" class="form-control">
                                             <span id="error_pekerjaan_tergugat" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="pendidikan_tergugat">Pendidikan Tergugat</label>
+                                            <label for="pendidikan_tergugat"><b>Pendidikan Tergugat</b></label>
                                             <select id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control" v-model="form.pendidikan_tergugat">
                                                 <option>Tidak Tamat SD</option>
                                                 <option>SD</option>
@@ -206,43 +206,43 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="jalan">Jalan</label>
+                                    <label for="jalan"><b>Jalan</b></label>
                                     <input type="text" id="jalan" class="form-control" placeholder="Masukkan nama jalan">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="no">No</label>
+                                    <label for="no"><b>No</b></label>
                                     <input type="text" id="no" class="form-control" placeholder="No Rumah">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="rt">RT</label>
+                                    <label for="rt"><b>RT</b></label>
                                     <input type="text" id="rt" class="form-control" placeholder="RT">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="rw">RW</label>
+                                    <label for="rw"><b>RW</b></label>
                                     <input type="text" id="rw" class="form-control" placeholder="RW">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="desa">Desa</label>
+                                    <label for="desa"><b>Desa</b></label>
                                     <input type="text" id="desa" class="form-control" placeholder="Nama Desa">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="kecamatan">Kecamatan</label>
+                                    <label for="kecamatan"><b>Kecamatan</b></label>
                                     <input type="text" id="kecamatan" class="form-control" placeholder="Nama Kecamatan">
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label for="kabupaten">Kabupaten</label>
+                                    <label for="kabupaten"><b>Kabupaten</b></label>
                                     <input type="text" id="kabupaten" class="form-control" placeholder="Nama Kabupaten">
                                 </div>
                             </div>
@@ -272,43 +272,43 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="jalan_penggugat">Jalan</label>
+                                    <label for="jalan_penggugat"><b>Jalan</b></label>
                                     <input type="text" id="jalan_penggugat" class="form-control" placeholder="Masukkan nama jalan">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="no_penggugat">No</label>
+                                    <label for="no_penggugat"><b>No</b></label>
                                     <input type="text" id="no_penggugat" class="form-control" placeholder="No Rumah">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="rt_penggugat">RT</label>
+                                    <label for="rt_penggugat"><b>RT</b></label>
                                     <input type="text" id="rt_penggugat" class="form-control" placeholder="RT">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="rw_penggugat">RW</label>
+                                    <label for="rw_penggugat"><b>RW</b></label>
                                     <input type="text" id="rw_penggugat" class="form-control" placeholder="RW">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="desa_penggugat">Desa</label>
+                                    <label for="desa_penggugat"><b>Desa</b></label>
                                     <input type="text" id="desa_penggugat" class="form-control" placeholder="Nama Desa">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="kecamatan_penggugat">Kecamatan</label>
+                                    <label for="kecamatan_penggugat"><b>Kecamatan</b></label>
                                     <input type="text" id="kecamatan_penggugat" class="form-control" placeholder="Nama Kecamatan">
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label for="kabupaten_penggugat">Kabupaten</label>
+                                    <label for="kabupaten_penggugat"><b>Kabupaten</b></label>
                                     <input type="text" id="kabupaten_penggugat" class="form-control" placeholder="Nama Kabupaten">
                                 </div>
                             </div>

@@ -36,14 +36,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="hari_pernikahan">Hari Pernikahan</label>
+                                            <label for="hari_pernikahan"><b>Hari Pernikahan</b></label>
                                             <input type="text" id="hari_pernikahan" name="hari_pernikahan" class="form-control" readonly>
                                             <span id="error_hari_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="tanggal_pernikahan">Tanggal Pernikahan</label>
+                                            <label for="tanggal_pernikahan"><b>Tanggal Pernikahan</b></label>
                                             <input type="date" id="tanggal_pernikahan" name="tanggal_pernikahan" class="form-control">
                                             <span id="error_tanggal_pernikahan" class="text-danger"></span>
                                         </div>
@@ -52,21 +52,21 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="desa_pernikahan">Desa</label>
+                                            <label for="desa_pernikahan"><b>Desa</b></label>
                                             <input type="text" id="desa_pernikahan" name="desa_pernikahan" class="form-control">
                                             <span id="error_desa_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kecamatan_pernikahan">Kecamatan</label>
+                                            <label for="kecamatan_pernikahan"><b>Kecamatan</b></label>
                                             <input type="text" id="kecamatan_pernikahan" name="kecamatan_pernikahan" class="form-control">
                                             <span id="error_kecamatan_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kabupaten_pernikahan">Kabupaten</label>
+                                            <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
                                             <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control">
                                             <span id="error_kabupaten_pernikahan" class="text-danger"></span>
                                         </div>
@@ -75,14 +75,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nomor_akta_nikah">Nomor Kutipan Akta Nikah</label>
+                                            <label for="nomor_akta_nikah"><b>Nomor Kutipan Akta Nikah</b></label>
                                             <input type="text" id="nomor_akta_nikah" name="nomor_akta_nikah" class="form-control">
                                             <span id="error_nomor_akta_nikah" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="tanggal_akta_nikah">Tanggal Kutipan Akta Nikah</label>
+                                            <label for="tanggal_akta_nikah"><b>Tanggal Kutipan Akta Nikah</b></label>
                                             <input type="date" id="tanggal_akta_nikah" name="tanggal_akta_nikah" class="form-control">
                                             <span id="error_tanggal_akta_nikah" class="text-danger"></span>
                                         </div>
@@ -91,14 +91,14 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="kecamatan_kua">Kecamatan Kantor Urusan Agama</label>
+                                            <label for="kecamatan_kua"><b>Kecamatan Kantor Urusan Agama</b></label>
                                             <input type="text" id="kecamatan_kua" name="kecamatan_kua" class="form-control">
                                             <span id="error_kecamatan_kua" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="kabupaten_kua">Kabupaten Kantor Urusan Agama</label>
+                                            <label for="kabupaten_kua"><b>Kabupaten Kantor Urusan Agama</b></label>
                                             <input type="text" id="kabupaten_kua" name="kabupaten_kua" class="form-control">
                                             <span id="error_kabupaten_kua" class="text-danger"></span>
                                         </div>
@@ -114,8 +114,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Setelah pernikahan tersebut Penggugat dan Tergugat bertempat
-                                        tinggal</label>
+                                    <label><b>Setelah pernikahan tersebut Penggugat dan Tergugat bertempat tinggal</b></label>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="tempat_tinggal" id="rumah_sendiri" value="rumah_sendiri">
                                         <label class="form-check-label" for="rumah_sendiri">
@@ -160,23 +159,21 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kumpul_baik_selama_tahun">Kumpul baik selama
-                                                (tahun)</label>
+                                            <label for="kumpul_baik_selama_tahun"><b>Kumpul baik selama (tahun)</b></label>
                                             <input type="number" id="kumpul_baik_selama_tahun" name="kumpul_baik_selama_tahun" class="form-control" placeholder="tahun">
                                             <span id="error_kumpul_baik_selama_tahun" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kumpul_baik_selama_bulan">Kumpul baik selama
-                                                (bulan)</label>
+                                            <label for="kumpul_baik_selama_bulan"><b>Kumpul baik selama (bulan)</b></label>
                                             <input type="number" id="kumpul_baik_selama_bulan" name="kumpul_baik_selama_bulan" class="form-control" placeholder="bulan">
                                             <span id="error_kumpul_baik_selama_bulan" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="jumlah_anak">Telah dikaruniai</label>
+                                            <label for="jumlah_anak"><b>Telah dikaruniai</b></label>
                                             <input type="number" id="jumlah_anak" name="jumlah_anak" class="form-control" placeholder="jumlah anak">
                                             <span id="error_jumlah_anak" class="text-danger"></span>
                                         </div>
@@ -187,14 +184,14 @@
                                 <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="anak_{{ $i }}"> {{ $i }}. Nama Anak</label>
+                                            <label for="anak_{{ $i }}"><b>{{ $i }}. Nama Anak</b></label>
                                             <input type="text" id="anak_{{ $i }}" name="anak_{{ $i }}" class="form-control" placeholder="Nama Anak">
                                             <span id="error_anak_{{ $i }}" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="tanggal_lahir_anak_{{ $i }}">Tanggal Lahir</label>
+                                            <label for="tanggal_lahir_anak_{{ $i }}"><b>Tanggal Lahir</b></label>
                                             <input type="date" id="tanggal_lahir_anak_{{ $i }}" name="tanggal_lahir_anak_{{ $i }}" class="form-control">
                                             <span id="error_tanggal_lahir_anak_{{ $i }}" class="text-danger"></span>
                                         </div>
@@ -207,6 +204,7 @@
                     </div>
                 </div>
                 <div class="text-right">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='{{ route('gugatan-form') }}'">Sebelumnya</button>
                     <button type="submit" class="btn btn-primary">Selanjutnya</button>
                 </div>
             </form>

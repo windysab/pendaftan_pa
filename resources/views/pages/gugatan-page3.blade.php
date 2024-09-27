@@ -34,12 +34,12 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="tanggal_perselisihan">Tanggal Perselisihan</label>
+                                        <label for="tanggal_perselisihan"><b>Tanggal Perselisihan</b></label>
                                         <input type="date" id="tanggal_perselisihan" name="tanggal_perselisihan"
                                             class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="alasan_perselisihan">Alasan Perselisihan dan Pertengkaran</label>
+                                        <label for="alasan_perselisihan"><b>Alasan Perselisihan dan Pertengkaran</b></label>
                                         <select class="form-control" name="alasan_perselisihan" id="alasan_perselisihan" onchange="showTextarea()">
                                             <option value="minum_keras">Mengkonsumsi minum-minuman keras</option>
                                             <option value="bermain_judi">Bermain judi</option>
@@ -65,55 +65,55 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="tanggal_perpisahan">Tanggal Perpisahan</label>
+                                        <label for="tanggal_perpisahan"><b>Tanggal Perpisahan</b></label>
                                         <input type="date" id="tanggal_perpisahan" name="tanggal_perpisahan"
                                             class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Jenis Perpisahan</label>
+                                        <label><b>Jenis Perpisahan</b></label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="jenis_perpisahan"
                                                 id="berpisah_tempat_tinggal" value="berpisah_tempat_tinggal" required>
-                                            <label class="form-check-label" for="berpisah_tempat_tinggal">Berpisah
-                                                tempat tinggal</label>
+                                            <label class="form-check-label" for="berpisah_tempat_tinggal"><b>Berpisah
+                                                tempat tinggal</b></label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="jenis_perpisahan"
                                                 id="berpisah_tempat_tidur" value="berpisah_tempat_tidur" required>
-                                            <label class="form-check-label" for="berpisah_tempat_tidur">Berpisah
-                                                tempat tidur</label>
+                                            <label class="form-check-label" for="berpisah_tempat_tidur"><b>Berpisah
+                                                tempat tidur</b></label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Siapa yang meninggalkan rumah</label>
+                                        <label><b>Siapa yang meninggalkan rumah</b></label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="siapa_meninggalkan"
                                                 id="tergugat" value="tergugat" required>
-                                            <label class="form-check-label" for="tergugat">Tergugat</label>
+                                            <label class="form-check-label" for="tergugat"><b>Tergugat</b></label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="siapa_meninggalkan"
                                                 id="penggugat" value="penggugat" required>
-                                            <label class="form-check-label" for="penggugat">Penggugat</label>
+                                            <label class="form-check-label" for="penggugat"><b>Penggugat</b></label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="desa">Desa</label>
+                                        <label for="desa"><b>Desa</b></label>
                                         <input type="text" id="desa" name="desa" class="form-control"
                                             placeholder="Nama desa" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Alasan meninggalkan rumah</label>
+                                        <label><b>Alasan meninggalkan rumah</b></label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="alasan_meninggalkan"
                                                 id="diusir" value="diusir" required>
-                                            <label class="form-check-label" for="diusir">Karena diusir oleh</label>
+                                            <label class="form-check-label" for="diusir"><b>Karena diusir oleh</b></label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="alasan_meninggalkan"
                                                 id="keinginan_sendiri" value="keinginan_sendiri" required>
-                                            <label class="form-check-label" for="keinginan_sendiri">Keinginan
-                                                sendiri</label>
+                                            <label class="form-check-label" for="keinginan_sendiri"><b>Keinginan
+                                                sendiri</b></label>
                                         </div>
                                     </div>
                                 </div>
@@ -126,25 +126,27 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Upaya Merukunkan Penggugat dan Tergugat</label>
+                                        <label><b>Upaya Merukunkan Penggugat dan Tergugat</b></label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="upaya_merukunkan"
                                                 id="ada_upaya" value="ada" required>
-                                            <label class="form-check-label" for="ada_upaya">Ada</label>
+                                            <label class="form-check-label" for="ada_upaya"><b>Ada</b></label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="upaya_merukunkan"
                                                 id="tidak_ada_upaya" value="tidak_ada" required>
-                                            <label class="form-check-label" for="tidak_ada_upaya">Sudah tidak
-                                                ada</label>
+                                            <label class="form-check-label" for="tidak_ada_upaya"><b>Sudah tidak
+                                                ada</b></label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="text-right">
+                        <a href="{{ route('gugatan.page2') }}" class="btn btn-primary">Sebelumnya</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form>
             </div>
         </section>
