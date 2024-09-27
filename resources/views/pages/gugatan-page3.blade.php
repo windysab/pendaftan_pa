@@ -39,91 +39,21 @@
                                             class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Alasan Perselisihan dan Pertengkaran</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="minum_keras" value="minum_keras">
-                                            <label class="form-check-label" for="minum_keras">
-                                                Mengkonsumsi minum-minuman keras
-                                                <textarea name="detail_minum_keras" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="bermain_judi" value="bermain_judi">
-                                            <label class="form-check-label" for="bermain_judi">
-                                                Bermain judi
-                                                <textarea name="detail_bermain_judi" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="memukul_penggugat" value="memukul_penggugat">
-                                            <label class="form-check-label" for="memukul_penggugat">
-                                                Memukul Penggugat
-                                                <textarea name="detail_memukul_penggugat" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="hubungan_asmara" value="hubungan_asmara">
-                                            <label class="form-check-label" for="hubungan_asmara">
-                                                Telah menjalin hubungan asmara dengan perempuan lain
-                                                <textarea name="detail_hubungan_asmara" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="keluar_malam" value="keluar_malam">
-                                            <label class="form-check-label" for="keluar_malam">
-                                                Sering keluar pada malam hari / pulang pada waktu dini hari / tidak
-                                                pulang berhari – hari
-                                                <textarea name="detail_keluar_malam" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="malas_bekerja" value="malas_bekerja">
-                                            <label class="form-check-label" for="malas_bekerja">
-                                                Malas berkerja
-                                                <textarea name="detail_malas_bekerja" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="tidak_biaya" value="tidak_biaya">
-                                            <label class="form-check-label" for="tidak_biaya">
-                                                Tidak memberi biaya untuk keperluan rumah tangga sehingga tidak
-                                                mencukupi
-                                                <textarea name="detail_tidak_biaya" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="dijodohkan" value="dijodohkan">
-                                            <label class="form-check-label" for="dijodohkan">
-                                                Perkawinan Penggugat dan Tergugat dijodohkan oleh orang tua
-                                                masing-masing
-                                                <textarea name="detail_dijodohkan" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="alasan_perselisihan[]"
-                                                id="alasan_lainnya" value="alasan_lainnya">
-                                            <label class="form-check-label" for="alasan_lainnya">
-                                                Alasan lainnya
-                                                <textarea name="detail_alasan_lainnya" class="form-control"
-                                                    placeholder="Jelaskan kejadiannya"></textarea>
-                                            </label>
-                                        </div>
+                                        <label for="alasan_perselisihan">Alasan Perselisihan dan Pertengkaran</label>
+                                        <select class="form-control" name="alasan_perselisihan" id="alasan_perselisihan" onchange="showTextarea()">
+                                            <option value="minum_keras">Mengkonsumsi minum-minuman keras</option>
+                                            <option value="bermain_judi">Bermain judi</option>
+                                            <option value="memukul_penggugat">Memukul Penggugat</option>
+                                            <option value="hubungan_asmara">Telah menjalin hubungan asmara dengan perempuan lain</option>
+                                            <option value="keluar_malam">Sering keluar pada malam hari / pulang pada waktu dini hari / tidak pulang berhari – hari</option>
+                                            <option value="malas_bekerja">Malas berkerja</option>
+                                            <option value="tidak_biaya">Tidak memberi biaya untuk keperluan rumah tangga sehingga tidak mencukupi</option>
+                                            <option value="dijodohkan">Perkawinan Penggugat dan Tergugat dijodohkan oleh orang tua masing-masing</option>
+                                            <option value="alasan_lainnya">Alasan lainnya</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="textarea-container" style="display:none;">
+                                        <textarea name="detail_alasan" class="form-control" placeholder="Jelaskan kejadiannya"></textarea>
                                     </div>
                                 </div>
                             </div>

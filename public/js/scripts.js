@@ -844,3 +844,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function showTextarea() {
+    var select = document.getElementById('alasan_perselisihan');
+    var textareaContainer = document.getElementById('textarea-container');
+    if (select.value) {
+        textareaContainer.style.display = 'block';
+    } else {
+        textareaContainer.style.display = 'none';
+    }
+}
