@@ -216,41 +216,6 @@
 @endsection
 
 @push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const errors = {};
-
-        const requiredFields = [
-            'hari_pernikahan', 'tanggal_pernikahan', 'desa_pernikahan', 'kecamatan_pernikahan',
-            'kabupaten_pernikahan', 'nomor_akta_nikah', 'tanggal_akta_nikah', 'kecamatan_kua',
-            'kabupaten_kua', 'tempat_tinggal', 'kumpul_baik_selama_tahun', 'kumpul_baik_selama_bulan',
-            'jumlah_anak'
-        ];
-
-        requiredFields.forEach(field => {
-            const input = form.querySelector(`[name="${field}"]`);
-            const errorSpan = document.getElementById(`error_${field}`);
-            if (!input || !input.value.trim()) {
-                errors[field] = `${field.replace(/_/g, ' ')} wajib diisi.`;
-                if (errorSpan) {
-                    errorSpan.textContent = errors[field];
-                }
-            } else {
-                if (errorSpan) {
-                    errorSpan.textContent = '';
-                }
-            }
-        });
-
-        // Tampilkan pesan error jika ada
-        if (Object.keys(errors).length === 0) {
-            form.submit();
-        }
-    });
-});
 </script>
 @endpush

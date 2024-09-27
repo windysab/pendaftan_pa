@@ -643,96 +643,6 @@ document.getElementById('jumlah_anak').addEventListener('input', function () {
     }
 });
 
-// public/js/form-validation.js
-// new Vue({
-//     el: '#app',
-//     data: {
-//         form: {
-//             nama_penggugat: '',
-//             binti_penggugat: '',
-//             umur_penggugat: '',
-//             agama_penggugat: '',
-//             pekerjaan_penggugat: '',
-//             pendidikan_penggugat: '',
-//             alamat_penggugat: '',
-//             nama_tergugat: '',
-//             bin_tergugat: '',
-//             umur_tergugat: '',
-//             agama_tergugat: '',
-//             pekerjaan_tergugat: '',
-//             pendidikan_tergugat: '',
-//             alamat_tergugat: ''
-//         },
-//         errors: {},
-//         showModal: false,
-//         showPenggugatModal: false,
-//         address: {
-//             jalan: '',
-//             no: '',
-//             rt: '',
-//             rw: '',
-//             desa: '',
-//             kecamatan: '',
-//             kabupaten: ''
-//         },
-//         penggugatAddress: {
-//             jalan: '',
-//             no: '',
-//             rt: '',
-//             rw: '',
-//             desa: '',
-//             kecamatan: '',
-//             kabupaten: ''
-//         }
-//     },
-//     mounted() {
-//         this.showModal = false;
-//         this.showPenggugatModal = false;
-//     },
-//     methods: {
-//         validateForm() {
-//             this.errors = {};
-
-//             const requiredFields = [
-//                 'nama_penggugat', 'binti_penggugat', 'umur_penggugat', 'agama_penggugat',
-//                 'pekerjaan_penggugat', 'pendidikan_penggugat', 'alamat_penggugat',
-//                 'nama_tergugat', 'bin_tergugat', 'umur_tergugat', 'agama_tergugat',
-//                 'pekerjaan_tergugat', 'pendidikan_tergugat', 'alamat_tergugat'
-//             ];
-
-//             requiredFields.forEach(field => {
-//                 if (!this.form[field]) {
-//                     this.errors[field] = `${field.replace('_', ' ')} wajib diisi.`;
-//                 }
-//             });
-
-//             if (Object.keys(this.errors).length === 0) {
-//                 this.$refs.form.submit();
-//             }
-//         },
-//         openAddressModal() {
-//             this.showModal = true;
-//         },
-//         closeAddressModal() {
-//             this.showModal = false;
-//         },
-//         saveAddress() {
-//             this.form.alamat_tergugat = `Jalan ${this.address.jalan}, No ${this.address.no}, RT ${this.address.rt}, RW ${this.address.rw}, Desa ${this.address.desa}, Kecamatan ${this.address.kecamatan}, Kabupaten ${this.address.kabupaten}`;
-//             this.closeAddressModal();
-//         },
-//         openPenggugatAddressModal() {
-//             this.showPenggugatModal = true;
-//         },
-//         closePenggugatAddressModal() {
-//             this.showPenggugatModal = false;
-//         },
-//         savePenggugatAddress() {
-//             this.form.alamat_penggugat = `Jalan ${this.penggugatAddress.jalan}, No ${this.penggugatAddress.no}, RT ${this.penggugatAddress.rt}, RW ${this.penggugatAddress.rw}, Desa ${this.penggugatAddress.desa}, Kecamatan ${this.penggugatAddress.kecamatan}, Kabupaten ${this.penggugatAddress.kabupaten}`;
-//             this.closePenggugatAddressModal();
-//         }
-//     }
-// });
-
 "use strict";
 
 // Fungsi untuk membuka modal alamat tergugat
@@ -892,10 +802,45 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+        // Validasi khusus untuk jumlah anak dan tanggal lahir anak
+        const jumlahAnak = parseInt(form.querySelector('[name="jumlah_anak"]').value, 10);
+        for (let i = 1; i <= jumlahAnak; i++) {
+            const namaAnak = form.querySelector(`[name="anak_${i}"]`);
+            const tanggalLahirAnak = form.querySelector(`[name="tanggal_lahir_anak_${i}"]`);
+            const errorNamaAnak = document.getElementById(`error_anak_${i}`);
+            const errorTanggalLahirAnak = document.getElementById(`error_tanggal_lahir_anak_${i}`);
+
+            if (!namaAnak.value.trim()) {
+                errors[`anak_${i}`] = `Nama anak ke-${i} wajib diisi.`;
+                if (errorNamaAnak) {
+                    errorNamaAnak.textContent = errors[`anak_${i}`];
+                }
+            } else {
+                if (errorNamaAnak) {
+                    errorNamaAnak.textContent = '';
+                }
+            }
+
+            if (!tanggalLahirAnak.value.trim()) {
+                errors[`tanggal_lahir_anak_${i}`] = `Tanggal lahir anak ke-${i} wajib diisi.`;
+                if (errorTanggalLahirAnak) {
+                    errorTanggalLahirAnak.textContent = errors[`tanggal_lahir_anak_${i}`];
+                }
+            } else {
+                if (errorTanggalLahirAnak) {
+                    errorTanggalLahirAnak.textContent = '';
+                }
+            }
+        }
+
         // Tampilkan pesan error jika ada
         if (Object.keys(errors).length === 0) {
             form.submit();
         }
+
+
+
+
     });
 });
 
