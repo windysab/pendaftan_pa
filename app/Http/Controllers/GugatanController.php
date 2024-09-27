@@ -6,6 +6,41 @@ use Illuminate\Http\Request;
 
 class GugatanController extends Controller
 {
+    public function showForm1()
+    {
+        // Ambil data dari session
+        $data = session('gugatan_form', []);
+        return view('pages.gugatan-form', ['data' => $data, 'type_menu' => 'gugatan']);
+    }
+
+    public function saveForm1(Request $request)
+    {
+        // Simpan data ke session
+        $request->session()->put('gugatan_form', $request->all());
+
+        // Redirect ke halaman berikutnya
+        return redirect()->route('gugatan.page2');
+    }
+
+    public function showPage2()
+    {
+        // Ambil data dari session
+        $data = session('gugatan_form', []);
+        return view('pages.gugatan-page2', ['data' => $data, 'type_menu' => 'gugatan']);
+    }
+
+    public function savePage2(Request $request)
+    {
+        // Simpan data ke session
+        $request->session()->put('gugatan_form', array_merge(
+            session('gugatan_form', []),
+            $request->all()
+        ));
+
+        // Redirect ke halaman berikutnya
+        return redirect()->route('gugatan.page3');
+    }
+
     public function store(Request $request)
     {
         // Validasi dan simpan data
