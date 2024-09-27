@@ -19,7 +19,7 @@
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Formulir Gugatan - Data Anak</h2>
+                <h2 class="section-title">Formulir Gugatan - Data Perselisihan dan Pertengkaran</h2>
                 <p class="section-lead">
                     Silahkan isi data anak dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
                 </p>
