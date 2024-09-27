@@ -13,20 +13,13 @@ Route::get('/dashboard-general-dashboard', function () {
 
 // Tambahkan rute ini
 Route::get('/gugatan-form', [GugatanController::class, 'showForm1'])->name('gugatan-form');
-
 Route::post('/gugatan-form', [GugatanController::class, 'saveForm1'])->name('gugatan-form.save');
 
 Route::get('/gugatan-page2', [GugatanController::class, 'showPage2'])->name('gugatan.page2');
-
 Route::post('/gugatan-page2', [GugatanController::class, 'savePage2'])->name('gugatan.page2.post');
 
-Route::post('/gugatan-page3', function (Request $request) {
-    return view('pages.gugatan-page3', ['type_menu' => 'gugatan', 'data' => $request->all()]);
-})->name('gugatan.page3');
-
-Route::post('/gugatan-page4', function (Request $request) {
-    return view('pages.gugatan-page4', ['type_menu' => 'gugatan', 'data' => $request->all()]);
-})->name('gugatan.page4');
+Route::get('/gugatan-page3', [GugatanController::class, 'showPage3'])->name('gugatan.page3');
+Route::post('/gugatan-page3', [GugatanController::class, 'savePage3'])->name('gugatan.page3.post');
 
 Route::post('/gugatan-store', [GugatanController::class, 'store'])->name('gugatan.store');
 
@@ -189,75 +182,4 @@ Route::get('/modules-sparkline', function () {
 });
 Route::get('/modules-sweet-alert', function () {
     return view('pages.modules-sweet-alert', ['type_menu' => 'modules']);
-});
-Route::get('/modules-toastr', function () {
-    return view('pages.modules-toastr', ['type_menu' => 'modules']);
-});
-Route::get('/modules-vector-map', function () {
-    return view('pages.modules-vector-map', ['type_menu' => 'modules']);
-});
-Route::get('/modules-weather-icon', function () {
-    return view('pages.modules-weather-icon', ['type_menu' => 'modules']);
-});
-
-// auth
-Route::get('/auth-forgot-password', function () {
-    return view('pages.auth-forgot-password', ['type_menu' => 'auth']);
-});
-Route::get('/auth-login', function () {
-    return view('pages.auth-login', ['type_menu' => 'auth']);
-});
-Route::get('/auth-login2', function () {
-    return view('pages.auth-login2', ['type_menu' => 'auth']);
-});
-Route::get('/auth-register', function () {
-    return view('pages.auth-register', ['type_menu' => 'auth']);
-});
-Route::get('/auth-reset-password', function () {
-    return view('pages.auth-reset-password', ['type_menu' => 'auth']);
-});
-
-// error
-Route::get('/error-403', function () {
-    return view('pages.error-403', ['type_menu' => 'error']);
-});
-Route::get('/error-404', function () {
-    return view('pages.error-404', ['type_menu' => 'error']);
-});
-Route::get('/error-500', function () {
-    return view('pages.error-500', ['type_menu' => 'error']);
-});
-Route::get('/error-503', function () {
-    return view('pages.error-503', ['type_menu' => 'error']);
-});
-
-// features
-Route::get('/features-activities', function () {
-    return view('pages.features-activities', ['type_menu' => 'features']);
-});
-Route::get('/features-post-create', function () {
-    return view('pages.features-post-create', ['type_menu' => 'features']);
-});
-Route::get('/features-post', function () {
-    return view('pages.features-post', ['type_menu' => 'features']);
-});
-Route::get('/features-profile', function () {
-    return view('pages.features-profile', ['type_menu' => 'features']);
-});
-Route::get('/features-settings', function () {
-    return view('pages.features-settings', ['type_menu' => 'features']);
-});
-Route::get('/features-setting-detail', function () {
-    return view('pages.features-setting-detail', ['type_menu' => 'features']);
-});
-Route::get('/features-tickets', function () {
-    return view('pages.features-tickets', ['type_menu' => 'features']);
-});
-
-// utilities
-Route::get('/utilities-contact', function () {
-    return view('pages.utilities-contact', ['type_menu' => 'utilities']);
-});
-Route::get('/utilities-invoice', function () {
-    return view('pages.utilities-invoice', ['type_menu' => 'utilities']);
 });

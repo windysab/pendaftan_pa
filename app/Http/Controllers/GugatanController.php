@@ -41,6 +41,33 @@ class GugatanController extends Controller
         return redirect()->route('gugatan.page3');
     }
 
+    public function savePage3(Request $request)
+    {
+        // Validasi data yang diterima dari form
+        $request->validate([
+            'tanggal_perselisihan' => 'required|date',
+            'alasan_perselisihan' => 'required|string',
+            'detail_alasan' => 'nullable|string',
+            'tanggal_perpisahan' => 'required|date',
+            'jenis_perpisahan' => 'required|string',
+            'siapa_meninggalkan' => 'required|string',
+            'desa' => 'required|string|max:255',
+            'alasan_meninggalkan' => 'required|string',
+            'upaya_merukunkan' => 'required|string',
+        ]);
+
+        // Simpan data ke dalam session atau database
+        $data = $request->all();
+        session(['gugatan-page2' => $data]);
+
+        // Redirect ke halaman berikutnya atau halaman sukses
+        return redirect()->route('gugatan.store');
+    }
+
+    public function showPage3()
+    {
+        return view('pages.gugatan-page3', ['type_menu' => 'gugatan']);
+    }
     public function store(Request $request)
     {
         // Validasi dan simpan data
