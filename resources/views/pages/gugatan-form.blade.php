@@ -60,7 +60,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="agama_penggugat">Agama Penggugat</label>
-                                            <input type="text" id="agama_penggugat" name="agama_penggugat" class="form-control">
+                                            <select id="agama_penggugat" name="agama_penggugat" class="form-control" v-model="form.agama_penggugat">
+                                                <option>Islam</option>
+                                                <option>Kristen</option>
+                                                <option>Khatolik</option>
+                                                <option>Hindu</option>
+                                                <option>Budha</option>
+                                            </select>
                                             <span id="error_agama_penggugat" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -76,7 +82,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="pendidikan_penggugat">Pendidikan Penggugat</label>
-                                            <input type="text" id="pendidikan_penggugat" name="pendidikan_penggugat" class="form-control">
+                                            <select id="pendidikan_penggugat" name="pendidikan_penggugat" class="form-control" v-model="form.pendidikan_penggugat">
+                                                <option>Tidak Tamat SD</option>
+                                                <option>SD</option>
+                                                <option>SLTP</option>
+                                                <option>SLTA</option>
+                                                <option>DI</option>
+                                                <option>DII</option>
+                                                <option>DIII</option>
+                                                <option>S1</option>
+                                            </select>
                                             <span id="error_pendidikan_penggugat" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -123,7 +138,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="agama_tergugat">Agama Tergugat</label>
-                                            <input type="text" id="agama_tergugat" name="agama_tergugat" class="form-control">
+                                            <select id="agama_tergugat" name="agama_tergugat" class="form-control" v-model="form.agama_tergugat">
+                                                <option>Islam</option>
+                                                <option>Kristen</option>
+                                                <option>Khatolik</option>
+                                                <option>Hindu</option>
+                                                <option>Budha</option>
+                                            </select>
                                             <span id="error_agama_tergugat" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -139,7 +160,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="pendidikan_tergugat">Pendidikan Tergugat</label>
-                                            <input type="text" id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control">
+                                            <select id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control" v-model="form.pendidikan_tergugat">
+                                                <option>Tidak Tamat SD</option>
+                                                <option>SD</option>
+                                                <option>SLTP</option>
+                                                <option>SLTA</option>
+                                                <option>DI</option>
+                                                <option>DII</option>
+                                                <option>DIII</option>
+                                                <option>S1</option>
+                                            </select>
                                             <span id="error_pendidikan_tergugat" class="text-danger"></span>
                                         </div>
                                     </div>
