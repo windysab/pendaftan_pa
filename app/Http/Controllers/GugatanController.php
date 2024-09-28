@@ -23,7 +23,7 @@ class GugatanController extends Controller
         ]);
 
         // Simpan data ke session
-        $request->session()->put('gugatan', $request->all());
+        $request->session()->put('gugatan-form', $request->all());
 
         // Redirect ke halaman berikutnya
         return redirect()->route('gugatan.page2');
