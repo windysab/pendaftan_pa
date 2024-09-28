@@ -1,7 +1,5 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\GugatanController;
 
 Route::redirect('/', '/dashboard-general-dashboard');
@@ -11,29 +9,23 @@ Route::get('/dashboard-general-dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
 });
 
-// Tambahkan rute ini
+// Formulir Gugatan
+
 Route::get('/gugatan-form', function () {
     return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
 })->name('gugatan-form');
 
-Route::get('/gugatan-page2', function (Request $request) {
-    return view('pages.gugatan-page2', ['type_menu' => 'gugatan', 'data' => $request->all()]);
+Route::post('/gugatan-page2', [GugatanController::class, 'storePage1'])->name('gugatan.page2');
+Route::get('/gugatan-page2', function () {
+    return view('gugatan-page2');
 })->name('gugatan.page2');
-
-Route::post('/gugatan-page2', function (Request $request) {
-    return view('pages.gugatan-page2', ['type_menu' => 'gugatan', 'data' => $request->all()]);
-})->name('gugatan.page2.post');
-
-Route::post('/gugatan-page3', function (Request $request) {
-    return view('pages.gugatan-page3', ['type_menu' => 'gugatan', 'data' => $request->all()]);
+Route::post('/gugatan-page3', [GugatanController::class, 'storePage2'])->name('gugatan.page3');
+Route::get('/gugatan-page3', function () {
+    return view('gugatan-page3');
 })->name('gugatan.page3');
-
-Route::post('/gugatan-page4', function (Request $request) {
-    return view('pages.gugatan-page4', ['type_menu' => 'gugatan', 'data' => $request->all()]);
-})->name('gugatan.page4');
-
-Route::post('/gugatan-store', [GugatanController::class, 'store'])->name('gugatan.store');
-
+Route::get('/gugatan-success', function () {
+    return view('gugatan-success');
+})->name('gugatan.success');
 // Layout
 Route::get('/layout-default-layout', function () {
     return view('pages.layout-default-layout', ['type_menu' => 'layout']);

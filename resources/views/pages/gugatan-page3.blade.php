@@ -23,8 +23,13 @@
                 <p class="section-lead">
                     Silahkan isi data anak dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
                 </p>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-                <form method="POST" action="{{ route('gugatan.store') }}">
+                <form action="{{ route('gugatan.store') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-12 col-md-6">
