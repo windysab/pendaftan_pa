@@ -23,6 +23,24 @@
                 <p class="section-lead">
                     Terima kasih, data gugatan Anda telah berhasil disimpan.
                 </p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Data Gugatan</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                @foreach($gugatan->toArray() as $key => $value)
+                                    <tr>
+                                        <th>{{ ucfirst(str_replace('_', ' ', $key)) }}</th>
+                                        <td>{{ $value }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

@@ -14,10 +14,6 @@ class GugatanController extends Controller
         $sessionData1 = $request->session()->get('gugatan_form', []);
         $sessionData2 = $request->session()->get('gugatan_page2', []);
 
-        // Log data dari session untuk debugging
-        Log::info('Session data gugatan_form:', $sessionData1);
-        Log::info('Session data gugatan_page2:', $sessionData2);
-
         // Gabungkan data dari session dengan data dari request
         $data = array_merge(
             $sessionData1,
@@ -33,9 +29,9 @@ class GugatanController extends Controller
 
         // Simpan data ke database
         try {
-            Gugatan::create($validatedData);
+            $gugatan = Gugatan::create($validatedData);
             Log::info('Data stored successfully.');
-            return redirect()->route('gugatan.success');
+            return redirect()->route('gugatan.success')->with('gugatan', $gugatan);
         } catch (\Exception $e) {
             Log::error('Error storing data:', ['error' => $e->getMessage()]);
             return redirect()->back()->withErrors(['msg' => 'Error storing data.']);
