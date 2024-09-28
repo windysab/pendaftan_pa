@@ -138,7 +138,6 @@
                                         <div id="desa_input" style="display: none;">
                                             <input type="text" name="desa" class="form-control mt-2"
                                                 placeholder="Nama desa">
-                                            <span id="error_desa" class="text-danger"></span>
                                         </div>
                                         <div id="lainnya_textarea" style="display: none;">
                                             <textarea name="detail_lainnya" class="form-control mt-2" placeholder="Detail lainnya"></textarea>
