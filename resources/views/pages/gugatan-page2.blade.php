@@ -115,46 +115,21 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label><b>Setelah pernikahan tersebut Penggugat dan Tergugat bertempat tinggal</b></label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tempat_tinggal" id="rumah_sendiri" value="rumah_sendiri">
-                                        <label class="form-check-label" for="rumah_sendiri">
-                                            Di rumah sendiri, di desa
-                                            <input type="text" name="desa_rumah_sendiri" class="form-control">
-                                            <span id="error_tempat_tinggal" class="text-danger"></span>
-                                        </label>
+                                    <select class="form-control" name="tempat_tinggal" id="tempat_tinggal">
+                                        <option value="">Pilih tempat tinggal</option>
+                                        <option value="rumah_sendiri">Di rumah sendiri, di desa</option>
+                                        <option value="rumah_orangtua_penggugat">Di rumah orangtua Penggugat, di desa</option>
+                                        <option value="rumah_orangtua_tergugat">Di rumah orangtua Tergugat, di desa</option>
+                                        <option value="rumah_kontrakan">Di rumah kontrakan / kos, di desa</option>
+                                        <option value="lainnya">Lainnya, di desa</option>
+                                    </select>
+                                    <div id="desa_input" style="display: none;">
+                                        <input type="text" name="desa" class="form-control mt-2" placeholder="Nama desa">
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tempat_tinggal" id="rumah_orangtua_penggugat" value="rumah_orangtua_penggugat">
-                                        <label class="form-check-label" for="rumah_orangtua_penggugat">
-                                            Di rumah orangtua Penggugat, di desa
-                                            <input type="text" name="desa_rumah_orangtua_penggugat" class="form-control">
-                                            <span id="error_tempat_tinggal" class="text-danger"></span>
-                                        </label>
+                                    <div id="lainnya_textarea" style="display: none;">
+                                        <textarea name="detail_lainnya" class="form-control mt-2" placeholder="Detail lainnya"></textarea>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tempat_tinggal" id="rumah_orangtua_tergugat" value="rumah_orangtua_tergugat">
-                                        <label class="form-check-label" for="rumah_orangtua_tergugat">
-                                            Di rumah orangtua Tergugat, di desa
-                                            <input type="text" name="desa_rumah_orangtua_tergugat" class="form-control">
-                                            <span id="error_tempat_tinggal" class="text-danger"></span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tempat_tinggal" id="rumah_kontrakan" value="rumah_kontrakan">
-                                        <label class="form-check-label" for="rumah_kontrakan">
-                                            Di rumah kontrakan / kos, di desa
-                                            <input type="text" name="desa_rumah_kontrakan" class="form-control">
-                                            <span id="error_tempat_tinggal" class="text-danger"></span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tempat_tinggal" id="lainnya" value="lainnya">
-                                        <label class="form-check-label" for="lainnya">
-                                            Lainnya, di desa
-                                            <input type="text" name="desa_lainnya" class="form-control">
-                                            <span id="error_tempat_tinggal" class="text-danger"></span>
-                                        </label>
-                                    </div>
+                                    <span id="error_tempat_tinggal" class="text-danger"></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">

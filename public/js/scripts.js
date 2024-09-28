@@ -782,25 +782,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Validasi khusus untuk radio button tempat_tinggal
-        const tempatTinggal = form.querySelectorAll('[name="tempat_tinggal"]');
-        const errorTempatTinggal = document.getElementById('error_tempat_tinggal');
-        let tempatTinggalChecked = false;
-        tempatTinggal.forEach(radio => {
-            if (radio.checked) {
-                tempatTinggalChecked = true;
-            }
-        });
-        if (!tempatTinggalChecked) {
-            errors['tempat_tinggal'] = 'Tempat tinggal wajib diisi.';
-            if (errorTempatTinggal) {
-                errorTempatTinggal.textContent = errors['tempat_tinggal'];
-            }
-        } else {
-            if (errorTempatTinggal) {
-                errorTempatTinggal.textContent = '';
-            }
-        }
+        
 
         // Validasi khusus untuk jumlah anak dan tanggal lahir anak
         const jumlahAnak = parseInt(form.querySelector('[name="jumlah_anak"]').value, 10);
@@ -853,3 +835,20 @@ function showTextarea() {
         textareaContainer.style.display = 'none';
     }
 }
+
+document.getElementById('tempat_tinggal').addEventListener('change', function() {
+    var desaInput = document.getElementById('desa_input');
+    var lainnyaTextarea = document.getElementById('lainnya_textarea');
+    var selectedValue = this.value;
+
+    if (selectedValue === 'lainnya') {
+        desaInput.style.display = 'block';
+        lainnyaTextarea.style.display = 'block';
+    } else if (selectedValue) {
+        desaInput.style.display = 'block';
+        lainnyaTextarea.style.display = 'none';
+    } else {
+        desaInput.style.display = 'none';
+        lainnyaTextarea.style.display = 'none';
+    }
+});
