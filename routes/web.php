@@ -39,7 +39,7 @@ Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugata
 
 
 Route::get('/gugatan-sukses', function () {
-    return view('gugatan-sukses');
+    return view('pages.gugatan-sukses', ['type_menu' => 'gugatan']);
 })->name('gugatan.success');
 
 // Layout
