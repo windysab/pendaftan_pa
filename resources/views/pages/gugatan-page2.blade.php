@@ -23,7 +23,6 @@
                 <p class="section-lead">
                     Silahkan isi data tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
                 </p>
-
                 <form method="POST" action="{{ route('gugatan.page3') }}" onsubmit="validateForm(event)" id="gugatanForm2">
                     @csrf
                     <div class="row">
@@ -205,15 +204,13 @@
                             </div>
                         </div>
                     </div>
+
+                    <button type="submit" class="btn btn-primary">Selanjutnya</button>
+                </form>
+
+                
             </div>
-            <div class="text-right">
-                <button type="button" class="btn btn-primary"
-                    onclick="window.location.href='{{ route('gugatan-form') }}'">Sebelumnya</button>
-                <button type="submit" class="btn btn-primary">Selanjutnya</button>
-            </div>
-            </form>
-    </div>
-    </section>
+        </section>
     </div>
 @endsection
 

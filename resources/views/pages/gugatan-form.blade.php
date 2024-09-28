@@ -183,11 +183,10 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Selanjutnya</button>
-                </div>
+                <button type="submit" class="btn btn-primary">Selanjutnya</button>
             </form>
+
+            
         </div>
     </section>
 

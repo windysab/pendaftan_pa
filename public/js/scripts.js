@@ -715,6 +715,7 @@ function validateForm(event) {
 
     requiredFields.forEach(field => {
         const input = form.querySelector(`[name="${field}"]`);
+        console.log(`Checking field: ${field}`); // Tambahkan ini untuk debugging
         if (!input.value) {
             errors[field] = `${field.replace('_', ' ')} wajib diisi.`;
             document.getElementById(`error_${field}`).textContent = errors[field];
@@ -725,7 +726,10 @@ function validateForm(event) {
 
     // Jika tidak ada error, submit form
     if (Object.keys(errors).length === 0) {
+        console.log('Form is valid, submitting...'); // Tambahkan ini untuk debugging
         form.submit();
+    } else {
+        console.log('Form has errors:', errors); // Tambahkan ini untuk debugging
     }
 }
 

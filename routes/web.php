@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GugatanController;
 
-
 Route::redirect('/', '/dashboard-general-dashboard');
 
 // Dashboard
@@ -12,33 +11,36 @@ Route::get('/dashboard-general-dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
 });
 
-// Tambahkan rute ini
+// Form Gugatan
 Route::get('/gugatan-form', function () {
     return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
-})->name('gugatan-form');
-
-Route::get('/gugatan-page2', function (Request $request) {
-    return view('pages.gugatan-page2', ['type_menu' => 'gugatan', 'data' => $request->all()]);
-})->name('gugatan.page2');
+})->name('gugatan.form');
 
 Route::post('/gugatan-page2', function (Request $request) {
-    return view('pages.gugatan-page2', ['type_menu' => 'gugatan', 'data' => $request->all()]);
-})->name('gugatan.page2.post');
+    // Simpan data dari halaman pertama ke session
+    $request->session()->put('gugatan_form', $request->all());
+    return view('pages.gugatan-page2', ['type_menu' => 'gugatan']);
+})->name('gugatan.page2');
+
+Route::get('/gugatan-page3', function () {
+    return view('pages.gugatan-page3', ['type_menu' => 'gugatan']);
+})->name('gugatan.page3.get');
 
 Route::post('/gugatan-page3', function (Request $request) {
-    return view('pages.gugatan-page3', ['type_menu' => 'gugatan', 'data' => $request->all()]);
+    // Simpan data dari halaman kedua ke session
+    $request->session()->put('gugatan_page2', $request->all());
+    return view('pages.gugatan-page3', ['type_menu' => 'gugatan']);
 })->name('gugatan.page3');
 
-Route::post('/gugatan-page4', function (Request $request) {
-    return view('pages.gugatan-page4', ['type_menu' => 'gugatan', 'data' => $request->all()]);
-})->name('gugatan.page4');
 
 
 
+Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugatan.store');
 
-// routes/web.php
-Route::post('/gugatan/page2', [GugatanController::class, 'store'])->name('gugatan.page2');
-Route::post('/gugatan-page3', [GugatanController::class, 'update'])->name('gugatan.page3.post');
+
+Route::get('/gugatan-sukses', function () {
+    return view('gugatan-sukses');
+})->name('gugatan.success');
 
 // Layout
 Route::get('/layout-default-layout', function () {
@@ -124,145 +126,4 @@ Route::get('/components-chat-box', function () {
 });
 Route::get('/components-empty-state', function () {
     return view('pages.components-empty-state', ['type_menu' => 'components']);
-});
-Route::get('/components-gallery', function () {
-    return view('pages.components-gallery', ['type_menu' => 'components']);
-});
-Route::get('/components-hero', function () {
-    return view('pages.components-hero', ['type_menu' => 'components']);
-});
-Route::get('/components-multiple-upload', function () {
-    return view('pages.components-multiple-upload', ['type_menu' => 'components']);
-});
-Route::get('/components-pricing', function () {
-    return view('pages.components-pricing', ['type_menu' => 'components']);
-});
-Route::get('/components-statistic', function () {
-    return view('pages.components-statistic', ['type_menu' => 'components']);
-});
-Route::get('/components-tab', function () {
-    return view('pages.components-tab', ['type_menu' => 'components']);
-});
-Route::get('/components-table', function () {
-    return view('pages.components-table', ['type_menu' => 'components']);
-});
-Route::get('/components-user', function () {
-    return view('pages.components-user', ['type_menu' => 'components']);
-});
-Route::get('/components-wizard', function () {
-    return view('pages.components-wizard', ['type_menu' => 'components']);
-});
-
-// forms
-Route::get('/forms-advanced-form', function () {
-    return view('pages.forms-advanced-form', ['type_menu' => 'forms']);
-});
-Route::get('/forms-editor', function () {
-    return view('pages.forms-editor', ['type_menu' => 'forms']);
-});
-Route::get('/forms-validation', function () {
-    return view('pages.forms-validation', ['type_menu' => 'forms']);
-});
-
-// google maps
-// belum tersedia
-
-// modules
-Route::get('/modules-calendar', function () {
-    return view('pages.modules-calendar', ['type_menu' => 'modules']);
-});
-Route::get('/modules-chartjs', function () {
-    return view('pages.modules-chartjs', ['type_menu' => 'modules']);
-});
-Route::get('/modules-datatables', function () {
-    return view('pages.modules-datatables', ['type_menu' => 'modules']);
-});
-Route::get('/modules-flag', function () {
-    return view('pages.modules-flag', ['type_menu' => 'modules']);
-});
-Route::get('/modules-font-awesome', function () {
-    return view('pages.modules-font-awesome', ['type_menu' => 'modules']);
-});
-Route::get('/modules-ion-icons', function () {
-    return view('pages.modules-ion-icons', ['type_menu' => 'modules']);
-});
-Route::get('/modules-owl-carousel', function () {
-    return view('pages.modules-owl-carousel', ['type_menu' => 'modules']);
-});
-Route::get('/modules-sparkline', function () {
-    return view('pages.modules-sparkline', ['type_menu' => 'modules']);
-});
-Route::get('/modules-sweet-alert', function () {
-    return view('pages.modules-sweet-alert', ['type_menu' => 'modules']);
-});
-Route::get('/modules-toastr', function () {
-    return view('pages.modules-toastr', ['type_menu' => 'modules']);
-});
-Route::get('/modules-vector-map', function () {
-    return view('pages.modules-vector-map', ['type_menu' => 'modules']);
-});
-Route::get('/modules-weather-icon', function () {
-    return view('pages.modules-weather-icon', ['type_menu' => 'modules']);
-});
-
-// auth
-Route::get('/auth-forgot-password', function () {
-    return view('pages.auth-forgot-password', ['type_menu' => 'auth']);
-});
-Route::get('/auth-login', function () {
-    return view('pages.auth-login', ['type_menu' => 'auth']);
-});
-Route::get('/auth-login2', function () {
-    return view('pages.auth-login2', ['type_menu' => 'auth']);
-});
-Route::get('/auth-register', function () {
-    return view('pages.auth-register', ['type_menu' => 'auth']);
-});
-Route::get('/auth-reset-password', function () {
-    return view('pages.auth-reset-password', ['type_menu' => 'auth']);
-});
-
-// error
-Route::get('/error-403', function () {
-    return view('pages.error-403', ['type_menu' => 'error']);
-});
-Route::get('/error-404', function () {
-    return view('pages.error-404', ['type_menu' => 'error']);
-});
-Route::get('/error-500', function () {
-    return view('pages.error-500', ['type_menu' => 'error']);
-});
-Route::get('/error-503', function () {
-    return view('pages.error-503', ['type_menu' => 'error']);
-});
-
-// features
-Route::get('/features-activities', function () {
-    return view('pages.features-activities', ['type_menu' => 'features']);
-});
-Route::get('/features-post-create', function () {
-    return view('pages.features-post-create', ['type_menu' => 'features']);
-});
-Route::get('/features-post', function () {
-    return view('pages.features-post', ['type_menu' => 'features']);
-});
-Route::get('/features-profile', function () {
-    return view('pages.features-profile', ['type_menu' => 'features']);
-});
-Route::get('/features-settings', function () {
-    return view('pages.features-settings', ['type_menu' => 'features']);
-});
-Route::get('/features-setting-detail', function () {
-    return view('pages.features-setting-detail', ['type_menu' => 'features']);
-});
-Route::get('/features-tickets', function () {
-    return view('pages.features-tickets', ['type_menu' => 'features']);
-});
-
-// utilities
-Route::get('/utilities-contact', function () {
-    return view('pages.utilities-contact', ['type_menu' => 'utilities']);
-});
-Route::get('/utilities-invoice', function () {
-    return view('pages.utilities-invoice', ['type_menu' => 'utilities']);
 });
