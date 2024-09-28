@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GugatanController;
+
 
 Route::redirect('/', '/dashboard-general-dashboard');
 
@@ -32,7 +33,12 @@ Route::post('/gugatan-page4', function (Request $request) {
     return view('pages.gugatan-page4', ['type_menu' => 'gugatan', 'data' => $request->all()]);
 })->name('gugatan.page4');
 
-Route::post('/gugatan-store', [GugatanController::class, 'store'])->name('gugatan.store');
+
+
+
+// routes/web.php
+Route::post('/gugatan/page2', [GugatanController::class, 'store'])->name('gugatan.page2');
+Route::post('/gugatan-page3', [GugatanController::class, 'update'])->name('gugatan.page3.post');
 
 // Layout
 Route::get('/layout-default-layout', function () {
