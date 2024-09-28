@@ -782,7 +782,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        
+
 
         // Validasi khusus untuk jumlah anak dan tanggal lahir anak
         const jumlahAnak = parseInt(form.querySelector('[name="jumlah_anak"]').value, 10);
@@ -852,3 +852,4 @@ document.getElementById('tempat_tinggal').addEventListener('change', function() 
         lainnyaTextarea.style.display = 'none';
     }
 });
+

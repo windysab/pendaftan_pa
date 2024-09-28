@@ -56,6 +56,27 @@
                                         <textarea name="detail_alasan" class="form-control" placeholder="Jelaskan kejadiannya"></textarea>
                                     </div>
                                 </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="text-center-custom">Upaya Merukunkan</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label><b>Upaya Merukunkan Penggugat dan Tergugat</b></label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="upaya_merukunkan"
+                                                    id="ada_upaya" value="ada" required>
+                                                <label class="form-check-label" for="ada_upaya"><b>Ada</b></label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="upaya_merukunkan"
+                                                    id="tidak_ada_upaya" value="tidak_ada" required>
+                                                <label class="form-check-label" for="tidak_ada_upaya"><b>Sudah tidak
+                                                    ada</b></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -119,29 +140,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="text-center-custom">Upaya Merukunkan</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label><b>Upaya Merukunkan Penggugat dan Tergugat</b></label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="upaya_merukunkan"
-                                                id="ada_upaya" value="ada" required>
-                                            <label class="form-check-label" for="ada_upaya"><b>Ada</b></label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="upaya_merukunkan"
-                                                id="tidak_ada_upaya" value="tidak_ada" required>
-                                            <label class="form-check-label" for="tidak_ada_upaya"><b>Sudah tidak
-                                                ada</b></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="text-right">
                         <a href="{{ route('gugatan.page2') }}" class="btn btn-primary">Sebelumnya</a>
