@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Gugatan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class GugatanController extends Controller
 {
@@ -99,5 +100,79 @@ class GugatanController extends Controller
             'siapa_meninggalkan' => 'required|string|max:255',
             'alasan_meninggalkan' => 'nullable|string|max:255',
         ])->validate();
+    }
+
+    public function generateWordDocument($id)
+    {
+        $gugatan = Gugatan::findOrFail($id);
+
+        // Path ke template Word
+        $templatePath = resource_path('templates/Blanko_Pendaftaran_CG.docx');
+        $templateProcessor = new TemplateProcessor($templatePath);
+
+        // Mengisi template dengan data dari database
+        $templateProcessor->setValue('nama_penggugat', $gugatan->nama_penggugat);
+        $templateProcessor->setValue('binti_penggugat', $gugatan->binti_penggugat);
+        $templateProcessor->setValue('umur_penggugat', $gugatan->umur_penggugat);
+        $templateProcessor->setValue('agama_penggugat', $gugatan->agama_penggugat);
+        $templateProcessor->setValue('pekerjaan_penggugat', $gugatan->pekerjaan_penggugat);
+        $templateProcessor->setValue('pendidikan_penggugat', $gugatan->pendidikan_penggugat);
+        $templateProcessor->setValue('alamat_penggugat', $gugatan->alamat_penggugat);
+        $templateProcessor->setValue('nama_tergugat', $gugatan->nama_tergugat);
+        $templateProcessor->setValue('bin_tergugat', $gugatan->bin_tergugat);
+        $templateProcessor->setValue('umur_tergugat', $gugatan->umur_tergugat);
+        $templateProcessor->setValue('agama_tergugat', $gugatan->agama_tergugat);
+        $templateProcessor->setValue('pekerjaan_tergugat', $gugatan->pekerjaan_tergugat);
+        $templateProcessor->setValue('pendidikan_tergugat', $gugatan->pendidikan_tergugat);
+        $templateProcessor->setValue('alamat_tergugat', $gugatan->alamat_tergugat);
+        $templateProcessor->setValue('hari_pernikahan', $gugatan->hari_pernikahan);
+        $templateProcessor->setValue('tanggal_pernikahan', $gugatan->tanggal_pernikahan);
+        $templateProcessor->setValue('desa_pernikahan', $gugatan->desa_pernikahan);
+        $templateProcessor->setValue('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan);
+        $templateProcessor->setValue('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan);
+        $templateProcessor->setValue('nomor_akta_nikah', $gugatan->nomor_akta_nikah);
+        $templateProcessor->setValue('tanggal_akta_nikah', $gugatan->tanggal_akta_nikah);
+        $templateProcessor->setValue('kecamatan_kua', $gugatan->kecamatan_kua);
+        $templateProcessor->setValue('kabupaten_kua', $gugatan->kabupaten_kua);
+        $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
+        $templateProcessor->setValue('desa', $gugatan->desa);
+        $templateProcessor->setValue('detail_lainnya', $gugatan->detail_lainnya);
+        $templateProcessor->setValue('kumpul_baik_selama_tahun', $gugatan->kumpul_baik_selama_tahun);
+        $templateProcessor->setValue('kumpul_baik_selama_bulan', $gugatan->kumpul_baik_selama_bulan);
+        $templateProcessor->setValue('jumlah_anak', $gugatan->jumlah_anak);
+        $templateProcessor->setValue('anak_1', $gugatan->anak_1);
+        $templateProcessor->setValue('tanggal_lahir_anak_1', $gugatan->tanggal_lahir_anak_1);
+        $templateProcessor->setValue('anak_2', $gugatan->anak_2);
+        $templateProcessor->setValue('tanggal_lahir_anak_2', $gugatan->tanggal_lahir_anak_2);
+        $templateProcessor->setValue('anak_3', $gugatan->anak_3);
+        $templateProcessor->setValue('tanggal_lahir_anak_3', $gugatan->tanggal_lahir_anak_3);
+        $templateProcessor->setValue('anak_4', $gugatan->anak_4);
+        $templateProcessor->setValue('tanggal_lahir_anak_4', $gugatan->tanggal_lahir_anak_4);
+        $templateProcessor->setValue('anak_5', $gugatan->anak_5);
+        $templateProcessor->setValue('tanggal_lahir_anak_5', $gugatan->tanggal_lahir_anak_5);
+        $templateProcessor->setValue('anak_6', $gugatan->anak_6);
+        $templateProcessor->setValue('tanggal_lahir_anak_6', $gugatan->tanggal_lahir_anak_6);
+        $templateProcessor->setValue('anak_7', $gugatan->anak_7);
+        $templateProcessor->setValue('tanggal_lahir_anak_7', $gugatan->tanggal_lahir_anak_7);
+        $templateProcessor->setValue('anak_8', $gugatan->anak_8);
+        $templateProcessor->setValue('tanggal_lahir_anak_8', $gugatan->tanggal_lahir_anak_8);
+        $templateProcessor->setValue('anak_9', $gugatan->anak_9);
+        $templateProcessor->setValue('tanggal_lahir_anak_9', $gugatan->tanggal_lahir_anak_9);
+        $templateProcessor->setValue('anak_10', $gugatan->anak_10);
+        $templateProcessor->setValue('tanggal_lahir_anak_10', $gugatan->tanggal_lahir_anak_10);
+        $templateProcessor->setValue('tanggal_perselisihan', $gugatan->tanggal_perselisihan);
+        $templateProcessor->setValue('alasan_perselisihan', $gugatan->alasan_perselisihan);
+        $templateProcessor->setValue('detail_alasan', $gugatan->detail_alasan);
+        $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
+        $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
+        $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
+        $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
+        $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
+
+        // Path untuk menyimpan file Word yang dihasilkan
+        $outputPath = storage_path('app/public/Blanko_Pendaftaran_CG_' . $id . '.docx');
+        $templateProcessor->saveAs($outputPath);
+
+        return response()->download($outputPath)->deleteFileAfterSend(true);
     }
 }
