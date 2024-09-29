@@ -22,7 +22,7 @@ class GugatanController extends Controller
         );
 
         // Log data gabungan untuk debugging
-        Log::info('Data received for storing:', $data);
+        // Log::info('Data received for storing:', $data);
 
         // Validasi data
         $validatedData = $this->validateData($data);
