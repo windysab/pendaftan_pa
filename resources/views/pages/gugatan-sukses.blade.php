@@ -38,11 +38,16 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label><strong>{{ ucfirst(str_replace('_', ' ', $key)) }}</strong></label>
-                                                        
+                                                        <p>{{ $value }}</p>
                                                     </div>
                                                 </div>
                                             @endif
                                         @endforeach
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a href="{{ route('gugatan.generateWord', $gugatan->id) }}" class="btn btn-primary">Download Word</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

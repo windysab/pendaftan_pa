@@ -45,6 +45,7 @@ Route::get('/gugatan-sukses', function () {
 
 Route::get('/gugatan/{id}/generate-word', [GugatanController::class, 'generateWordDocument'])->name('gugatan.generateWord');
 
+
 // Layout
 Route::get('/layout-default-layout', function () {
     return view('pages.layout-default-layout', ['type_menu' => 'layout']);
