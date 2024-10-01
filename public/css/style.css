@@ -1013,7 +1013,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .card.card-secondary {
-    border-top: 2px solid #cdd3d8;
+    border-top: 2px solid #cdd8d1;
 }
 
 .card.card-success {
@@ -3473,7 +3473,7 @@ pre {
 
 .section .section-header .section-header-back .btn:hover {
     background-color: #6777ef;
-    color: #fff;
+    color: #ffffff;
 }
 
 .section .section-header .section-header-button {
@@ -3527,7 +3527,7 @@ pre {
     margin-right: -30px;
     margin-top: -10px;
     border-radius: 0;
-    border-top: 1px solid #f9f9f9;
+    border-top: 1px solid #14a120;
     padding-left: 35px;
     padding-right: 35px;
 }
@@ -4227,7 +4227,7 @@ body.layout-3 .main-footer {
 }
 
 .card-header {
-    background-color: #e3eaef;
+    background-color: #e3efe7;
     padding: 10px;
     border-bottom: 1px solid #e4e6fc;
     border-radius: 8px 8px 0 0;
