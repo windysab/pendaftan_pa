@@ -1,14 +1,21 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GugatanController;
 
 Route::redirect('/', '/dashboard-general-dashboard');
 
 // Dashboard
+
+
+Route::get('/auth-login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/auth-login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/dashboard-general-dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
-});
+})->middleware('auth');
 
 // Form Gugatan
 Route::get('/gugatan-form', function () {
@@ -50,6 +57,8 @@ Route::get('/gugatan/{id}/generate-word', [GugatanController::class, 'generateWo
 Route::get('/layout-default-layout', function () {
     return view('pages.layout-default-layout', ['type_menu' => 'layout']);
 });
+
+
 
 
 //
@@ -224,9 +233,7 @@ Route::get('/modules-weather-icon', function () {
 Route::get('/auth-forgot-password', function () {
     return view('pages.auth-forgot-password', ['type_menu' => 'auth']);
 });
-Route::get('/auth-login', function () {
-    return view('pages.auth-login', ['type_menu' => 'auth']);
-});
+
 Route::get('/auth-login2', function () {
     return view('pages.auth-login2', ['type_menu' => 'auth']);
 });
