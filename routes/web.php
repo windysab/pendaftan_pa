@@ -3,15 +3,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GugatanController;
+use App\Http\Controllers\RegisterController;
+
 
 Route::redirect('/', '/dashboard-general-dashboard');
 
 // Dashboard
 
-
+// Auth
 Route::get('/auth-login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/auth-login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// Register
+Route::get('/auth-register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/auth-register', [RegisterController::class, 'register']);
 
 Route::get('/dashboard-general-dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
@@ -149,6 +156,7 @@ Route::get('/components-chat-box', function () {
 Route::get('/components-empty-state', function () {
     return view('pages.components-empty-state', ['type_menu' => 'components']);
 });
+
 Route::get('/components-gallery', function () {
     return view('pages.components-gallery', ['type_menu' => 'components']);
 });
@@ -237,9 +245,7 @@ Route::get('/auth-forgot-password', function () {
 Route::get('/auth-login2', function () {
     return view('pages.auth-login2', ['type_menu' => 'auth']);
 });
-Route::get('/auth-register', function () {
-    return view('pages.auth-register', ['type_menu' => 'auth']);
-});
+
 Route::get('/auth-reset-password', function () {
     return view('pages.auth-reset-password', ['type_menu' => 'auth']);
 });
