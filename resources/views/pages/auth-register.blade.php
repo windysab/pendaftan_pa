@@ -40,18 +40,23 @@
 
             <div class="form-group">
                 <label for="password" class="control-label">Password</label>
-                <input id="password" type="password" class="form-control" name="password" tabindex="3" required>
+                <input id="password" type="password" class="form-control" name="password" tabindex="3" required minlength="8">
                 <div class="invalid-feedback">
-                    Silakan isi password Anda
+                    Password harus minimal 8 karakter
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="password_confirmation" class="control-label">Konfirmasi Password</label>
-                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" tabindex="4" required>
+                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" tabindex="4" required minlength="8">
                 <div class="invalid-feedback">
                     Silakan konfirmasi password Anda
                 </div>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePasswordVisibility()">
+                <label class="form-check-label" for="showPassword">Lihat Password</label>
             </div>
 
             <div class="form-group">
@@ -71,4 +76,5 @@
 <!-- JS Libraies -->
 
 <!-- Page Specific JS File -->
+
 @endpush

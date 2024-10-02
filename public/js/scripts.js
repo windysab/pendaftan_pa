@@ -857,3 +857,15 @@ document.getElementById('tempat_tinggal').addEventListener('change', function() 
     }
 });
 
+
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById('password');
+    var passwordConfirmationField = document.getElementById('password_confirmation');
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        passwordConfirmationField.type = 'text';
+    } else {
+        passwordField.type = 'password';
+        passwordConfirmationField.type = 'password';
+    }
+}
