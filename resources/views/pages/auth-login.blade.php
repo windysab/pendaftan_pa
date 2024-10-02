@@ -6,22 +6,7 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/bootstrap-social/bootstrap-social.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        .password-container {
-            position: relative;
-        }
-        .password-container input[type="password"],
-        .password-container input[type="text"] {
-            padding-right: 30px;
-        }
-        .password-container .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-    </style>
+
 @endpush
 
 @section('main')
@@ -52,7 +37,7 @@
                 </div>
                 <div class="password-container">
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                    <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility()"></i>
+                    <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility1()"></i>
                 </div>
                 <div class="invalid-feedback">
                     Silakan isi password Anda
@@ -84,19 +69,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
     <!-- Page Specific JS File -->
-    <script>
-        function togglePasswordVisibility() {
-            var passwordField = document.getElementById('password');
-            var toggleIcon = document.querySelector('.toggle-password');
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            }
-        }
-    </script>
+    
 @endpush

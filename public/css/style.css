@@ -4260,6 +4260,21 @@ body.layout-3 .main-footer {
     color: #10a542;
 }
 
+.password-container {
+    position: relative;
+}
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    padding-right: 30px;
+}
+.password-container .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 body:not(.sidebar-mini) .sidebar-style-1 .sidebar-menu li.active a {
     background-color: #6777ef;
     color: #fff;
