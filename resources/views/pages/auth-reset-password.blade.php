@@ -13,8 +13,10 @@
         </div>
 
         <div class="card-body">
-            <p class="text-muted">We will send a link to reset your password</p>
-            <form method="POST">
+            <form method="POST" action="{{ route('password.update') }}">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email"
@@ -47,8 +49,8 @@
                     <input id="password-confirm"
                         type="password"
                         class="form-control"
-                        name="confirm-password"
-                        tabindex="2"
+                        name="password_confirmation"
+                        tabindex="3"
                         required>
                 </div>
 
@@ -65,10 +67,9 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
+    <!-- JS Libraries -->
     <script src="{{ asset('library/jquery.pwstrength/jquery.pwstrength.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/auth-register.js') }}"></script>
 @endpush
-

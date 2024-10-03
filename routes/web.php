@@ -33,6 +33,8 @@ Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEm
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
+
+
 // Form Gugatan
 Route::get('/gugatan-form', function () {
     return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
