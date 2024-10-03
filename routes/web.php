@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GugatanController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 Route::redirect('/', '/dashboard-general-dashboard');
@@ -23,6 +25,13 @@ Route::post('/auth-register', [RegisterController::class, 'register']);
 Route::get('/dashboard-general-dashboard', function () {
     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
 })->middleware('auth');
+
+//reset password
+
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Form Gugatan
 Route::get('/gugatan-form', function () {
