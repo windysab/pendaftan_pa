@@ -30,7 +30,7 @@
                 <div class="d-block">
                     <label for="password" class="control-label">Password</label>
                     <div class="float-right">
-                        <a href="#" class="text-small">
+                        <a href="{{ route('password.request') }}" class="text-small">
                             Lupa Password?
                         </a>
                     </div>
@@ -69,5 +69,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
     <!-- Page Specific JS File -->
-    
+
 @endpush
