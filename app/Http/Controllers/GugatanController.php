@@ -151,7 +151,27 @@ class GugatanController extends Controller
         $templateProcessor->setValue('umur_tergugat', $gugatan->umur_tergugat . ' tahun');
         $templateProcessor->setValue('agama_tergugat', $gugatan->agama_tergugat);
         $templateProcessor->setValue('pekerjaan_tergugat', $gugatan->pekerjaan_tergugat);
-        $templateProcessor->setValue('pendidikan_tergugat', $gugatan->pendidikan_tergugat);
+        // Mapping of education levels to their corresponding numbers
+        $educationMapping = [
+            'Tidak Tamat SD' => '2',
+            'SD' => '1',
+            'SLTP' => '3',
+            'SLTA' => '4',
+            'DI' => '5',
+            'DII' => '6',
+            'DIII' => '7',
+            'S1' => '8'
+        ];
+
+        // Get the numbered value for pendidikan_tergugat
+        $numberedPendidikan = $educationMapping[$gugatan->pendidikan_tergugat] ?? $gugatan->pendidikan_tergugat;
+
+        // // Debugging: Print the value to check
+        // Log::info('Numbered Pendidikan: ' . $numberedPendidikan);
+
+        // Set the value in the template
+        $templateProcessor->setValue('pendidikan_tergugat', $numberedPendidikan);
+        
         $templateProcessor->setValue('alamat_tergugat', $gugatan->alamat_tergugat);
         $templateProcessor->setValue('hari_pernikahan', $gugatan->hari_pernikahan);
         $templateProcessor->setValue('tanggal_pernikahan', $gugatan->tanggal_pernikahan);
