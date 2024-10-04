@@ -255,7 +255,32 @@ class GugatanController extends Controller
         $templateProcessor->setValue('kecamatan_kua', $gugatan->kecamatan_kua);
         $templateProcessor->setValue('kabupaten_kua', $gugatan->kabupaten_kua);
 
-        $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
+        // $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
+        // $templateProcessor->setValue('desa', $gugatan->desa);
+
+
+        // Define the possible values for tempat_tinggal
+        $options = [
+            'a' => 'Di rumah sendiri, di desa ' . $gugatan->desa,
+            'b' => 'Di rumah orangtua Penggugat, di desa ' . str_repeat('.', 120),
+            'c' => 'Di rumah orangtua Tergugat, di desa ' . str_repeat('.', 120),
+            'd' => 'Di rumah kontrakan / kos, di desa ' . str_repeat('.', 120),
+        ];
+
+        // Set the values in the template
+        foreach ($options as $key => $value) {
+            $templateProcessor->setValue("tempat_tinggal_{$key}", $value);
+        }
+
+        // Conditionally format the text based on the value of tempat_tinggal
+        $selectedOption = $gugatan->tempat_tinggal;
+        foreach ($options as $key => $value) {
+            if ($key === $selectedOption) {
+                $templateProcessor->setValue("tempat_tinggal_{$key}", "<w:s><w:strike w:val='true'/>" . $value . "</w:s>");
+            }
+        }
+
+        // Set the desa value
         $templateProcessor->setValue('desa', $gugatan->desa);
         $templateProcessor->setValue('detail_lainnya', $gugatan->detail_lainnya);
         $templateProcessor->setValue('kumpul_baik_selama_tahun', $gugatan->kumpul_baik_selama_tahun);
