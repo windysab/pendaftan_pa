@@ -153,7 +153,7 @@ class GugatanController extends Controller
         // Set the value in the template
         $templateProcessor->setValue('pendidikan_penggugat', $numberedPendidikan);
         $templateProcessor->setValue('alamat_penggugat', $gugatan->alamat_penggugat);
-        
+
         $templateProcessor->setValue('nama_tergugat', $gugatan->nama_tergugat);
         $templateProcessor->setValue('bin_tergugat', $gugatan->bin_tergugat);
         $templateProcessor->setValue('umur_tergugat', $gugatan->umur_tergugat . ' tahun');
@@ -179,8 +179,8 @@ class GugatanController extends Controller
 
         // Set the value in the template
         $templateProcessor->setValue('pendidikan_tergugat', $numberedPendidikan);
-
         $templateProcessor->setValue('alamat_tergugat', $gugatan->alamat_tergugat);
+
         $templateProcessor->setValue('hari_pernikahan', $gugatan->hari_pernikahan);
         $templateProcessor->setValue('tanggal_pernikahan', $gugatan->tanggal_pernikahan);
         $templateProcessor->setValue('desa_pernikahan', $gugatan->desa_pernikahan);
