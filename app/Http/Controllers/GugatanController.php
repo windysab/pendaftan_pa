@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpWord\Element\TextRun;
 
 
 class GugatanController extends Controller
@@ -264,11 +265,11 @@ class GugatanController extends Controller
 
         // Initialize all options with strikethrough
         $options = [
-            'rumah_sendiri' => new \PhpOffice\PhpWord\Element\TextRun(),
-            'rumah_orangtua_penggugat' => new \PhpOffice\PhpWord\Element\TextRun(),
-            'rumah_orangtua_tergugat' => new \PhpOffice\PhpWord\Element\TextRun(),
-            'rumah_kontrakan' => new \PhpOffice\PhpWord\Element\TextRun(),
-            'lainnya' => new \PhpOffice\PhpWord\Element\TextRun(),
+            'rumah_sendiri' => new TextRun(),
+            'rumah_orangtua_penggugat' => new TextRun(),
+            'rumah_orangtua_tergugat' => new TextRun(),
+            'rumah_kontrakan' => new TextRun(),
+            'lainnya' => new TextRun(),
         ];
 
         $options['rumah_sendiri']->addText('Di rumah sendiri, di desa ' . $desa, ['strikethrough' => true]);
@@ -277,13 +278,13 @@ class GugatanController extends Controller
         $options['rumah_kontrakan']->addText('Di rumah kontrakan / kos, di desa ' . $desa, ['strikethrough' => true]);
         $options['lainnya']->addText('Lainnya, di desa ' . $desa, ['strikethrough' => true]);
 
-        // Remove strikethrough from the selected option
+        // Hapus coretan dari opsi yang dipilih
         if (isset($options[$tempat_tinggal])) {
-            $options[$tempat_tinggal] = new \PhpOffice\PhpWord\Element\TextRun();
+            $options[$tempat_tinggal] = new TextRun();
             $options[$tempat_tinggal]->addText('Di rumah sendiri, di desa ' . $desa);
         }
 
-        // Set the values in the template
+        // Set nilai dalam template
         $templateProcessor->setComplexValue('desa_a', $options['rumah_sendiri']);
         $templateProcessor->setComplexValue('desa_b', $options['rumah_orangtua_penggugat']);
         $templateProcessor->setComplexValue('desa_c', $options['rumah_orangtua_tergugat']);
