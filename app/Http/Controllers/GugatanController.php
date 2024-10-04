@@ -312,9 +312,6 @@ class GugatanController extends Controller
 
 
 
-
-
-
         $tempat_tinggal = $request->input('tempat_tinggal');
         $desa = $request->input('desa');
 
@@ -340,13 +337,11 @@ class GugatanController extends Controller
         }
 
         // Set nilai dalam template
-        $templateProcessor->setComplexBlock('desa_a', $options['rumah_sendiri']);
-        $templateProcessor->setComplexBlock('desa_b', $options['rumah_orangtua_penggugat']);
-        $templateProcessor->setComplexBlock('desa_c', $options['rumah_orangtua_tergugat']);
-        $templateProcessor->setComplexBlock('desa_d', $options['rumah_kontrakan']);
-        $templateProcessor->setComplexBlock('desa_e', $options['lainnya']);
-
-
+        $templateProcessor->setComplexValue('desa_a', $options['rumah_sendiri']);
+        $templateProcessor->setComplexValue('desa_b', $options['rumah_orangtua_penggugat']);
+        $templateProcessor->setComplexValue('desa_c', $options['rumah_orangtua_tergugat']);
+        $templateProcessor->setComplexValue('desa_d', $options['rumah_kontrakan']);
+        $templateProcessor->setComplexValue('desa_e', $options['lainnya']);
 
 
 
