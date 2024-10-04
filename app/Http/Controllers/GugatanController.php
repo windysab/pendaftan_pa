@@ -117,6 +117,13 @@ class GugatanController extends Controller
         $templateProcessor = new TemplateProcessor($templatePath);
 
         // Mengisi template dengan data dari database
+        // Replace variabel di template word dengan data yang diinputkan
+        $bulanIndonesia = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+        $bulan = $bulanIndonesia[date('n') - 1]; // Mengambil nama bulan dari array berdasarkan bulan saat ini
+        $templateProcessor->setValue('tanggal', date('d') . ' ' . $bulan . ' ' . date('Y'));
         $templateProcessor->setValue('nama_penggugat', $gugatan->nama_penggugat);
         $templateProcessor->setValue('binti_penggugat', $gugatan->binti_penggugat);
         $templateProcessor->setValue('umur_penggugat', $gugatan->umur_penggugat . ' tahun');
@@ -171,7 +178,7 @@ class GugatanController extends Controller
 
         // Set the value in the template
         $templateProcessor->setValue('pendidikan_tergugat', $numberedPendidikan);
-        
+
         $templateProcessor->setValue('alamat_tergugat', $gugatan->alamat_tergugat);
         $templateProcessor->setValue('hari_pernikahan', $gugatan->hari_pernikahan);
         $templateProcessor->setValue('tanggal_pernikahan', $gugatan->tanggal_pernikahan);
