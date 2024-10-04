@@ -186,6 +186,7 @@ class GugatanController extends Controller
         $templateProcessor->setValue('desa_pernikahan', $gugatan->desa_pernikahan);
         $templateProcessor->setValue('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan);
         $templateProcessor->setValue('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan);
+        
         $templateProcessor->setValue('nomor_akta_nikah', $gugatan->nomor_akta_nikah);
         $templateProcessor->setValue('tanggal_akta_nikah', $gugatan->tanggal_akta_nikah);
         $templateProcessor->setValue('kecamatan_kua', $gugatan->kecamatan_kua);
