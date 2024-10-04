@@ -884,3 +884,21 @@ function togglePasswordVisibility1() {
         toggleIcon.classList.add('fa-eye');
     }
 }
+
+
+function toggleDesaInput() {
+    var tempatTinggal = document.getElementById('tempat_tinggal').value;
+    var desaInput = document.getElementById('desa_input');
+    var lainnyaTextarea = document.getElementById('lainnya_textarea');
+
+    if (tempatTinggal === 'lainnya') {
+        desaInput.style.display = 'block';
+        lainnyaTextarea.style.display = 'block';
+    } else if (tempatTinggal !== '') {
+        desaInput.style.display = 'block';
+        lainnyaTextarea.style.display = 'none';
+    } else {
+        desaInput.style.display = 'none';
+        lainnyaTextarea.style.display = 'none';
+    }
+}

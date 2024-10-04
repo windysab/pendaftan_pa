@@ -260,6 +260,8 @@ class GugatanController extends Controller
         // $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
         // $templateProcessor->setValue('desa', $gugatan->desa);
 
+
+
         $tempat_tinggal = $request->input('tempat_tinggal');
         $desa = $request->input('desa');
 
@@ -281,7 +283,23 @@ class GugatanController extends Controller
         // Hapus coretan dari opsi yang dipilih
         if (isset($options[$tempat_tinggal])) {
             $options[$tempat_tinggal] = new TextRun();
-            $options[$tempat_tinggal]->addText('Di rumah sendiri, di desa ' . $desa);
+            switch ($tempat_tinggal) {
+                case 'rumah_sendiri':
+                    $options[$tempat_tinggal]->addText('Di rumah sendiri, di desa ' . $desa, ['strikethrough' => false]);
+                    break;
+                case 'rumah_orangtua_penggugat':
+                    $options[$tempat_tinggal]->addText('Di rumah orangtua Penggugat, di desa ' . $desa, ['strikethrough' => false]);
+                    break;
+                case 'rumah_orangtua_tergugat':
+                    $options[$tempat_tinggal]->addText('Di rumah orangtua Tergugat, di desa ' . $desa, ['strikethrough' => false]);
+                    break;
+                case 'rumah_kontrakan':
+                    $options[$tempat_tinggal]->addText('Di rumah kontrakan / kos, di desa ' . $desa, ['strikethrough' => false]);
+                    break;
+                case 'lainnya':
+                    $options[$tempat_tinggal]->addText('Lainnya, di desa ' . $desa, ['strikethrough' => false]);
+                    break;
+            }
         }
 
         // Set nilai dalam template
