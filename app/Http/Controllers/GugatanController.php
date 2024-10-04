@@ -153,6 +153,7 @@ class GugatanController extends Controller
         // Set the value in the template
         $templateProcessor->setValue('pendidikan_penggugat', $numberedPendidikan);
         $templateProcessor->setValue('alamat_penggugat', $gugatan->alamat_penggugat);
+        
         $templateProcessor->setValue('nama_tergugat', $gugatan->nama_tergugat);
         $templateProcessor->setValue('bin_tergugat', $gugatan->bin_tergugat);
         $templateProcessor->setValue('umur_tergugat', $gugatan->umur_tergugat . ' tahun');
