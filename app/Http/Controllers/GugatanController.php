@@ -119,14 +119,36 @@ class GugatanController extends Controller
         // Mengisi template dengan data dari database
         $templateProcessor->setValue('nama_penggugat', $gugatan->nama_penggugat);
         $templateProcessor->setValue('binti_penggugat', $gugatan->binti_penggugat);
-        $templateProcessor->setValue('umur_penggugat', $gugatan->umur_penggugat);
+        $templateProcessor->setValue('umur_penggugat', $gugatan->umur_penggugat . ' tahun');
         $templateProcessor->setValue('agama_penggugat', $gugatan->agama_penggugat);
         $templateProcessor->setValue('pekerjaan_penggugat', $gugatan->pekerjaan_penggugat);
-        $templateProcessor->setValue('pendidikan_penggugat', $gugatan->pendidikan_penggugat);
+        // $templateProcessor->setValue('pendidikan_penggugat', $gugatan->pendidikan_penggugat);
+
+
+        // Mapping of education levels to their corresponding numbers
+        $educationMapping = [
+            'Tidak Tamat SD' => '2',
+            'SD' => '1',
+            'SLTP' => '3',
+            'SLTA' => '4',
+            'DI' => '5',
+            'DII' => '6',
+            'DIII' => '7',
+            'S1' => '8'
+        ];
+
+        // Get the numbered value for pendidikan_penggugat
+        $numberedPendidikan = $educationMapping[$gugatan->pendidikan_penggugat] ?? $gugatan->pendidikan_penggugat;
+
+        // // Debugging: Print the value to check
+        // Log::info('Numbered Pendidikan: ' . $numberedPendidikan);
+
+        // Set the value in the template
+        $templateProcessor->setValue('pendidikan_penggugat', $numberedPendidikan);
         $templateProcessor->setValue('alamat_penggugat', $gugatan->alamat_penggugat);
         $templateProcessor->setValue('nama_tergugat', $gugatan->nama_tergugat);
         $templateProcessor->setValue('bin_tergugat', $gugatan->bin_tergugat);
-        $templateProcessor->setValue('umur_tergugat', $gugatan->umur_tergugat);
+        $templateProcessor->setValue('umur_tergugat', $gugatan->umur_tergugat . ' tahun');
         $templateProcessor->setValue('agama_tergugat', $gugatan->agama_tergugat);
         $templateProcessor->setValue('pekerjaan_tergugat', $gugatan->pekerjaan_tergugat);
         $templateProcessor->setValue('pendidikan_tergugat', $gugatan->pendidikan_tergugat);
@@ -190,6 +212,4 @@ class GugatanController extends Controller
             return redirect()->back()->withErrors(['msg' => 'Error generating Word document.']);
         }
     }
-
-    
 }

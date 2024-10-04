@@ -39,6 +39,7 @@
                                             <label for="nama_penggugat"><b>Nama Penggugat</b></label>
                                             <input type="text" id="nama_penggugat" name="nama_penggugat" class="form-control">
                                             <span id="error_nama_penggugat" class="text-danger"></span>
+                                            <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan surat nikah</small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -186,7 +187,7 @@
                 <button type="submit" class="btn btn-primary">Selanjutnya</button>
             </form>
 
-            
+
         </div>
     </section>
 
