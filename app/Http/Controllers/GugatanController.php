@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Gugatan;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use PhpOffice\PhpWord\TemplateProcessor;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class GugatanController extends Controller
 {
@@ -119,8 +120,18 @@ class GugatanController extends Controller
         // Mengisi template dengan data dari database
         // Replace variabel di template word dengan data yang diinputkan
         $bulanIndonesia = [
-            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
         ];
         $bulan = $bulanIndonesia[date('n') - 1]; // Mengambil nama bulan dari array berdasarkan bulan saat ini
         $templateProcessor->setValue('tanggal', date('d') . ' ' . $bulan . ' ' . date('Y'));
@@ -182,15 +193,68 @@ class GugatanController extends Controller
         $templateProcessor->setValue('alamat_tergugat', $gugatan->alamat_tergugat);
 
         $templateProcessor->setValue('hari_pernikahan', $gugatan->hari_pernikahan);
-        $templateProcessor->setValue('tanggal_pernikahan', $gugatan->tanggal_pernikahan);
+
+        // Ambil tanggal dari objek $gugatan
+        $tanggalPernikahan = $gugatan->tanggal_pernikahan;
+
+        // Buat objek DateTime dari tanggal
+        $date = new DateTime($tanggalPernikahan);
+
+        // Array bulan dalam bahasa Indonesia
+        $bulanIndonesia = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
+
+        // Format tanggal ke format Indonesia
+        $tanggalFormatted = $date->format('j') . ' ' . $bulanIndonesia[(int)$date->format('n')] . ' ' . $date->format('Y');
+
+        // Set nilai di template
+        $templateProcessor->setValue('tanggal_pernikahan', $tanggalFormatted);
         $templateProcessor->setValue('desa_pernikahan', $gugatan->desa_pernikahan);
         $templateProcessor->setValue('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan);
         $templateProcessor->setValue('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan);
-        
+
         $templateProcessor->setValue('nomor_akta_nikah', $gugatan->nomor_akta_nikah);
-        $templateProcessor->setValue('tanggal_akta_nikah', $gugatan->tanggal_akta_nikah);
+        // Ambil tanggal dari objek $gugatan
+        $tanggalAktaNikah = $gugatan->tanggal_akta_nikah;
+
+        // Buat objek DateTime dari tanggal
+        $dateAktaNikah = new DateTime($tanggalAktaNikah);
+
+        // Array bulan dalam bahasa Indonesia
+        $bulanIndonesia = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
+
+        // Format tanggal ke format Indonesia
+        $tanggalAktaNikahFormatted = $dateAktaNikah->format('j') . ' ' . $bulanIndonesia[(int)$dateAktaNikah->format('n')] . ' ' . $dateAktaNikah->format('Y');
+        // Set nilai di template
+        $templateProcessor->setValue('tanggal_akta_nikah', $tanggalAktaNikahFormatted);
         $templateProcessor->setValue('kecamatan_kua', $gugatan->kecamatan_kua);
         $templateProcessor->setValue('kabupaten_kua', $gugatan->kabupaten_kua);
+
         $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
         $templateProcessor->setValue('desa', $gugatan->desa);
         $templateProcessor->setValue('detail_lainnya', $gugatan->detail_lainnya);
