@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
 
+
 class GugatanController extends Controller
 {
     public function store(Request $request)
@@ -105,7 +106,7 @@ class GugatanController extends Controller
         ])->validate();
     }
 
-    public function generateWordDocument($id)
+    public function generateWordDocument(Request $request, $id)
     {
         $gugatan = Gugatan::findOrFail($id);
 
@@ -255,8 +256,41 @@ class GugatanController extends Controller
         $templateProcessor->setValue('kecamatan_kua', $gugatan->kecamatan_kua);
         $templateProcessor->setValue('kabupaten_kua', $gugatan->kabupaten_kua);
 
-        $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
-        $templateProcessor->setValue('desa', $gugatan->desa);
+        // $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
+        // $templateProcessor->setValue('desa', $gugatan->desa);
+
+        $tempat_tinggal = $request->input('tempat_tinggal');
+        $desa = $request->input('desa');
+
+        // Initialize all options with strikethrough
+        $options = [
+            'rumah_sendiri' => new \PhpOffice\PhpWord\Element\TextRun(),
+            'rumah_orangtua_penggugat' => new \PhpOffice\PhpWord\Element\TextRun(),
+            'rumah_orangtua_tergugat' => new \PhpOffice\PhpWord\Element\TextRun(),
+            'rumah_kontrakan' => new \PhpOffice\PhpWord\Element\TextRun(),
+            'lainnya' => new \PhpOffice\PhpWord\Element\TextRun(),
+        ];
+
+        $options['rumah_sendiri']->addText('Di rumah sendiri, di desa ' . $desa, ['strikethrough' => true]);
+        $options['rumah_orangtua_penggugat']->addText('Di rumah orangtua Penggugat, di desa ' . $desa, ['strikethrough' => true]);
+        $options['rumah_orangtua_tergugat']->addText('Di rumah orangtua Tergugat, di desa ' . $desa, ['strikethrough' => true]);
+        $options['rumah_kontrakan']->addText('Di rumah kontrakan / kos, di desa ' . $desa, ['strikethrough' => true]);
+        $options['lainnya']->addText('Lainnya, di desa ' . $desa, ['strikethrough' => true]);
+
+        // Remove strikethrough from the selected option
+        if (isset($options[$tempat_tinggal])) {
+            $options[$tempat_tinggal] = new \PhpOffice\PhpWord\Element\TextRun();
+            $options[$tempat_tinggal]->addText('Di rumah sendiri, di desa ' . $desa);
+        }
+
+        // Set the values in the template
+        $templateProcessor->setComplexValue('desa_a', $options['rumah_sendiri']);
+        $templateProcessor->setComplexValue('desa_b', $options['rumah_orangtua_penggugat']);
+        $templateProcessor->setComplexValue('desa_c', $options['rumah_orangtua_tergugat']);
+        $templateProcessor->setComplexValue('desa_d', $options['rumah_kontrakan']);
+        $templateProcessor->setComplexValue('desa_e', $options['lainnya']);
+
+
         $templateProcessor->setValue('detail_lainnya', $gugatan->detail_lainnya);
         $templateProcessor->setValue('kumpul_baik_selama_tahun', $gugatan->kumpul_baik_selama_tahun);
         $templateProcessor->setValue('kumpul_baik_selama_bulan', $gugatan->kumpul_baik_selama_bulan);
