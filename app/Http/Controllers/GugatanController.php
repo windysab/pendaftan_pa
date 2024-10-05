@@ -310,26 +310,38 @@ class GugatanController extends Controller
         $templateProcessor->setValue('kumpul_baik_selama_tahun', $gugatan->kumpul_baik_selama_tahun);
         $templateProcessor->setValue('kumpul_baik_selama_bulan', $gugatan->kumpul_baik_selama_bulan);
         $templateProcessor->setValue('jumlah_anak', $gugatan->jumlah_anak);
-        $templateProcessor->setValue('anak_1', $gugatan->anak_1);
-        $templateProcessor->setValue('tanggal_lahir_anak_1', $gugatan->tanggal_lahir_anak_1);
-        $templateProcessor->setValue('anak_2', $gugatan->anak_2);
-        $templateProcessor->setValue('tanggal_lahir_anak_2', $gugatan->tanggal_lahir_anak_2);
-        $templateProcessor->setValue('anak_3', $gugatan->anak_3);
-        $templateProcessor->setValue('tanggal_lahir_anak_3', $gugatan->tanggal_lahir_anak_3);
-        $templateProcessor->setValue('anak_4', $gugatan->anak_4);
-        $templateProcessor->setValue('tanggal_lahir_anak_4', $gugatan->tanggal_lahir_anak_4);
-        $templateProcessor->setValue('anak_5', $gugatan->anak_5);
-        $templateProcessor->setValue('tanggal_lahir_anak_5', $gugatan->tanggal_lahir_anak_5);
-        $templateProcessor->setValue('anak_6', $gugatan->anak_6);
-        $templateProcessor->setValue('tanggal_lahir_anak_6', $gugatan->tanggal_lahir_anak_6);
-        $templateProcessor->setValue('anak_7', $gugatan->anak_7);
-        $templateProcessor->setValue('tanggal_lahir_anak_7', $gugatan->tanggal_lahir_anak_7);
-        $templateProcessor->setValue('anak_8', $gugatan->anak_8);
-        $templateProcessor->setValue('tanggal_lahir_anak_8', $gugatan->tanggal_lahir_anak_8);
-        $templateProcessor->setValue('anak_9', $gugatan->anak_9);
-        $templateProcessor->setValue('tanggal_lahir_anak_9', $gugatan->tanggal_lahir_anak_9);
-        $templateProcessor->setValue('anak_10', $gugatan->anak_10);
-        $templateProcessor->setValue('tanggal_lahir_anak_10', $gugatan->tanggal_lahir_anak_10);
+        // $templateProcessor->setValue('anak_1', $gugatan->anak_1);
+        // $templateProcessor->setValue('tanggal_lahir_anak_1', $gugatan->tanggal_lahir_anak_1);
+        // $templateProcessor->setValue('anak_2', $gugatan->anak_2);
+        // $templateProcessor->setValue('tanggal_lahir_anak_2', $gugatan->tanggal_lahir_anak_2);
+        // $templateProcessor->setValue('anak_3', $gugatan->anak_3);
+        // $templateProcessor->setValue('tanggal_lahir_anak_3', $gugatan->tanggal_lahir_anak_3);
+        // $templateProcessor->setValue('anak_4', $gugatan->anak_4);
+        // $templateProcessor->setValue('tanggal_lahir_anak_4', $gugatan->tanggal_lahir_anak_4);
+        // $templateProcessor->setValue('anak_5', $gugatan->anak_5);
+        // $templateProcessor->setValue('tanggal_lahir_anak_5', $gugatan->tanggal_lahir_anak_5);
+        // $templateProcessor->setValue('anak_6', $gugatan->anak_6);
+        // $templateProcessor->setValue('tanggal_lahir_anak_6', $gugatan->tanggal_lahir_anak_6);
+        // $templateProcessor->setValue('anak_7', $gugatan->anak_7);
+        // $templateProcessor->setValue('tanggal_lahir_anak_7', $gugatan->tanggal_lahir_anak_7);
+        // $templateProcessor->setValue('anak_8', $gugatan->anak_8);
+        // $templateProcessor->setValue('tanggal_lahir_anak_8', $gugatan->tanggal_lahir_anak_8);
+        // $templateProcessor->setValue('anak_9', $gugatan->anak_9);
+        // $templateProcessor->setValue('tanggal_lahir_anak_9', $gugatan->tanggal_lahir_anak_9);
+        // $templateProcessor->setValue('anak_10', $gugatan->anak_10);
+        // $templateProcessor->setValue('tanggal_lahir_anak_10', $gugatan->tanggal_lahir_anak_10);
+
+        for ($i = 1; $i <= 10; $i++) {
+            $anakKey = 'anak_' . $i;
+            $tanggalLahirKey = 'tanggal_lahir_anak_' . $i;
+
+            $anakValue = isset($gugatan->$anakKey) ? $gugatan->$anakKey : '.........................';
+            $tanggalLahirValue = isset($gugatan->$tanggalLahirKey) ? $gugatan->$tanggalLahirKey : '..................';
+
+            $templateProcessor->setValue($anakKey, $anakValue);
+            $templateProcessor->setValue($tanggalLahirKey, $tanggalLahirValue);
+        }
+
         $templateProcessor->setValue('tanggal_perselisihan', $gugatan->tanggal_perselisihan);
         $templateProcessor->setValue('alasan_perselisihan', $gugatan->alasan_perselisihan);
         $templateProcessor->setValue('detail_alasan', $gugatan->detail_alasan);
