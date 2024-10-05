@@ -306,9 +306,6 @@ class GugatanController extends Controller
         $templateProcessor->setComplexValue('tempat_tinggal_c', $options['tempat_tinggal_c']);
         $templateProcessor->setComplexValue('tempat_tinggal_d', $options['tempat_tinggal_d']);
 
-
-
-
         $templateProcessor->setValue('detail_lainnya', $gugatan->detail_lainnya);
         $templateProcessor->setValue('kumpul_baik_selama_tahun', $gugatan->kumpul_baik_selama_tahun);
         $templateProcessor->setValue('kumpul_baik_selama_bulan', $gugatan->kumpul_baik_selama_bulan);
