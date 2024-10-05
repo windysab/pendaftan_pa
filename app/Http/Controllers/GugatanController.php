@@ -312,36 +312,82 @@ class GugatanController extends Controller
 
 
 
-        $tempat_tinggal = $request->input('tempat_tinggal');
-        $desa = $request->input('desa');
+        // $tempat_tinggal = $request->input('tempat_tinggal');
+        // $desa = $request->input('desa');
 
-        // Initialize all options with strikethrough
+        // // Initialize all options with strikethrough
+        // $options = [
+        //     'rumah_sendiri' => new TextRun(),
+        //     'rumah_orangtua_penggugat' => new TextRun(),
+        //     'rumah_orangtua_tergugat' => new TextRun(),
+        //     'rumah_kontrakan' => new TextRun(),
+        //     'lainnya' => new TextRun(),
+        // ];
+
+        // $options['rumah_sendiri']->addText('Di rumah sendiri, di desa ' . $desa, ['strikethrough' => true]);
+        // $options['rumah_orangtua_penggugat']->addText('Di rumah orangtua Penggugat, di desa ' . $desa, ['strikethrough' => true]);
+        // $options['rumah_orangtua_tergugat']->addText('Di rumah orangtua Tergugat, di desa ' . $desa, ['strikethrough' => true]);
+        // $options['rumah_kontrakan']->addText('Di rumah kontrakan / kos, di desa ' . $desa, ['strikethrough' => true]);
+        // $options['lainnya']->addText('Lainnya, di desa ' . $desa, ['strikethrough' => true]);
+
+        // // Hapus coretan dari opsi yang dipilih
+        // if (isset($options[$tempat_tinggal])) {
+        //     $options[$tempat_tinggal] = new TextRun();
+        //     $options[$tempat_tinggal]->addText('Di ' . str_replace('_', ' ', $tempat_tinggal) . ', di desa ' . $desa, ['strikethrough' => false]);
+        // }
+
+        // // Set nilai dalam template
+        // $templateProcessor->setComplexValue('desa_a', $options['rumah_sendiri']);
+        // $templateProcessor->setComplexValue('desa_b', $options['rumah_orangtua_penggugat']);
+        // $templateProcessor->setComplexValue('desa_c', $options['rumah_orangtua_tergugat']);
+        // $templateProcessor->setComplexValue('desa_d', $options['rumah_kontrakan']);
+        // $templateProcessor->setComplexValue('desa_e', $options['lainnya']);
+
+
+    
+
+        // Define the options with placeholders and default strike-through text
         $options = [
-            'rumah_sendiri' => new TextRun(),
-            'rumah_orangtua_penggugat' => new TextRun(),
-            'rumah_orangtua_tergugat' => new TextRun(),
-            'rumah_kontrakan' => new TextRun(),
-            'lainnya' => new TextRun(),
+            'tempat_tinggal_a' => new TextRun(),
+            'tempat_tinggal_b' => new TextRun(),
+            'tempat_tinggal_c' => new TextRun(),
+            'tempat_tinggal_d' => new TextRun()
         ];
 
-        $options['rumah_sendiri']->addText('Di rumah sendiri, di desa ' . $desa, ['strikethrough' => true]);
-        $options['rumah_orangtua_penggugat']->addText('Di rumah orangtua Penggugat, di desa ' . $desa, ['strikethrough' => true]);
-        $options['rumah_orangtua_tergugat']->addText('Di rumah orangtua Tergugat, di desa ' . $desa, ['strikethrough' => true]);
-        $options['rumah_kontrakan']->addText('Di rumah kontrakan / kos, di desa ' . $desa, ['strikethrough' => true]);
-        $options['lainnya']->addText('Lainnya, di desa ' . $desa, ['strikethrough' => true]);
+        $options['tempat_tinggal_a']->addText('Di rumah sendiri, di desa ' . $gugatan->desa, ['strikethrough' => true]);
+        $options['tempat_tinggal_b']->addText('Di rumah orangtua Penggugat, di desa ' . $gugatan->desa, ['strikethrough' => true]);
+        $options['tempat_tinggal_c']->addText('Di rumah orangtua Tergugat, di desa ' . $gugatan->desa, ['strikethrough' => true]);
+        $options['tempat_tinggal_d']->addText('Di rumah kontrakan / kos, di desa ' . $gugatan->desa, ['strikethrough' => true]);
 
-        // Hapus coretan dari opsi yang dipilih
-        if (isset($options[$tempat_tinggal])) {
-            $options[$tempat_tinggal] = new TextRun();
-            $options[$tempat_tinggal]->addText('Di ' . str_replace('_', ' ', $tempat_tinggal) . ', di desa ' . $desa, ['strikethrough' => false]);
+        // Determine which option is selected based on your data
+        switch ($gugatan->tempat_tinggal) {
+            case 'rumah_sendiri':
+                $options['tempat_tinggal_a'] = new TextRun();
+                $options['tempat_tinggal_a']->addText('Di rumah sendiri, di desa ' . $gugatan->desa, ['strikethrough' => false]);
+                break;
+            case 'rumah_orangtua_penggugat':
+                $options['tempat_tinggal_b'] = new TextRun();
+                $options['tempat_tinggal_b']->addText('Di rumah orangtua Penggugat, di desa ' . $gugatan->desa, ['strikethrough' => false]);
+                break;
+            case 'rumah_orangtua_tergugat':
+                $options['tempat_tinggal_c'] = new TextRun();
+                $options['tempat_tinggal_c']->addText('Di rumah orangtua Tergugat, di desa ' . $gugatan->desa, ['strikethrough' => false]);
+                break;
+            case 'rumah_kontrakan':
+                $options['tempat_tinggal_d'] = new TextRun();
+                $options['tempat_tinggal_d']->addText('Di rumah kontrakan / kos, di desa ' . $gugatan->desa, ['strikethrough' => false]);
+                break;
+            default:
+                // Handle the default case if needed
+                break;
         }
 
-        // Set nilai dalam template
-        $templateProcessor->setComplexValue('desa_a', $options['rumah_sendiri']);
-        $templateProcessor->setComplexValue('desa_b', $options['rumah_orangtua_penggugat']);
-        $templateProcessor->setComplexValue('desa_c', $options['rumah_orangtua_tergugat']);
-        $templateProcessor->setComplexValue('desa_d', $options['rumah_kontrakan']);
-        $templateProcessor->setComplexValue('desa_e', $options['lainnya']);
+        // Set the values in the template
+        $templateProcessor->setComplexValue('tempat_tinggal_a', $options['tempat_tinggal_a']);
+        $templateProcessor->setComplexValue('tempat_tinggal_b', $options['tempat_tinggal_b']);
+        $templateProcessor->setComplexValue('tempat_tinggal_c', $options['tempat_tinggal_c']);
+        $templateProcessor->setComplexValue('tempat_tinggal_d', $options['tempat_tinggal_d']);
+
 
 
 
