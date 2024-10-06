@@ -452,6 +452,7 @@ class GugatanController extends Controller
         $templateProcessor->setValue('detail_alasan', $gugatan->detail_alasan);
         $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
 
+
         $tanggalperpisahan = $gugatan->tanggal_perpisahan;
         $dateperpisahan = new DateTime($tanggalperpisahan);
 
@@ -470,8 +471,14 @@ class GugatanController extends Controller
             12 => 'Desember'
         ];
 
-        $tanggalperpisahanFormatted = $dateperpisahan->format('j') . ' ' . $bulanIndonesia[(int)$dateperpisahan->format('n')] . ' ' . $dateperpisahan->format('Y');
-        $templateProcessor->setValue('tanggal_perpisahan', $tanggalperpisahanFormatted);
+        $hari = $dateperpisahan->format('j');
+        $bulan = $bulanIndonesia[(int)$dateperpisahan->format('n')];
+        $tahun = $dateperpisahan->format('Y');
+
+        // Setel nilai dalam template
+        $templateProcessor->setValue('tanggal_perpisahan_hari', $hari);
+        $templateProcessor->setValue('tanggal_perpisahan_bulan', $bulan);
+        $templateProcessor->setValue('tanggal_perpisahan_tahun', $tahun);
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
         $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
         $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
