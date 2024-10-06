@@ -66,6 +66,7 @@ class Gugatan extends Model
         'tanggal_perpisahan',
         'jenis_perpisahan',
         'siapa_meninggalkan',
+        'desa_meninggalkan',
         'alasan_meninggalkan',
     ];
 }

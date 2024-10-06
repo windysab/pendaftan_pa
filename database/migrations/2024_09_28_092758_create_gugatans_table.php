@@ -50,7 +50,7 @@ class CreateGugatansTable extends Migration
             $table->date('tanggal_perpisahan')->nullable();
             $table->string('jenis_perpisahan');
             $table->string('siapa_meninggalkan');
-            $table->string('desa');
+            $table->string('desa_meninggalkan');
             $table->string('alasan_meninggalkan')->nullable();
             $table->timestamps();
         });

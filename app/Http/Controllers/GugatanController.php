@@ -103,6 +103,7 @@ class GugatanController extends Controller
             'tanggal_perpisahan' => 'nullable|date',
             'jenis_perpisahan' => 'required|string|max:255',
             'siapa_meninggalkan' => 'required|string|max:255',
+            'desa_meninggalkan' => 'required|string|max:255',
             'alasan_meninggalkan' => 'nullable|string|max:255',
         ])->validate();
     }
@@ -482,7 +483,7 @@ class GugatanController extends Controller
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
         $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
         $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
-        // $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa);
+        $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
 
         $fileName = 'Gugatan_cerai_' . Str::slug($gugatan->nama_penggugat) . '.docx';

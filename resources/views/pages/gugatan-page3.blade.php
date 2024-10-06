@@ -150,7 +150,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="desa"><b>Desa</b></label>
-                                                <input type="text" id="desa" name="desa" class="form-control"
+                                                <input type="text" id="desa_meninggalkan" name="desa_meninggalkan" class="form-control"
                                                     placeholder="Nama desa" required>
                                             </div>
                                         </div>
