@@ -481,7 +481,37 @@ class GugatanController extends Controller
         $templateProcessor->setValue('tanggal_perpisahan_bulan', $bulan);
         $templateProcessor->setValue('tanggal_perpisahan_tahun', $tahun);
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
-        $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
+        // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
+
+        // Definisikan opsi dengan placeholder dan teks coret default
+        $options = [
+            'jenis_perpisahan_tempat_tinggal' => new TextRun(),
+            'jenis_perpisahan_tempat_tidur' => new TextRun()
+        ];
+
+        // Tambahkan teks coret ke opsi
+        $options['jenis_perpisahan_tempat_tinggal']->addText('berpisah tempat tinggal', ['strikethrough' => true]);
+        $options['jenis_perpisahan_tempat_tidur']->addText('berpisah tempat tidur', ['strikethrough' => true]);
+
+        // Buat TextRun baru untuk opsi yang dipilih tanpa coretan
+        $selectedOptionTempatTinggal = new TextRun();
+        $selectedOptionTempatTidur = new TextRun();
+
+        if ($gugatan->jenis_perpisahan == 'tempat_tinggal') {
+            $selectedOptionTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => false]);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $selectedOptionTempatTinggal);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
+        } elseif ($gugatan->jenis_perpisahan == 'tempat_tidur') {
+            $selectedOptionTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => false]);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $selectedOptionTempatTidur);
+        } else {
+            // Jika tidak ada yang dipilih, setel nilai default
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
+        }
+
+
         $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
         $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);

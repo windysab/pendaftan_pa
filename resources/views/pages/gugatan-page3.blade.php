@@ -112,7 +112,7 @@
                                                 <label><b>Jenis Perpisahan</b></label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="jenis_perpisahan"
-                                                        id="berpisah_tempat_tinggal" value="berpisah_tempat_tinggal"
+                                                        id="berpisah_tempat_tinggal" value="Berpisah tempat tinggal"
                                                         required>
                                                     <label class="form-check-label"
                                                         for="berpisah_tempat_tinggal"><b>Berpisah
@@ -120,7 +120,7 @@
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="jenis_perpisahan"
-                                                        id="berpisah_tempat_tidur" value="berpisah_tempat_tidur" required>
+                                                        id="berpisah_tempat_tidur" value="Berpisah tempat tidur" required>
                                                     <label class="form-check-label"
                                                         for="berpisah_tempat_tidur"><b>Berpisah
                                                             tempat tidur</b></label>
@@ -132,13 +132,13 @@
                                                 <label><b>Siapa yang meninggalkan rumah</b></label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio"
-                                                        name="siapa_meninggalkan" id="tergugat" value="tergugat"
+                                                        name="siapa_meninggalkan" id="tergugat" value="Tergugat"
                                                         required>
                                                     <label class="form-check-label" for="tergugat"><b>Tergugat</b></label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio"
-                                                        name="siapa_meninggalkan" id="penggugat" value="penggugat"
+                                                        name="siapa_meninggalkan" id="penggugat" value="Penggugat"
                                                         required>
                                                     <label class="form-check-label"
                                                         for="penggugat"><b>Penggugat</b></label>
@@ -150,8 +150,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="desa"><b>Desa</b></label>
-                                                <input type="text" id="desa_meninggalkan" name="desa_meninggalkan" class="form-control"
-                                                    placeholder="Nama desa" required>
+                                                <input type="text" id="desa_meninggalkan" name="desa_meninggalkan"
+                                                    class="form-control" placeholder="Nama desa" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
