@@ -482,6 +482,7 @@ class GugatanController extends Controller
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
         $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
         $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
+        // $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
 
         $fileName = 'Gugatan_cerai_' . Str::slug($gugatan->nama_penggugat) . '.docx';
