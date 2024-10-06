@@ -143,8 +143,6 @@ class GugatanController extends Controller
         $templateProcessor->setValue('agama_penggugat', $gugatan->agama_penggugat);
         $templateProcessor->setValue('pekerjaan_penggugat', $gugatan->pekerjaan_penggugat);
         // $templateProcessor->setValue('pendidikan_penggugat', $gugatan->pendidikan_penggugat);
-
-
         // Mapping of education levels to their corresponding numbers
         $educationMapping = [
             'Tidak Tamat SD' => '2',
@@ -342,11 +340,139 @@ class GugatanController extends Controller
             $templateProcessor->setValue($tanggalLahirKey, $tanggalLahirValue);
         }
 
-        $templateProcessor->setValue('tanggal_perselisihan', $gugatan->tanggal_perselisihan);
-        $templateProcessor->setValue('alasan_perselisihan', $gugatan->alasan_perselisihan);
+
+        $tanggalperselisihan = $gugatan->tanggal_perselisihan;
+        $dateperselisihan = new DateTime($tanggalperselisihan);
+
+        $bulanIndonesia = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
+
+        $hari = $dateperselisihan->format('j');
+        $bulan = $bulanIndonesia[(int)$dateperselisihan->format('n')];
+        $tahun = $dateperselisihan->format('Y');
+
+        // Setel nilai dalam template
+        $templateProcessor->setValue('tanggal_perselisihan_hari', $hari);
+        $templateProcessor->setValue('tanggal_perselisihan_bulan', $bulan);
+        $templateProcessor->setValue('tanggal_perselisihan_tahun', $tahun);
+        // $templateProcessor->setValue('tanggal_perselisihan', $gugatan->tanggal_perselisihan);
+
+        // $templateProcessor->setValue('alasan_perselisihan', $gugatan->alasan_perselisihan);
+
+
+        // Definisikan opsi dengan placeholder dan teks coret default
+        $options = [
+            'alasan_a' => new TextRun(),
+            'alasan_b' => new TextRun(),
+            'alasan_c' => new TextRun(),
+            'alasan_d' => new TextRun(),
+            'alasan_e' => new TextRun(),
+            'alasan_f' => new TextRun(),
+            'alasan_g' => new TextRun(),
+            'alasan_h' => new TextRun(),
+            'alasan_i' => new TextRun()
+        ];
+
+        $options['alasan_a']->addText('Mengkonsumsi minum-minuman keras.', ['strikethrough' => true]);
+        $options['alasan_b']->addText('Bermain judi.', ['strikethrough' => true]);
+        $options['alasan_c']->addText('Memukul Penggugat.', ['strikethrough' => true]);
+        $options['alasan_d']->addText('Telah menjalin hubungan asmara dengan perempuan lain.', ['strikethrough' => true]);
+        $options['alasan_e']->addText('Sering keluar pada malam hari / pulang pada waktu dini hari / tidak pulang berhari – hari.', ['strikethrough' => true]);
+        $options['alasan_f']->addText('Malas berkerja.', ['strikethrough' => true]);
+        $options['alasan_g']->addText('Tidak memberi biaya untuk keperluan rumah tangga sehingga tidak mencukupi.', ['strikethrough' => true]);
+        $options['alasan_h']->addText('Perkawinan Penggugat dan Tergugat dijodohkan oleh orang tua masing-masing.', ['strikethrough' => true]);
+        $options['alasan_i']->addText('Alasan lainnya / Penjelasan kejadian', ['strikethrough' => true]);
+
+        // Tentukan opsi mana yang dipilih berdasarkan data Anda
+        switch ($gugatan->alasan_perselisihan) {
+            case 'minum_minuman_keras':
+                $options['alasan_a'] = new TextRun();
+                $options['alasan_a']->addText('Mengkonsumsi minum-minuman keras.', ['strikethrough' => false]);
+                break;
+            case 'bermain_judi':
+                $options['alasan_b'] = new TextRun();
+                $options['alasan_b']->addText('Bermain judi.', ['strikethrough' => false]);
+                break;
+            case 'memukul_penggugat':
+                $options['alasan_c'] = new TextRun();
+                $options['alasan_c']->addText('Memukul Penggugat.', ['strikethrough' => false]);
+                break;
+            case 'hubungan_asmara':
+                $options['alasan_d'] = new TextRun();
+                $options['alasan_d']->addText('Telah menjalin hubungan asmara dengan perempuan lain.', ['strikethrough' => false]);
+                break;
+            case 'sering_keluar':
+                $options['alasan_e'] = new TextRun();
+                $options['alasan_e']->addText('Sering keluar pada malam hari / pulang pada waktu dini hari / tidak pulang berhari – hari.', ['strikethrough' => false]);
+                break;
+            case 'malas_kerja':
+                $options['alasan_f'] = new TextRun();
+                $options['alasan_f']->addText('Malas berkerja.', ['strikethrough' => false]);
+                break;
+            case 'tidak_biaya':
+                $options['alasan_g'] = new TextRun();
+                $options['alasan_g']->addText('Tidak memberi biaya untuk keperluan rumah tangga sehingga tidak mencukupi.', ['strikethrough' => false]);
+                break;
+            case 'dijodohkan':
+                $options['alasan_h'] = new TextRun();
+                $options['alasan_h']->addText('Perkawinan Penggugat dan Tergugat dijodohkan oleh orang tua masing-masing.', ['strikethrough' => false]);
+                break;
+            case 'alasan_lainnya':
+                $options['alasan_i'] = new TextRun();
+                $options['alasan_i']->addText('Alasan lainnya / Penjelasan kejadian', ['strikethrough' => false]);
+                break;
+            default:
+                // Tangani kasus default jika diperlukan
+                break;
+        }
+
+        // Setel nilai dalam template
+        $templateProcessor->setComplexValue('alasan_a', $options['alasan_a']);
+        $templateProcessor->setComplexValue('alasan_b', $options['alasan_b']);
+        $templateProcessor->setComplexValue('alasan_c', $options['alasan_c']);
+        $templateProcessor->setComplexValue('alasan_d', $options['alasan_d']);
+        $templateProcessor->setComplexValue('alasan_e', $options['alasan_e']);
+        $templateProcessor->setComplexValue('alasan_f', $options['alasan_f']);
+        $templateProcessor->setComplexValue('alasan_g', $options['alasan_g']);
+        $templateProcessor->setComplexValue('alasan_h', $options['alasan_h']);
+        $templateProcessor->setComplexValue('alasan_i', $options['alasan_i']);
+
         $templateProcessor->setValue('detail_alasan', $gugatan->detail_alasan);
         $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
-        $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
+
+        $tanggalperpisahan = $gugatan->tanggal_perpisahan;
+        $dateperpisahan = new DateTime($tanggalperpisahan);
+
+        $bulanIndonesia = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
+
+        $tanggalperpisahanFormatted = $dateperpisahan->format('j') . ' ' . $bulanIndonesia[(int)$dateperpisahan->format('n')] . ' ' . $dateperpisahan->format('Y');
+        $templateProcessor->setValue('tanggal_perpisahan', $tanggalperpisahanFormatted);
+        // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
         $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
         $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
