@@ -483,6 +483,7 @@ class GugatanController extends Controller
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
         // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
 
+
         // Definisikan opsi dengan placeholder dan teks coret default
         $options = [
             'jenis_perpisahan_tempat_tinggal' => new TextRun(),
@@ -497,16 +498,16 @@ class GugatanController extends Controller
         $selectedOptionTempatTinggal = new TextRun();
         $selectedOptionTempatTidur = new TextRun();
 
-        if ($gugatan->jenis_perpisahan == 'tempat_tinggal') {
+        if ($gugatan->jenis_perpisahan == 'Berpisah tempat tinggal') {
             $selectedOptionTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => false]);
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $selectedOptionTempatTinggal);
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
-        } elseif ($gugatan->jenis_perpisahan == 'tempat_tidur') {
+        } elseif ($gugatan->jenis_perpisahan == 'Berpisah tempat tidur') {
             $selectedOptionTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => false]);
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $selectedOptionTempatTidur);
         } else {
-            // Jika tidak ada yang dipilih, setel nilai default
+            // Jika tidak ada yang dipilih, tetap gunakan teks coret
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
         }
