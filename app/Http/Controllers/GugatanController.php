@@ -483,33 +483,49 @@ class GugatanController extends Controller
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
         // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
 
-        // Definisikan opsi dengan placeholder dan teks coret default
-        $options = [
-            'jenis_perpisahan_tempat_tinggal' => new TextRun(),
-            'jenis_perpisahan_tempat_tidur' => new TextRun()
-        ];
 
-        // Tambahkan teks coret ke opsi
-        $options['jenis_perpisahan_tempat_tinggal']->addText('berpisah tempat tinggal', ['strikethrough' => true]);
-        $options['jenis_perpisahan_tempat_tidur']->addText('berpisah tempat tidur', ['strikethrough' => true]);
+        $jenis_perpisahan = $gugatan->jenis_perpisahan;
 
-        // Buat TextRun baru untuk opsi yang dipilih tanpa coretan
-        $selectedOptionTempatTinggal = new TextRun();
-        $selectedOptionTempatTidur = new TextRun();
+        // Initialize TextRun for both options
+        $berpisahTempatTinggal = new TextRun();
+        $berpisahTempatTidur = new TextRun();
 
-        if ($gugatan->jenis_perpisahan == 'tempat_tinggal') {
-            $selectedOptionTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => false]);
-            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $selectedOptionTempatTinggal);
-            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
-        } elseif ($gugatan->jenis_perpisahan == 'tempat_tidur') {
-            $selectedOptionTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => false]);
-            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
-            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $selectedOptionTempatTidur);
+        // Add text with strikethrough if not selected
+        if ($jenis_perpisahan === 'berpisah_tempat_tinggal') {
+            $berpisahTempatTinggal->addText('berpisah tempat tinggal');
+            $berpisahTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => true]);
+        } elseif ($jenis_perpisahan === 'berpisah_tempat_tidur') {
+            $berpisahTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => true]);
+            $berpisahTempatTidur->addText('berpisah tempat tidur');
         } else {
-            // Jika tidak ada yang dipilih, setel nilai default
-            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
-            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
+            // Default case if none is selected
+            $berpisahTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => true]);
+            $berpisahTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => true]);
         }
+
+        // Combine both options into one TextRun
+        $jenisPerpisahanTextRun = new TextRun();
+        $jenisPerpisahanTextRun->addText('berpisah tempat tinggal');
+        $jenisPerpisahanTextRun->addText(' / ');
+        $jenisPerpisahanTextRun->addText('berpisah tempat tidur');
+
+        // Set the complex value in the template
+        $templateProcessor->setComplexValue('jenis_perpisahan', $jenisPerpisahanTextRun);
+
+        // // Create a new TextRun instance
+        // $textRun = new TextRun();
+
+        // // Check if jenis_perpisahan is selected
+        // if (empty($gugatan->jenis_perpisahan)) {
+        //     // Add strikethrough text
+        //     $textRun->addText('berpisah tempat tinggal / berpisah tempat tidur', ['strikethrough' => true]);
+        // } else {
+        //     // Add normal text
+        //     $textRun->addText($gugatan->jenis_perpisahan);
+        // }
+
+        // // Set the value in the template processor
+        // $templateProcessor->setComplexValue('jenis_perpisahan', $textRun);
 
 
         $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
