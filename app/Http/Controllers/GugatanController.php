@@ -398,7 +398,7 @@ class GugatanController extends Controller
 
         // Tentukan opsi mana yang dipilih berdasarkan data Anda
         switch ($gugatan->alasan_perselisihan) {
-            case 'minum_minuman_keras':
+            case 'minum_keras':
                 $options['alasan_a'] = new TextRun();
                 $options['alasan_a']->addText('Mengkonsumsi minum-minuman keras.', ['strikethrough' => false]);
                 break;
@@ -418,7 +418,7 @@ class GugatanController extends Controller
                 $options['alasan_e'] = new TextRun();
                 $options['alasan_e']->addText('Sering keluar pada malam hari / pulang pada waktu dini hari / tidak pulang berhari – hari.', ['strikethrough' => false]);
                 break;
-            case 'malas_kerja':
+            case 'malas_bekerja':
                 $options['alasan_f'] = new TextRun();
                 $options['alasan_f']->addText('Malas berkerja.', ['strikethrough' => false]);
                 break;
