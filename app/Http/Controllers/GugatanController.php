@@ -513,7 +513,22 @@ class GugatanController extends Controller
         }
 
 
-        $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
+        // $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
+        
+
+        // Buat TextRun untuk pilihan yang terpilih
+        $selectedTextRun = new TextRun();
+        $selectedTextRun->addText($gugatan->siapa_meninggalkan);
+
+        // Buat TextRun untuk pilihan yang tidak terpilih dan tambahkan coretan
+        $unselectedTextRun = new TextRun();
+        $unselectedText = $gugatan->siapa_meninggalkan == 'Tergugat' ? 'Penggugat' : 'Tergugat';
+        $unselectedTextRun->addText($unselectedText, ['strikethrough' => true]);
+
+        // Gabungkan kedua TextRun ke dalam satu placeholder
+        $templateProcessor->setComplexValue('siapa_meninggalkan', $selectedTextRun);
+        $templateProcessor->setComplexValue('siapa_meninggalkan_coret', $unselectedTextRun);
+
         $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
 
