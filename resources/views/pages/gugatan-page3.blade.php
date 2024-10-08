@@ -97,67 +97,65 @@
                                 <h4 class="text-center-custom">Detail Perpisahan</h4>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="tanggal_perpisahan"><b>Tanggal Perpisahan</b></label>
-                                    <input type="date" id="tanggal_perpisahan" name="tanggal_perpisahan" class="form-control" required>
-                                </div>
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tanggal_perpisahan"><b>Tanggal Perpisahan</b></label>
+                                            <input type="date" id="tanggal_perpisahan" name="tanggal_perpisahan" class="form-control" required>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label><b>Jenis Perpisahan</b></label>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="jenis_perpisahan" id="berpisah_tempat_tinggal" value="Berpisah tempat tinggal" required>
-                                                <label class="form-check-label" for="berpisah_tempat_tinggal"><b>Berpisah
-                                                        tempat tinggal</b></label>
+                                                <label class="form-check-label" for="berpisah_tempat_tinggal"><b>Berpisah tempat tinggal</b></label>
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="jenis_perpisahan" id="berpisah_tempat_tidur" value="Berpisah tempat tidur" required>
-                                                <label class="form-check-label" for="berpisah_tempat_tidur"><b>Berpisah
-                                                        tempat tidur</b></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label><b>Siapa yang meninggalkan rumah</b></label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="siapa_meninggalkan" id="tergugat" value="Tergugat" required>
-                                                <label class="form-check-label" for="tergugat"><b>Tergugat</b></label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="siapa_meninggalkan" id="penggugat" value="Penggugat" required>
-                                                <label class="form-check-label" for="penggugat"><b>Penggugat</b></label>
+                                                <label class="form-check-label" for="berpisah_tempat_tidur"><b>Berpisah tempat tidur</b></label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><b>Siapa yang meninggalkan rumah</b></label>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="siapa_meninggalkan" id="tergugat" value="Tergugat" required>
+                                                <label class="form-check-label" for="tergugat"><b>Tergugat</b></label>
+                                            </div>
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input" type="radio" name="siapa_meninggalkan" id="penggugat" value="Penggugat" required>
+                                                <label class="form-check-label" for="penggugat"><b>Penggugat</b></label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="desa"><b>Desa</b></label>
                                             <input type="text" id="desa_meninggalkan" name="desa_meninggalkan" class="form-control" placeholder="Nama desa" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label><b>Alasan meninggalkan rumah</b></label>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="karena_diusir_penggugat" value="karena diusir oleh Penggugat" required>
-                                                <label class="form-check-label" for="karena_diusir_penggugat"><b>Karena diusir Penggugat</b></label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="karena_diusir_tergugat" value="karena diusir oleh Tergugat" required>
-                                                <label class="form-check-label" for="karena_diusir_tergugat"><b>Karena diusir Tergugat</b></label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="keinginan_penggugat_sendiri" value="karena keinginan Penggugat sendiri" required>
-                                                <label class="form-check-label" for="keinginan_penggugat_sendiri"><b>Karena keinginan Penggugat sendiri</b></label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="keinginan_tergugat_sendiri" value="karena keinginan Tergugat sendiri" required>
-                                                <label class="form-check-label" for="keinginan_tergugat_sendiri"><b>Karena keinginan Tergugat sendiri</b></label>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label><b>Alasan meninggalkan rumah</b></label>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="karena_diusir_penggugat" value="karena diusir oleh Penggugat" required>
+                                        <label class="form-check-label" for="karena_diusir_penggugat"><b>Karena diusir Penggugat</b></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="karena_diusir_tergugat" value="karena diusir oleh Tergugat" required>
+                                        <label class="form-check-label" for="karena_diusir_tergugat"><b>Karena diusir Tergugat</b></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="keinginan_penggugat_sendiri" value="karena keinginan Penggugat sendiri" required>
+                                        <label class="form-check-label" for="keinginan_penggugat_sendiri"><b>Karena keinginan Penggugat sendiri</b></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="alasan_meninggalkan" id="keinginan_tergugat_sendiri" value="karena keinginan Tergugat sendiri" required>
+                                        <label class="form-check-label" for="keinginan_tergugat_sendiri"><b>Karena keinginan Tergugat sendiri</b></label>
                                     </div>
                                 </div>
                             </div>
