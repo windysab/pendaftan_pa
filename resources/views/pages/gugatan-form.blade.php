@@ -30,7 +30,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="text-center-custom">Data Penggugat</h4>
+                                <h4 class="text-center-custom">Data Penggugat/ Istri</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -109,7 +109,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="card">
                             <div class="card-header text-center-custom">
-                                <h4 class="text-center-custom">Data Tergugat</h4>
+                                <h4 class="text-center-custom">Data Tergugat/ Suami</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -118,6 +118,7 @@
                                             <label for="nama_tergugat"><b>Nama Tergugat</b></label>
                                             <input type="text" id="nama_tergugat" name="nama_tergugat" class="form-control">
                                             <span id="error_nama_tergugat" class="text-danger"></span>
+                                            <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan surat nikah</small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
