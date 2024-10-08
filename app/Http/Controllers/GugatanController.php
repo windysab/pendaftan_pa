@@ -481,7 +481,7 @@ class GugatanController extends Controller
         $templateProcessor->setValue('tanggal_perpisahan_bulan', $bulan);
         $templateProcessor->setValue('tanggal_perpisahan_tahun', $tahun);
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
-        // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
+        // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan); 
 
 
         $jenis_perpisahan = $gugatan->jenis_perpisahan;
