@@ -46,21 +46,16 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="alasan_perselisihan"><b>Alasan Perselisihan dan
-                                                    Pertengkaran</b></label>
+                                            <label for="alasan_perselisihan"><b>Alasan Perselisihan dan Pertengkaran</b></label>
                                             <select class="form-control" name="alasan_perselisihan" id="alasan_perselisihan" onchange="showTextarea()">
                                                 <option value="minum_keras">Mengkonsumsi minum-minuman keras</option>
                                                 <option value="bermain_judi">Bermain judi</option>
                                                 <option value="memukul_penggugat">Memukul Penggugat</option>
-                                                <option value="hubungan_asmara">Telah menjalin hubungan asmara dengan
-                                                    perempuan lain</option>
-                                                <option value="keluar_malam">Sering keluar pada malam hari / pulang pada
-                                                    waktu dini hari / tidak pulang berhari – hari</option>
+                                                <option value="hubungan_asmara">Telah menjalin hubungan asmara dengan perempuan lain</option>
+                                                <option value="keluar_malam">Sering keluar pada malam hari / pulang pada waktu dini hari / tidak pulang berhari – hari</option>
                                                 <option value="malas_bekerja">Malas berkerja</option>
-                                                <option value="tidak_biaya">Tidak memberi biaya untuk keperluan rumah
-                                                    tangga sehingga tidak mencukupi</option>
-                                                <option value="dijodohkan">Perkawinan Penggugat dan Tergugat dijodohkan
-                                                    oleh orang tua masing-masing</option>
+                                                <option value="tidak_biaya">Tidak memberi biaya untuk keperluan rumah tangga sehingga tidak mencukupi</option>
+                                                <option value="dijodohkan">Perkawinan Penggugat dan Tergugat dijodohkan oleh orang tua masing-masing</option>
                                                 <option value="alasan_lainnya">Alasan lainnya</option>
                                             </select>
                                         </div>
@@ -69,23 +64,15 @@
                                 <div class="form-group" id="textarea-container" style="display:none;">
                                     <textarea name="detail_alasan" class="form-control" data-height="100" placeholder="Jelaskan kejadiannya"></textarea>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="text-center-custom">Upaya Merukunkan</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label><b>Upaya Merukunkan Penggugat dan Tergugat</b></label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="upaya_merukunkan" id="ada_upaya" value="ada" required>
-                                            <label class="form-check-label" for="ada_upaya"><b>Ada</b></label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="upaya_merukunkan" id="tidak_ada_upaya" value="tidak_ada" required>
-                                            <label class="form-check-label" for="tidak_ada_upaya"><b>Sudah tidak
-                                                    ada</b></label>
-                                        </div>
+                                <div class="form-group">
+                                    <label><b>Upaya Merukunkan Penggugat dan Tergugat</b></label>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="upaya_merukunkan" id="ada_upaya" value="ada" required>
+                                        <label class="form-check-label" for="ada_upaya"><b>Ada</b></label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="upaya_merukunkan" id="tidak_ada_upaya" value="tidak_ada" required>
+                                        <label class="form-check-label" for="tidak_ada_upaya"><b>Sudah tidak ada</b></label>
                                     </div>
                                 </div>
                             </div>
