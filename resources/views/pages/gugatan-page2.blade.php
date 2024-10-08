@@ -120,15 +120,15 @@
                                         <option value="rumah_orangtua_penggugat">Di rumah orangtua Penggugat, di desa</option>
                                         <option value="rumah_orangtua_tergugat">Di rumah orangtua Tergugat, di desa</option>
                                         <option value="rumah_kontrakan">Di rumah kontrakan / kos, di desa</option>
-                                        <option value="lainnya">Lainnya, di desa</option>
+                                        
                                     </select>
                                     <div id="desa_input" style="display: none;">
                                         <input type="text" name="desa" class="form-control mt-2" placeholder="Nama desa">
                                         <span id="error_desa" class="text-danger"></span>
                                     </div>
-                                    <div id="lainnya_textarea" style="display: none;">
+                                    {{-- <div id="lainnya_textarea" style="display: none;">
                                         <textarea name="detail_lainnya" class="form-control mt-2" placeholder="Detail lainnya"></textarea>
-                                    </div>
+                                    </div> --}}
                                     <span id="error_tempat_tinggal" class="text-danger"></span>
                                 </div>
                                 <div class="row">
@@ -181,7 +181,7 @@
                 </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Selanjutnya</button>
+        <button type="submit" class="btn btn-primary btn-right">Selanjutnya</button>
         </form>
 
 

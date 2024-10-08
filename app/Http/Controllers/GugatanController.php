@@ -414,7 +414,7 @@ class GugatanController extends Controller
                 $options['alasan_d'] = new TextRun();
                 $options['alasan_d']->addText('Telah menjalin hubungan asmara dengan perempuan lain.', ['strikethrough' => false]);
                 break;
-            case 'sering_keluar':
+            case 'keluar_malam':
                 $options['alasan_e'] = new TextRun();
                 $options['alasan_e']->addText('Sering keluar pada malam hari / pulang pada waktu dini hari / tidak pulang berhari – hari.', ['strikethrough' => false]);
                 break;
@@ -481,7 +481,7 @@ class GugatanController extends Controller
         $templateProcessor->setValue('tanggal_perpisahan_bulan', $bulan);
         $templateProcessor->setValue('tanggal_perpisahan_tahun', $tahun);
         // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
-        // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan); 
+        // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
 
 
         // Definisikan opsi dengan placeholder dan teks coret default
@@ -514,7 +514,7 @@ class GugatanController extends Controller
 
 
         // $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
-        
+
 
         // Buat TextRun untuk pilihan yang terpilih
         $selectedTextRun = new TextRun();

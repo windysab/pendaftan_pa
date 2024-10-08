@@ -3531,6 +3531,9 @@ pre {
     padding-left: 35px;
     padding-right: 35px;
 }
+.btn-right {
+    float: right;
+}
 
 @media (max-width: 575.98px) {
     .section .section-title {

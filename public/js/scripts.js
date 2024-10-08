@@ -902,3 +902,58 @@ function toggleDesaInput() {
         lainnyaTextarea.style.display = 'none';
     }
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const tergugatForm = document.getElementById('tergugatForm');
+    const saveButton = document.getElementById('saveButton');
+
+    if (!tergugatForm || !saveButton) {
+        console.error('Form atau tombol simpan tidak ditemukan');
+        return;
+    }
+
+    const inputs = tergugatForm.querySelectorAll('input');
+
+    function checkForm() {
+        let allFilled = true;
+        inputs.forEach(input => {
+            if (input.value.trim() === '') {
+                allFilled = false;
+            }
+        });
+        saveButton.disabled = !allFilled;
+        log('All fields filled:', allFilled);
+    }
+
+    inputs.forEach(input => {
+        input.addEventListener('input', checkForm);
+    });
+
+    checkForm(); // Initial check in case the form is already filled
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const penggugatForm = document.getElementById('penggugatForm');
+    const savePenggugatButton = document.getElementById('savePenggugatButton');
+    const requiredPenggugatFields = ['jalan_penggugat', 'no_penggugat', 'rt_penggugat', 'rw_penggugat', 'desa_penggugat', 'kecamatan_penggugat', 'kabupaten_penggugat'];
+
+    function validatePenggugatForm() {
+        let allFilled = true;
+        requiredPenggugatFields.forEach(field => {
+            const input = penggugatForm.querySelector(`#${field}`);
+            console.log(`Checking field: ${field}, value: ${input.value.trim()}`); // Debugging line
+            if (!input.value.trim()) {
+                allFilled = false;
+            }
+        });
+        console.log(`All fields filled: ${allFilled}`); // Debugging line
+        savePenggugatButton.disabled = !allFilled;
+    }
+
+    requiredPenggugatFields.forEach(field => {
+        const input = penggugatForm.querySelector(`#${field}`);
+        input.addEventListener('input', validatePenggugatForm);
+    });
+
+    validatePenggugatForm(); // Initial validation check
+});
