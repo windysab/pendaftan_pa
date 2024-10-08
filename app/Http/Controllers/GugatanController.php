@@ -398,7 +398,7 @@ class GugatanController extends Controller
 
         // Tentukan opsi mana yang dipilih berdasarkan data Anda
         switch ($gugatan->alasan_perselisihan) {
-            case 'minum_minuman_keras':
+            case 'minum_keras':
                 $options['alasan_a'] = new TextRun();
                 $options['alasan_a']->addText('Mengkonsumsi minum-minuman keras.', ['strikethrough' => false]);
                 break;
@@ -418,7 +418,7 @@ class GugatanController extends Controller
                 $options['alasan_e'] = new TextRun();
                 $options['alasan_e']->addText('Sering keluar pada malam hari / pulang pada waktu dini hari / tidak pulang berhari – hari.', ['strikethrough' => false]);
                 break;
-            case 'malas_kerja':
+            case 'malas_bekerja':
                 $options['alasan_f'] = new TextRun();
                 $options['alasan_f']->addText('Malas berkerja.', ['strikethrough' => false]);
                 break;
@@ -484,51 +484,51 @@ class GugatanController extends Controller
         // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan); 
 
 
-        $jenis_perpisahan = $gugatan->jenis_perpisahan;
+        // Definisikan opsi dengan placeholder dan teks coret default
+        $options = [
+            'jenis_perpisahan_tempat_tinggal' => new TextRun(),
+            'jenis_perpisahan_tempat_tidur' => new TextRun()
+        ];
 
-        // Initialize TextRun for both options
-        $berpisahTempatTinggal = new TextRun();
-        $berpisahTempatTidur = new TextRun();
+        // Tambahkan teks coret ke opsi
+        $options['jenis_perpisahan_tempat_tinggal']->addText('berpisah tempat tinggal', ['strikethrough' => true]);
+        $options['jenis_perpisahan_tempat_tidur']->addText('berpisah tempat tidur', ['strikethrough' => true]);
 
-        // Add text with strikethrough if not selected
-        if ($jenis_perpisahan === 'berpisah_tempat_tinggal') {
-            $berpisahTempatTinggal->addText('berpisah tempat tinggal');
-            $berpisahTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => true]);
-        } elseif ($jenis_perpisahan === 'berpisah_tempat_tidur') {
-            $berpisahTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => true]);
-            $berpisahTempatTidur->addText('berpisah tempat tidur');
+        // Buat TextRun baru untuk opsi yang dipilih tanpa coretan
+        $selectedOptionTempatTinggal = new TextRun();
+        $selectedOptionTempatTidur = new TextRun();
+
+        if ($gugatan->jenis_perpisahan == 'Berpisah tempat tinggal') {
+            $selectedOptionTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => false]);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $selectedOptionTempatTinggal);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
+        } elseif ($gugatan->jenis_perpisahan == 'Berpisah tempat tidur') {
+            $selectedOptionTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => false]);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $selectedOptionTempatTidur);
         } else {
-            // Default case if none is selected
-            $berpisahTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => true]);
-            $berpisahTempatTidur->addText('berpisah tempat tidur', ['strikethrough' => true]);
+            // Jika tidak ada yang dipilih, tetap gunakan teks coret
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
+            $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
         }
 
-        // Combine both options into one TextRun
-        $jenisPerpisahanTextRun = new TextRun();
-        $jenisPerpisahanTextRun->addText('berpisah tempat tinggal');
-        $jenisPerpisahanTextRun->addText(' / ');
-        $jenisPerpisahanTextRun->addText('berpisah tempat tidur');
 
-        // Set the complex value in the template
-        $templateProcessor->setComplexValue('jenis_perpisahan', $jenisPerpisahanTextRun);
+        // $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
+        
 
-        // // Create a new TextRun instance
-        // $textRun = new TextRun();
+        // Buat TextRun untuk pilihan yang terpilih
+        $selectedTextRun = new TextRun();
+        $selectedTextRun->addText($gugatan->siapa_meninggalkan);
 
-        // // Check if jenis_perpisahan is selected
-        // if (empty($gugatan->jenis_perpisahan)) {
-        //     // Add strikethrough text
-        //     $textRun->addText('berpisah tempat tinggal / berpisah tempat tidur', ['strikethrough' => true]);
-        // } else {
-        //     // Add normal text
-        //     $textRun->addText($gugatan->jenis_perpisahan);
-        // }
+        // Buat TextRun untuk pilihan yang tidak terpilih dan tambahkan coretan
+        $unselectedTextRun = new TextRun();
+        $unselectedText = $gugatan->siapa_meninggalkan == 'Tergugat' ? 'Penggugat' : 'Tergugat';
+        $unselectedTextRun->addText($unselectedText, ['strikethrough' => true]);
 
-        // // Set the value in the template processor
-        // $templateProcessor->setComplexValue('jenis_perpisahan', $textRun);
+        // Gabungkan kedua TextRun ke dalam satu placeholder
+        $templateProcessor->setComplexValue('siapa_meninggalkan', $selectedTextRun);
+        $templateProcessor->setComplexValue('siapa_meninggalkan_coret', $unselectedTextRun);
 
-
-        $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
         $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
 
