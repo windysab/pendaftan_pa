@@ -60,7 +60,7 @@ Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugata
 
 Route::get('/gugatan-sukses', function () {
     $gugatan = session('gugatan');
-    if (!$gugatan) {
+    if (!$gugatan) { 
         return redirect()->route('gugatan.form')->withErrors(['msg' => 'Data tidak ditemukan.']);
     }
     return view('pages.gugatan-sukses', ['type_menu' => 'gugatan', 'gugatan' => $gugatan]);
