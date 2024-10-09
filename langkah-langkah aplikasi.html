@@ -22,6 +22,11 @@ Gantilah nama_branch dengan nama branch yang ingin Anda hapus.
 composer require phpoffice/phpword
 composer require phpoffice/phpword dompdf/dompdf
 
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+
 
 
 Untuk mengembalikan perubahan ke awal di Git, Anda bisa menggunakan perintah berikut di terminal:

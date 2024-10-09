@@ -1,3 +1,4 @@
+<!-- resources/views/auth/auth-login.blade.php -->
 @extends('layouts.auth')
 
 @section('title', 'Login')
@@ -6,7 +7,6 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/bootstrap-social/bootstrap-social.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
 @endpush
 
 @section('main')
@@ -16,6 +16,11 @@
     </div>
 
     <div class="card-body">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
             @csrf
             <div class="form-group">
@@ -60,14 +65,11 @@
     </div>
 </div>
 <div class="text-muted mt-5 text-center">
-    Belum punya akun? <a href="register">Buat Satu</a>
+    Belum punya akun? <a href="{{ route('register') }}">Buat Satu</a>
 </div>
 @endsection
 
 @push('scripts')
     <!-- JS Libraies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-
-    <!-- Page Specific JS File -->
-
 @endpush

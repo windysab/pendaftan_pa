@@ -2,11 +2,22 @@
 // routes/web.php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GugatanController;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GugatanController;
 
+// Redirect root to dashboard
 Route::redirect('/', '/dashboard-general-dashboard');
+
+
+Route::middleware(['throttle:100,1'])->group(function () {
+    Route::get('/login', function () {
+        return view('auth.auth-login');
+    })->name('login');
+
+    Route::post('/login', [LoginController::class, 'login']);
+});
 
 // Dashboard
 Route::get('/dashboard-general-dashboard', function () {

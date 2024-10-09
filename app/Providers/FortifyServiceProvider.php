@@ -1,5 +1,5 @@
 <?php
-// app/Providers/FortifyServiceProvider.php
+
 namespace App\Providers;
 
 use Laravel\Fortify\Fortify;
@@ -11,7 +11,6 @@ class FortifyServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        //
         $this->app->singleton(CreatesNewUsers::class, CreateNewUser::class);
     }
 
@@ -33,6 +32,9 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.reset-password', ['request' => $request]);
         });
 
-        // Define other Fortify views and actions here
+        // // Redirect to login after successful registration
+        // Fortify::afterRegister(function ($user) {
+        //     return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silakan login.');
+        // });
     }
 }
