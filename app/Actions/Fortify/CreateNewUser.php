@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Illuminate\Support\Facades\Log;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -18,8 +17,6 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        Log::info('Creating new user with input:', $input);
-
         $validator = Validator::make($input, [
             'username' => ['required', 'string', 'max:255', Rule::unique(User::class)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
@@ -27,7 +24,6 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         if ($validator->fails()) {
-            Log::error('Validation failed:', $validator->errors()->toArray());
             throw new \Illuminate\Validation\ValidationException($validator);
         }
 
@@ -38,15 +34,8 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]);
 
-            Log::info('User created:', $user->toArray());
-
-            // Tambahkan log untuk memastikan data masuk ke database
-            $userFromDb = User::find($user->id);
-            Log::info('User fetched from database:', $userFromDb->toArray());
-
             return $user;
         } catch (\Exception $e) {
-            Log::error('Error creating user:', ['message' => $e->getMessage()]);
             throw $e;
         }
     }
