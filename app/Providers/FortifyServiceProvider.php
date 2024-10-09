@@ -1,13 +1,9 @@
 <?php
-
+// app/Providers/FortifyServiceProvider.php
 namespace App\Providers;
 
-use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\ResetUserPassword;
-use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
-use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\ServiceProvider;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -18,17 +14,12 @@ class FortifyServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        Fortify::createUsersUsing(CreateNewUser::class);
-        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
-        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
-        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
-
         Fortify::loginView(function () {
-            return view('auth.login');
+            return view('auth.auth-login');
         });
 
         Fortify::registerView(function () {
-            return view('auth.register');
+            return view('auth.auth-register');
         });
 
         Fortify::requestPasswordResetLinkView(function () {
@@ -38,5 +29,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView(function ($request) {
             return view('auth.reset-password', ['request' => $request]);
         });
+
+        // Define other Fortify views and actions here
     }
 }
