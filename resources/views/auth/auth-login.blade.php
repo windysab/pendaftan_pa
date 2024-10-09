@@ -60,7 +60,7 @@
     </div>
 </div>
 <div class="text-muted mt-5 text-center">
-    Belum punya akun? <a href="auth-register">Buat Satu</a>
+    Belum punya akun? <a href="register">Buat Satu</a>
 </div>
 @endsection
 
