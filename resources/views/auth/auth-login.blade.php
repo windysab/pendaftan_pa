@@ -6,7 +6,6 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/bootstrap-social/bootstrap-social.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
 @endpush
 
 @section('main')
@@ -16,7 +15,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+        <form method="POST" action="{{ route('login.post') }}" class="needs-validation" novalidate="">
             @csrf
             <div class="form-group">
                 <label for="username">Username</label>
@@ -60,7 +59,7 @@
     </div>
 </div>
 <div class="text-muted mt-5 text-center">
-    Belum punya akun? <a href="auth-register">Buat Satu</a>
+    Belum punya akun? <a href="{{ route('register') }}">Buat Satu</a>
 </div>
 @endsection
 

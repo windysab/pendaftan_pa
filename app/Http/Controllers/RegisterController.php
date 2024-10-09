@@ -1,44 +1,50 @@
 <?php
-// app/Http/Controllers/RegisterController.php
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
-    public function showRegistrationForm()
+    public function store(Request $request)
     {
-        return view('pages.auth-register', ['type_menu' => 'auth']);
-    }
+        Log::info('RegisterController@store: Request received', $request->all());
 
-    public function register(Request $request)
-    {
-        Log::info('Register method called');
+        $this->validator($request->all())->validate();
 
         try {
-            $validatedData = $request->validate([
-                'username' => 'required|string|max:255|unique:users',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8|confirmed',
-            ]);
+            $user = $this->create($request->all());
+            Log::info('RegisterController@store: User created successfully', ['user_id' => $user->id]);
 
-            Log::info('Validation passed', $validatedData);
+            auth()->login($user);
 
-            $user = User::create([
-                'username' => $request->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-
-            Log::info('User created', ['user' => $user]);
-
-            return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silakan login.');
+            return redirect()->route('dashboard');
         } catch (\Exception $e) {
-            Log::error('Error creating user', ['error' => $e->getMessage()]);
-            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat membuat akun.']);
+            Log::error('RegisterController@store: Error creating user', ['error' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'Failed to create user.']);
         }
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    protected function create(array $data)
+    {
+        Log::info('RegisterController@create: Creating user', $data);
+
+        return User::create([
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }
