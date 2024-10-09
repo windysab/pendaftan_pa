@@ -6,16 +6,30 @@ use App\Http\Controllers\GugatanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use Laravel\Fortify\Fortify;
+
+
+
+
+Route::get('/auth-login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/auth-login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/auth-register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/auth-register', [RegisterController::class, 'register']);
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 
 Route::redirect('/', '/dashboard-general-dashboard');
 
 // Dashboard
 
-// Auth
-Route::get('/auth-login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/auth-login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// // Auth
+// Route::get('/auth-login', [AuthController::class, 'showLoginForm'])->name('login');
+// Route::post('/auth-login', [AuthController::class, 'login']);
+// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Register
@@ -60,7 +74,7 @@ Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugata
 
 Route::get('/gugatan-sukses', function () {
     $gugatan = session('gugatan');
-    if (!$gugatan) { 
+    if (!$gugatan) {
         return redirect()->route('gugatan.form')->withErrors(['msg' => 'Data tidak ditemukan.']);
     }
     return view('pages.gugatan-sukses', ['type_menu' => 'gugatan', 'gugatan' => $gugatan]);

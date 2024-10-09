@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('pages.auth-login', ['type_menu' => 'auth']);
+        return view('auth.auth-login', ['type_menu' => 'auth']);
     }
 
     public function login(Request $request)
