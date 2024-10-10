@@ -24,7 +24,7 @@
                     Silahkan isi data penggugat dan tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
                 </p>
 
-                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update', $gugatan->id) : route('gugatan.store') }}" onsubmit="validateForm(event)" id="gugatanForm">
+                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update', $gugatan->id) : route('gugatan.page2') }}" onsubmit="validateForm(event)" id="gugatanForm">
                     @csrf
                     @if(isset($gugatan))
                         @method('PUT')
@@ -170,13 +170,13 @@
                                                 <label for="pendidikan_tergugat"><b>Pendidikan Tergugat</b></label>
                                                 <select id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control">
                                                     <!-- Add options here -->
-                                                    <option value="sd">SD</option>      
+                                                    <option value="sd">SD</option>
                                                     <option value="smp">SMP</option>
                                                     <option value="sma">SMA</option>
                                                     <option value="d1">D1</option>
                                                     <option value="d3">D3</option>
                                                     <option value="s1">S1</option>
-                                                    
+
                                                 </select>
                                                 <span id="error_pendidikan_tergugat" class="text-danger"></span>
                                             </div>
