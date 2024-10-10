@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     });
 
 
-// Gugatan
+    // Gugatan
 
     Route::get('/gugatan', [GugatanController::class, 'index'])->name('gugatan.index');
     Route::get('/gugatan/create', [GugatanController::class, 'create'])->name('gugatan.create');
@@ -44,6 +44,13 @@ Route::middleware('auth')->group(function () {
     // Additional routes for multi-step form
     Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('page2');
     Route::post('/gugatan/page3', [GugatanController::class, 'page3'])->name('page3');
+
+
+
+    Route::post('/gugatan/{id}/page2', [GugatanController::class, 'page2'])->name('gugatan.page2');
+    Route::post('/page2', [GugatanController::class, 'page2'])->name('page2');
+    Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3');
+    Route::put('/gugatan/{id}', [GugatanController::class, 'update'])->name('gugatan.update');
 
 
 

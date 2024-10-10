@@ -573,20 +573,20 @@ class GugatanController extends Controller
 
 
 
-    public function update(Request $request, $id)
-    {
-        // Validate and update the data
-        $validatedData = $request->validate([
-            'nama_penggugat' => 'required|string|max:255',
-            'nama_tergugat' => 'required|string|max:255',
-            // Add other validation rules as needed
-        ]);
+    // public function update(Request $request, $id)
+    // {
+    //     // Validate and update the data
+    //     $validatedData = $request->validate([
+    //         'nama_penggugat' => 'required|string|max:255',
+    //         'nama_tergugat' => 'required|string|max:255',
+    //         // Add other validation rules as needed
+    //     ]);
 
-        $gugatan = Gugatan::findOrFail($id);
-        $gugatan->update($validatedData);
+    //     $gugatan = Gugatan::findOrFail($id);
+    //     $gugatan->update($validatedData);
 
-        return redirect()->route('gugatan.index')->with('success', 'Gugatan updated successfully.');
-    }
+    //     return redirect()->route('gugatan.index')->with('success', 'Gugatan updated successfully.');
+    // }
 
     public function destroy($id)
     {
@@ -597,16 +597,61 @@ class GugatanController extends Controller
     }
 
 
-    public function page2(Request $request)
-    {
-        // Simpan data dari halaman pertama ke session
-        $request->session()->put('gugatan.create', $request->all());
-        return view('gugatan.page2', ['type_menu' => 'gugatan']);
-    }
+    // public function page2(Request $request)
+    // {
+    //     // Simpan data dari halaman pertama ke session
+    //     $request->session()->put('gugatan.create', $request->all());
+    //     return view('gugatan.page2', ['type_menu' => 'gugatan']);
+    // }
 
     public function page3(Request $request)
     {
         $type_menu = 'gugatan'; // Define the type_menu variable
         return view('gugatan.page3', compact('type_menu'));
+    }
+
+
+
+    public function page2(Request $request, $id = null)
+    {
+        if ($id) {
+            $gugatan = Gugatan::findOrFail($id);
+            // Simpan data dari halaman pertama ke session
+            $request->session()->put('gugatan.edit', $request->all());
+            return view('gugatan.page2', ['type_menu' => 'gugatan', 'gugatan' => $gugatan]);
+        } else {
+            // Simpan data dari halaman pertama ke session
+            $request->session()->put('gugatan.create', $request->all());
+            return view('gugatan.page2', ['type_menu' => 'gugatan']);
+        }
+    }
+
+    // public function page3(Request $request, $id)
+    // {
+    //     $gugatan = Gugatan::findOrFail($id);
+    //     $type_menu = 'gugatan'; // Define the type_menu variable
+    //     return view('gugatan.page3', compact('type_menu', 'gugatan'));
+    // }
+
+    public function update(Request $request, $id)
+    {
+        $gugatan = Gugatan::findOrFail($id);
+
+        // Ambil data dari session
+        $sessionData1 = $request->session()->get('gugatan.edit', []);
+
+        // Gabungkan data dari session dengan data dari request
+        $data = array_merge($sessionData1, $request->all());
+
+        // Validasi data
+        $validatedData = $this->validateData($data);
+
+        // Update data di database
+        try {
+            $gugatan->update($validatedData);
+            return redirect()->route('gugatan.index')->with('success', 'Gugatan updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['msg' => 'Terjadi kesalahan saat mengupdate data.']);
+        }
     }
 }
