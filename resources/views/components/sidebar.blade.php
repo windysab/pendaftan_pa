@@ -43,6 +43,21 @@
                     </li>
                 </ul>
             </li>
+            <li class="menu-header">List DATA</li>
+            <li class="nav-item dropdown {{ $type_menu === 'gugatan' ? 'active' : '' }}">
+                <a href="#"
+                    class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Gugatan</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('gugatan') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('gugatan') }}">List Gugatan</a>
+                    </li>
+                    <li class="{{ Request::is('gugatan/create') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('gugatan/create') }}">Tambah Gugatan</a>
+                    </li>
+                </ul>
+            </li>
             <li class="menu-header">Starter</li>
             <li class="nav-item dropdown {{ $type_menu === 'layout' ? 'active' : '' }}">
                 <a href="#"

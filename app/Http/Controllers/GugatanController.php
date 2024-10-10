@@ -14,6 +14,28 @@ use PhpOffice\PhpWord\Element\TextRun;
 
 class GugatanController extends Controller
 {
+
+
+    public function index()
+    {
+        $gugatans = Gugatan::paginate(10); // Adjust the pagination as needed
+        $type_menu = 'gugatan'; // Define the type_menu variable
+        return view('gugatan.index', compact('gugatans', 'type_menu'));
+    }
+
+
+    public function create()
+    {
+        $type_menu = 'gugatan'; // Define the type_menu variable
+        return view('gugatan.create', compact('type_menu'));
+    }
+
+    public function edit($id)
+    {
+        $gugatan = Gugatan::findOrFail($id);
+        $type_menu = 'gugatan'; // Define the type_menu variable
+        return view('gugatan.edit', compact('gugatan', 'type_menu'));
+    }
     public function store(Request $request)
     {
         // Ambil data dari session
@@ -546,5 +568,30 @@ class GugatanController extends Controller
             Log::error('Error generating Word document:', ['error' => $e->getMessage()]);
             return redirect()->back()->withErrors(['msg' => 'Error generating Word document.']);
         }
+    }
+
+    
+
+    public function update(Request $request, $id)
+    {
+        // Validate and update the data
+        $validatedData = $request->validate([
+            'nama_penggugat' => 'required|string|max:255',
+            'nama_tergugat' => 'required|string|max:255',
+            // Add other validation rules as needed
+        ]);
+
+        $gugatan = Gugatan::findOrFail($id);
+        $gugatan->update($validatedData);
+
+        return redirect()->route('gugatan.index')->with('success', 'Gugatan updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $gugatan = Gugatan::findOrFail($id);
+        $gugatan->delete();
+
+        return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
 }
