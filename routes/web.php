@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/gugatan/{id}/edit', [GugatanController::class, 'edit'])->name('gugatan.edit');
     Route::put('/gugatan/{id}', [GugatanController::class, 'update'])->name('gugatan.update');
     Route::delete('/gugatan/{id}', [GugatanController::class, 'destroy'])->name('gugatan.destroy');
+    Route::get('/gugatan/{id}/edit', [GugatanController::class, 'edit'])->name('gugatan.edit');
 
     // Additional routes for multi-step form
     Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2');

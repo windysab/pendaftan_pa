@@ -30,6 +30,7 @@ class GugatanController extends Controller
         return view('gugatan.create', compact('type_menu'));
     }
 
+
     public function edit($id)
     {
         $gugatan = Gugatan::findOrFail($id);
@@ -595,16 +596,16 @@ class GugatanController extends Controller
         return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
 
-     // Additional methods for multi-step form
-     public function page2(Request $request)
-     {
-         $type_menu = 'gugatan'; // Define the type_menu variable
-         return view('gugatan.page2', compact('type_menu'));
-     }
+    // Additional methods for multi-step form
+    public function page2(Request $request)
+    {
+        $type_menu = 'gugatan'; // Define the type_menu variable
+        return view('gugatan.page2', compact('type_menu'));
+    }
 
-     public function page3(Request $request)
-     {
-         $type_menu = 'gugatan'; // Define the type_menu variable
-         return view('gugatan.page3', compact('type_menu'));
-     }
+    public function page3(Request $request)
+    {
+        $type_menu = 'gugatan'; // Define the type_menu variable
+        return view('gugatan.page3', compact('type_menu'));
+    }
 }
