@@ -28,6 +28,21 @@
                     </li>
                 </ul>
             </li>
+            <li class="menu-header">Tambah User</li>
+            <li class="nav-item dropdown {{ $type_menu === 'user' ? 'active' : '' }}">
+                <a href="#"
+                    class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>User</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('user') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('users') }}">List User</a>
+                    </li>
+                    <li class="{{ Request::is('user/create') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('users/create') }}">Tambah User</a>
+                    </li>
+                </ul>
+            </li>
             <li class="menu-header">Starter</li>
             <li class="nav-item dropdown {{ $type_menu === 'layout' ? 'active' : '' }}">
                 <a href="#"

@@ -4,6 +4,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GugatanController;
 
 // Redirect root to dashboard
@@ -28,6 +29,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard-general-dashboard', function () {
         return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
     });
+
+
+
+
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/users', [UserController::class, 'store'])->name('user.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
     // Form Gugatan
     Route::get('/gugatan-form', function () {
@@ -71,8 +82,26 @@ Route::view('/blank-page', 'pages.blank-page', ['type_menu' => '']);
 
 // Bootstrap
 $bootstrapRoutes = [
-    'alert', 'badge', 'breadcrumb', 'buttons', 'card', 'carousel', 'collapse', 'dropdown', 'form', 'list-group',
-    'media-object', 'modal', 'nav', 'navbar', 'pagination', 'popover', 'progress', 'table', 'tooltip', 'typography'
+    'alert',
+    'badge',
+    'breadcrumb',
+    'buttons',
+    'card',
+    'carousel',
+    'collapse',
+    'dropdown',
+    'form',
+    'list-group',
+    'media-object',
+    'modal',
+    'nav',
+    'navbar',
+    'pagination',
+    'popover',
+    'progress',
+    'table',
+    'tooltip',
+    'typography'
 ];
 foreach ($bootstrapRoutes as $route) {
     Route::view("/bootstrap-$route", "pages.bootstrap-$route", ['type_menu' => 'bootstrap']);
@@ -80,8 +109,19 @@ foreach ($bootstrapRoutes as $route) {
 
 // Components
 $componentRoutes = [
-    'article', 'avatar', 'chat-box', 'empty-state', 'gallery', 'hero', 'multiple-upload', 'pricing', 'statistic',
-    'tab', 'table', 'user', 'wizard'
+    'article',
+    'avatar',
+    'chat-box',
+    'empty-state',
+    'gallery',
+    'hero',
+    'multiple-upload',
+    'pricing',
+    'statistic',
+    'tab',
+    'table',
+    'user',
+    'wizard'
 ];
 foreach ($componentRoutes as $route) {
     Route::view("/components-$route", "pages.components-$route", ['type_menu' => 'components']);
@@ -95,8 +135,18 @@ foreach ($formRoutes as $route) {
 
 // Modules
 $moduleRoutes = [
-    'calendar', 'chartjs', 'datatables', 'flag', 'font-awesome', 'ion-icons', 'owl-carousel', 'sparkline',
-    'sweet-alert', 'toastr', 'vector-map', 'weather-icon'
+    'calendar',
+    'chartjs',
+    'datatables',
+    'flag',
+    'font-awesome',
+    'ion-icons',
+    'owl-carousel',
+    'sparkline',
+    'sweet-alert',
+    'toastr',
+    'vector-map',
+    'weather-icon'
 ];
 foreach ($moduleRoutes as $route) {
     Route::view("/modules-$route", "pages.modules-$route", ['type_menu' => 'modules']);
