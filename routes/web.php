@@ -42,8 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/gugatan/{id}/edit', [GugatanController::class, 'edit'])->name('gugatan.edit');
 
     // Additional routes for multi-step form
-    Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2');
-    Route::post('/gugatan/page3', [GugatanController::class, 'page3'])->name('gugatan.page3');
+    Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('page2');
+    Route::post('/gugatan/page3', [GugatanController::class, 'page3'])->name('page3');
 
 
 

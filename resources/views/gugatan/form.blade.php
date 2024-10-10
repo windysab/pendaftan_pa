@@ -24,7 +24,7 @@
                     Silahkan isi data penggugat dan tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
                 </p>
 
-                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update', $gugatan->id) : route('gugatan.page2') }}" onsubmit="validateForm(event)" id="gugatanForm">
+                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update', $gugatan->id) : route('page2') }}" onsubmit="validateForm(event)" id="gugatanForm">
                     @csrf
                     @if(isset($gugatan))
                         @method('PUT')

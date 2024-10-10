@@ -596,11 +596,12 @@ class GugatanController extends Controller
         return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
 
-    // Additional methods for multi-step form
+
     public function page2(Request $request)
     {
-        $type_menu = 'gugatan'; // Define the type_menu variable
-        return view('gugatan.page2', compact('type_menu'));
+        // Simpan data dari halaman pertama ke session
+        $request->session()->put('gugatan.create', $request->all());
+        return view('gugatan.page2', ['type_menu' => 'gugatan']);
     }
 
     public function page3(Request $request)
