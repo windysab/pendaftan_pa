@@ -66,6 +66,12 @@
                                                 <label for="agama_penggugat"><b>Agama Penggugat</b></label>
                                                 <select id="agama_penggugat" name="agama_penggugat" class="form-control">
                                                     <!-- Add options here -->
+                                                    <option value="islam">Islam</option>
+                                                    <option value="kristen">Kristen</option>
+                                                    <option value="katolik">Katolik</option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="budha">Budha</option>
+                                                    
                                                 </select>
                                                 <span id="error_agama_penggugat" class="text-danger"></span>
                                             </div>
