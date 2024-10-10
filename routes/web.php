@@ -18,6 +18,11 @@ Route::middleware(['throttle:100,1'])->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 
+// Register Route
+Route::get('/register', function () {
+    return view('auth.auth-register');
+})->name('register');
+
 // Dashboard
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard-general-dashboard', function () {
@@ -96,11 +101,6 @@ $moduleRoutes = [
 foreach ($moduleRoutes as $route) {
     Route::view("/modules-$route", "pages.modules-$route", ['type_menu' => 'modules']);
 }
-
-// Auth
-Route::view('/auth-forgot-password', 'pages.auth-forgot-password', ['type_menu' => 'auth']);
-Route::view('/auth-login2', 'pages.auth-login2', ['type_menu' => 'auth']);
-Route::view('/auth-reset-password', 'pages.auth-reset-password', ['type_menu' => 'auth']);
 
 // Error
 $errorRoutes = ['403', '404', '500', '503'];

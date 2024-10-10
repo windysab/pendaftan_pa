@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+
+    protected $redirectTo = '/login';
+
     public function showRegistrationForm()
     {
         return view('auth.auth-register', ['type_menu' => 'auth']);
@@ -16,7 +19,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        Log::info('Register method called');
+
 
         try {
             $validatedData = $request->validate([
@@ -33,7 +36,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            Log::info('User created', ['user' => $user]);
+
 
             return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silakan login.');
         } catch (\Exception $e) {

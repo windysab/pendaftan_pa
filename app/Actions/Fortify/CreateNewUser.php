@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Support\Facades\Session;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -17,6 +18,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+        // Validasi input
         $validator = Validator::make($input, [
             'username' => ['required', 'string', 'max:255', Rule::unique(User::class)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
@@ -33,6 +35,9 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
             ]);
+
+            // Set session untuk notifikasi sukses
+            Session::flash('success', 'Akun berhasil dibuat. Silakan login.');
 
             return $user;
         } catch (\Exception $e) {
