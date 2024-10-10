@@ -71,7 +71,7 @@
                                                     <option value="katolik">Katolik</option>
                                                     <option value="hindu">Hindu</option>
                                                     <option value="budha">Budha</option>
-                                                    
+
                                                 </select>
                                                 <span id="error_agama_penggugat" class="text-danger"></span>
                                             </div>
@@ -90,6 +90,13 @@
                                                 <label for="pendidikan_penggugat"><b>Pendidikan Penggugat</b></label>
                                                 <select id="pendidikan_penggugat" name="pendidikan_penggugat" class="form-control">
                                                     <!-- Add options here -->
+                                                    <option value="sd">SD</option>
+                                                    <option value="smp">SMP</option>
+                                                    <option value="sma">SMA</option>
+                                                    <option value="d1">D1</option>
+                                                    <option value="d3">D3</option>
+                                                    <option value="s1">S1</option>
+
                                                 </select>
                                                 <span id="error_pendidikan_penggugat" class="text-danger"></span>
                                             </div>
@@ -140,6 +147,11 @@
                                                 <label for="agama_tergugat"><b>Agama Tergugat</b></label>
                                                 <select id="agama_tergugat" name="agama_tergugat" class="form-control">
                                                     <!-- Add options here -->
+                                                    <option value="islam">Islam</option>
+                                                    <option value="kristen">Kristen</option>
+                                                    <option value="katolik">Katolik</option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="budha">Budha</option>
                                                 </select>
                                                 <span id="error_agama_tergugat" class="text-danger"></span>
                                             </div>
@@ -158,6 +170,13 @@
                                                 <label for="pendidikan_tergugat"><b>Pendidikan Tergugat</b></label>
                                                 <select id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control">
                                                     <!-- Add options here -->
+                                                    <option value="sd">SD</option>      
+                                                    <option value="smp">SMP</option>
+                                                    <option value="sma">SMA</option>
+                                                    <option value="d1">D1</option>
+                                                    <option value="d3">D3</option>
+                                                    <option value="s1">S1</option>
+                                                    
                                                 </select>
                                                 <span id="error_pendidikan_tergugat" class="text-danger"></span>
                                             </div>
