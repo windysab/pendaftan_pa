@@ -1,11 +1,15 @@
 <?php
+// app/Providers/FortifyServiceProvider.php
 
 namespace App\Providers;
 
 use Laravel\Fortify\Fortify;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
+use App\Actions\Fortify\ResetUserPassword;
+use App\Actions\Fortify\UpdateUserPassword;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use App\Actions\Fortify\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -32,9 +36,10 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.reset-password', ['request' => $request]);
         });
 
-        // // Redirect to login after successful registration
-        // Fortify::afterRegister(function ($user) {
-        //     return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silakan login.');
-        // });
+        // Register the routes for handling Fortify authentication
+        Fortify::createUsersUsing(CreateNewUser::class);
+        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
+        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
+        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
     }
 }
