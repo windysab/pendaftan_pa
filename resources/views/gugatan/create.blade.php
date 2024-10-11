@@ -28,7 +28,7 @@
                 {{ session('success') }}
             </div>
             @endif
-            <form method="POST" action="{{ route('gugatan.store') }}">
+            <form method="POST" action="{{ route('gugatan.store2') }}">
                 @csrf
                 @include('gugatan.form')
                 <button type="submit" class="btn btn-primary">Submit</button>
