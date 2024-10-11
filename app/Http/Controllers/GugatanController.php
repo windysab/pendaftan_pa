@@ -596,44 +596,26 @@ class GugatanController extends Controller
         return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
 
+    public function page2(Request $request)
+    {
+        // Logika untuk halaman page2
+        return view('gugatan.page2', ['type_menu' => 'gugatan']);
+    }
 
-    // public function page2(Request $request)
-    // {
-    //     // Simpan data dari halaman pertama ke session
-    //     $request->session()->put('gugatan.create', $request->all());
-    //     return view('gugatan.page2', ['type_menu' => 'gugatan']);
-    // }
-
-    public function page3(Request $request)
+    public function storePage2(Request $request)
     {
         // Simpan data dari halaman kedua ke session
         $request->session()->put('gugatan_page2', $request->all());
-        // Logika untuk menangani permintaan GET
+
+        // Redirect ke halaman page3
+        return redirect()->route('gugatan.page3');
+    }
+
+    public function page3(Request $request)
+    {
+        // Logika untuk halaman page3
         return view('gugatan.page3', ['type_menu' => 'gugatan']);
     }
-
-
-
-    public function page2(Request $request, $id = null)
-    {
-        if ($id) {
-            $gugatan = Gugatan::findOrFail($id);
-            // Simpan data dari halaman pertama ke session
-            $request->session()->put('gugatan.edit', $request->all());
-            return view('gugatan.page2', ['type_menu' => 'gugatan', 'gugatan' => $gugatan]);
-        } else {
-            // Simpan data dari halaman pertama ke session
-            $request->session()->put('gugatan.create', $request->all());
-            return view('gugatan.page2', ['type_menu' => 'gugatan']);
-        }
-    }
-
-    // public function page3(Request $request, $id)
-    // {
-    //     $gugatan = Gugatan::findOrFail($id);
-    //     $type_menu = 'gugatan'; // Define the type_menu variable
-    //     return view('gugatan.page3', compact('type_menu', 'gugatan'));
-    // }
 
     public function update(Request $request, $id)
     {
@@ -669,10 +651,6 @@ class GugatanController extends Controller
             $sessionData2,
             $request->all()
         );
-
-        // Log data gabungan untuk debugging
-        // Log::info('Data received for storing:', $data);
-
         // Validasi data
         $validatedData = $this->validateData($data);
 
