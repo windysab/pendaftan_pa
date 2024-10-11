@@ -28,7 +28,7 @@
                 {{ session('success') }}
             </div>
             @endif
-            <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update', $gugatan->id) : route('gugatan.store') }}">
+            <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update', $gugatan->id) : route('gugatan.store2') }}">
                 @csrf
                 {{-- @if(isset($gugatan))
                     @method('PUT')

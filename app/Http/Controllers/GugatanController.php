@@ -655,4 +655,34 @@ class GugatanController extends Controller
             return redirect()->back()->withErrors(['msg' => 'Terjadi kesalahan saat mengupdate data.']);
         }
     }
+
+    public function store2(Request $request)
+    {
+        // Ambil data dari session
+        $sessionData1 = $request->session()->get('gugatan.create', []);
+        $sessionData2 = $request->session()->get('gugatan.page2', []);
+
+        // Gabungkan data dari session dengan data dari request
+        $data = array_merge(
+            $sessionData1,
+            $sessionData2,
+            $request->all()
+        );
+
+        // Log data gabungan untuk debugging
+        // Log::info('Data received for storing:', $data);
+
+        // Validasi data
+        $validatedData = $this->validateData($data);
+
+        // Simpan data ke database
+        try {
+            $gugatan = Gugatan::create($validatedData);
+            Log::info('Data stored successfully.');
+            return redirect()->route('gugatan.success')->with('gugatan', $gugatan);
+        } catch (\Exception $e) {
+            Log::error('Error storing data:', ['error' => $e->getMessage()]);
+            return redirect()->back()->withErrors(['msg' => 'Error storing data.']);
+        }
+    }
 }
