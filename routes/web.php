@@ -175,10 +175,10 @@ foreach ($featureRoutes as $route) {
 }
 
 // Utilities
-$utilityRoutes = ['contact', 'invoice', 'subscribe'];
-foreach ($utilityRoutes as $route) {
-    Route::view("/utilities-$route", "pages.utilities-$route", ['type_menu' => 'utilities']);
-}
+// $utilityRoutes are ['contact', 'invoice', 'subscribe'];
+// foreach ($utilityRoutes as $ route) {
+//     Route::view("/utilities-$route", "pages.utilities-$route", ['type_menu' => 'utilities']);
+// }
 
 // Credits
 Route::view('/credits', 'pages.credits', ['type_menu' => '']);

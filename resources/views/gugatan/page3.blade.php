@@ -30,7 +30,7 @@
             @endif
             {{-- <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update', $gugatan->id) : route('gugatan.store2') }}"> --}}
 
-            <form method="POST" action="{{ route('gugatan.page3.post') }}">
+                <form method="POST" action="{{ route('gugatan.page3.post') }}">
                 @csrf
                 {{-- @if(isset($gugatan))
                     @method('PUT')
