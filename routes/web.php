@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.update');
 
     Route::post('/gugatan/{id}/page2', [GugatanController::class, 'page2'])->name('gugatan.edit.page2');
-    Route::post('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.edit.page3');
+    Route::post('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.edit.page3');Route::get('/gugatan/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.get');
 
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
