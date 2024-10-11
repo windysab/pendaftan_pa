@@ -23,8 +23,10 @@
             <p class="section-lead">
                 Silahkan isi data tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
             </p>
-            <form method="POST" action="{{ route('gugatan.page3', ['id' => $gugatan->id ?? 1]) }}" onsubmit="validateForm(event)" id="gugatanForm2">
-                @csrf
+            {{-- <form method="POST" action="{{ route('gugatan.page3', ['id' => $gugatan->id ?? 1]) }}" onsubmit="validateForm(event)" id="gugatanForm2">
+                @csrf --}}
+                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.edit.page3', $gugatan->id) : route('gugatan.page3', ['id' => 1]) }}" onsubmit="validateForm(event)" id="gugatanForm2">
+                    @csrf
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="card">
