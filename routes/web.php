@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/gugatan/{id}', [GugatanController::class, 'destroy'])->name('gugatan.destroy');
 
     Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2');
-    Route::get('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2.get'); // Tambahkan rute GET
+    Route::get('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2.get');
     Route::post('/gugatan/page3', [GugatanController::class, 'storePage3'])->name('gugatan.page3.post');
     Route::get('/gugatan/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.get');
     Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.update');
@@ -64,15 +64,15 @@ Route::middleware('auth')->group(function () {
         // Simpan data dari halaman pertama ke session
         $request->session()->put('gugatan_form', $request->all());
         return view('pages.gugatan-page2', ['type_menu' => 'gugatan']);
-    })->name('gugatan.page2.store'); // Ubah nama rute ini menjadi unik
+    })->name('gugatan.page2.store');
 
     Route::post('/gugatan-page3', function (Request $request) {
         // Simpan data dari halaman kedua ke session
         $request->session()->put('gugatan_page2', $request->all());
         return view('pages.gugatan-page3', ['type_menu' => 'gugatan']);
-    })->name('gugatan.page3.store'); // Ubah nama rute ini menjadi unik
+    })->name('gugatan.page3.store');
 
-    Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugatan.store.post'); // Ubah nama rute ini menjadi unik
+    Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugatan.store.post');
 
     Route::get('/gugatan-sukses', function () {
         $gugatan = session('gugatan');
@@ -118,29 +118,29 @@ foreach ($bootstrapRoutes as $route) {
     Route::view("/bootstrap-$route", "pages.bootstrap-$route", ['type_menu' => 'bootstrap']);
 }
 
-// Components
-$componentRoutes = [
-    'article',
-    'avatar',
-    'chat-box',
-    'empty-state',
-    'gallery',
-    'hero',
-    'multiple-upload',
-    'pricing',
-    'statistic',
-    'tab',
-    'table',
-    'user',
-    'wizard'
-];
-// foreach ($componentRoutes $route) {
+// // Components
+// $componentRoutes are [
+//     'article',
+//     'avatar',
+//     'chat-box',
+//     'empty-state',
+//     'gallery',
+//     'hero',
+//     'multiple-upload',
+//     'pricing',
+//     'statistic',
+//     'tab',
+//     'table',
+//     'user',
+//     'wizard'
+// ];
+// foreach ($componentRoutes as $route) {
 //     Route::view("/components-$route", "pages.components-$route", ['type_menu' => 'components']);
 // }
 
 // // Forms
 // $formRoutes are ['advanced-form', 'editor', 'validation'];
-// foreach ($formRoutes as $ route) {
+// foreach ($formRoutes as $route) {
 //     Route::view("/forms-$route", "pages.forms-$route", ['type_menu' => 'forms']);
 // }
 
@@ -159,25 +159,25 @@ $componentRoutes = [
 //     'vector-map',
 //     'weather-icon'
 // ];
-// foreach ($moduleRoutes as $ route) {
+// foreach ($moduleRoutes as $route) {
 //     Route::view("/modules-$route", "pages.modules-$route", ['type_menu' => 'modules']);
 // }
 
 // // Error
 // $errorRoutes are ['403', '404', '500', '503'];
-// foreach ($errorRoutes as $ route) {
+// foreach ($errorRoutes as $route) {
 //     Route::view("/error-$route", "pages.error-$route", ['type_menu' => 'error']);
 // }
 
 // // Features
 // $featureRoutes are ['activities', 'post-create', 'post', 'profile', 'settings', 'setting-detail', 'tickets'];
-// foreach ($featureRoutes as $ route) {
+// foreach ($featureRoutes as $route) {
 //     Route::view("/features-$route", "pages.features-$route", ['type_menu' => 'features']);
 // }
 
 // // Utilities
 // $utilityRoutes are ['contact', 'invoice', 'subscribe'];
-// foreach ($utilityRoutes as $ route) {
+// foreach ($utilityRoutes as $route) {
 //     Route::view("/utilities-$route", "pages.utilities-$route", ['type_menu' => 'utilities']);
 // }
 

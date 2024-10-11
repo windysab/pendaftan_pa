@@ -657,7 +657,7 @@ class GugatanController extends Controller
         }
     }
 
-    public function storePage3(Request $request)
+    public function store2(Request $request)
     {
         // Ambil data dari session
         $sessionData1 = $request->session()->get('gugatan.create', []);
@@ -685,5 +685,14 @@ class GugatanController extends Controller
             Log::error('Error storing data:', ['error' => $e->getMessage()]);
             return redirect()->back()->withErrors(['msg' => 'Error storing data.']);
         }
+    }
+
+    public function storePage3(Request $request)
+    {
+        // Simpan data dari halaman kedua ke session
+        $request->session()->put('gugatan_page2', $request->all());
+
+        // Redirect ke halaman page3
+        return redirect()->route('gugatan.page3.get');
     }
 }
