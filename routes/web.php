@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2');
     Route::post('/gugatan/page3', [GugatanController::class, 'page3'])->name('gugatan.page3');
 
+
     Route::post('/gugatan/{id}/page2', [GugatanController::class, 'page2'])->name('gugatan.edit.page2');
     Route::post('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.edit.page3');
     Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.update'); // Ubah nama rute ini menjadi unik
