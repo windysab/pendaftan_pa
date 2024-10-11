@@ -14,23 +14,17 @@ use PhpOffice\PhpWord\Element\TextRun;
 
 class GugatanController extends Controller
 {
-
-
     public function index()
     {
         $gugatans = Gugatan::paginate(10); // Adjust the pagination as needed
         $type_menu = 'gugatan'; // Define the type_menu variable
         return view('gugatan.index', compact('gugatans', 'type_menu'));
     }
-
-
     public function create()
     {
         $type_menu = 'gugatan'; // Define the type_menu variable
         return view('gugatan.create', compact('type_menu'));
     }
-
-
     public function edit($id)
     {
         $gugatan = Gugatan::findOrFail($id);
@@ -49,14 +43,8 @@ class GugatanController extends Controller
             $sessionData2,
             $request->all()
         );
-
-        // Log data gabungan untuk debugging
-        // Log::info('Data received for storing:', $data);
-
-        // Validasi data
         $validatedData = $this->validateData($data);
 
-        // Simpan data ke database
         try {
             $gugatan = Gugatan::create($validatedData);
             Log::info('Data stored successfully.');
@@ -142,7 +130,6 @@ class GugatanController extends Controller
             return redirect()->back()->withErrors(['msg' => 'Template file not found.']);
         }
         $templateProcessor = new TemplateProcessor($templatePath);
-
         // Mengisi template dengan data dari database
         // Replace variabel di template word dengan data yang diinputkan
         $bulanIndonesia = [
@@ -181,14 +168,8 @@ class GugatanController extends Controller
 
         // Get the numbered value for pendidikan_penggugat
         $numberedPendidikan = $educationMapping[$gugatan->pendidikan_penggugat] ?? $gugatan->pendidikan_penggugat;
-
-        // // Debugging: Print the value to check
-        // Log::info('Numbered Pendidikan: ' . $numberedPendidikan);
-
-        // Set the value in the template
         $templateProcessor->setValue('pendidikan_penggugat', $numberedPendidikan);
         $templateProcessor->setValue('alamat_penggugat', $gugatan->alamat_penggugat);
-
         $templateProcessor->setValue('nama_tergugat', $gugatan->nama_tergugat);
         $templateProcessor->setValue('bin_tergugat', $gugatan->bin_tergugat);
         $templateProcessor->setValue('umur_tergugat', $gugatan->umur_tergugat . ' tahun');
@@ -208,22 +189,13 @@ class GugatanController extends Controller
 
         // Get the numbered value for pendidikan_tergugat
         $numberedPendidikan = $educationMapping[$gugatan->pendidikan_tergugat] ?? $gugatan->pendidikan_tergugat;
-
-        // // Debugging: Print the value to check
-        // Log::info('Numbered Pendidikan: ' . $numberedPendidikan);
-
-        // Set the value in the template
         $templateProcessor->setValue('pendidikan_tergugat', $numberedPendidikan);
         $templateProcessor->setValue('alamat_tergugat', $gugatan->alamat_tergugat);
-
         $templateProcessor->setValue('hari_pernikahan', $gugatan->hari_pernikahan);
-
         // Ambil tanggal dari objek $gugatan
         $tanggalPernikahan = $gugatan->tanggal_pernikahan;
-
         // Buat objek DateTime dari tanggal
         $date = new DateTime($tanggalPernikahan);
-
         // Array bulan dalam bahasa Indonesia
         $bulanIndonesia = [
             1 => 'Januari',
@@ -239,23 +211,18 @@ class GugatanController extends Controller
             11 => 'November',
             12 => 'Desember'
         ];
-
         // Format tanggal ke format Indonesia
         $tanggalFormatted = $date->format('j') . ' ' . $bulanIndonesia[(int)$date->format('n')] . ' ' . $date->format('Y');
-
         // Set nilai di template
         $templateProcessor->setValue('tanggal_pernikahan', $tanggalFormatted);
         $templateProcessor->setValue('desa_pernikahan', $gugatan->desa_pernikahan);
         $templateProcessor->setValue('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan);
         $templateProcessor->setValue('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan);
-
         $templateProcessor->setValue('nomor_akta_nikah', $gugatan->nomor_akta_nikah);
         // Ambil tanggal dari objek $gugatan
         $tanggalAktaNikah = $gugatan->tanggal_akta_nikah;
-
         // Buat objek DateTime dari tanggal
         $dateAktaNikah = new DateTime($tanggalAktaNikah);
-
         // Array bulan dalam bahasa Indonesia
         $bulanIndonesia = [
             1 => 'Januari',
@@ -271,17 +238,12 @@ class GugatanController extends Controller
             11 => 'November',
             12 => 'Desember'
         ];
-
         // Format tanggal ke format Indonesia
         $tanggalAktaNikahFormatted = $dateAktaNikah->format('j') . ' ' . $bulanIndonesia[(int)$dateAktaNikah->format('n')] . ' ' . $dateAktaNikah->format('Y');
         // Set nilai di template
         $templateProcessor->setValue('tanggal_akta_nikah', $tanggalAktaNikahFormatted);
         $templateProcessor->setValue('kecamatan_kua', $gugatan->kecamatan_kua);
         $templateProcessor->setValue('kabupaten_kua', $gugatan->kabupaten_kua);
-
-        // $templateProcessor->setValue('tempat_tinggal', $gugatan->tempat_tinggal);
-        // $templateProcessor->setValue('desa', $gugatan->desa);
-
         // Definisikan opsi dengan placeholder dan teks coret default
         $options = [
             'tempat_tinggal_a' => new TextRun(),
@@ -321,7 +283,6 @@ class GugatanController extends Controller
                 // Tangani kasus default jika diperlukan
                 break;
         }
-
         // Setel nilai dalam template
         $templateProcessor->setComplexValue('tempat_tinggal_a', $options['tempat_tinggal_a']);
         $templateProcessor->setComplexValue('tempat_tinggal_b', $options['tempat_tinggal_b']);
@@ -332,27 +293,6 @@ class GugatanController extends Controller
         $templateProcessor->setValue('kumpul_baik_selama_tahun', $gugatan->kumpul_baik_selama_tahun);
         $templateProcessor->setValue('kumpul_baik_selama_bulan', $gugatan->kumpul_baik_selama_bulan);
         $templateProcessor->setValue('jumlah_anak', $gugatan->jumlah_anak);
-        // $templateProcessor->setValue('anak_1', $gugatan->anak_1);
-        // $templateProcessor->setValue('tanggal_lahir_anak_1', $gugatan->tanggal_lahir_anak_1);
-        // $templateProcessor->setValue('anak_2', $gugatan->anak_2);
-        // $templateProcessor->setValue('tanggal_lahir_anak_2', $gugatan->tanggal_lahir_anak_2);
-        // $templateProcessor->setValue('anak_3', $gugatan->anak_3);
-        // $templateProcessor->setValue('tanggal_lahir_anak_3', $gugatan->tanggal_lahir_anak_3);
-        // $templateProcessor->setValue('anak_4', $gugatan->anak_4);
-        // $templateProcessor->setValue('tanggal_lahir_anak_4', $gugatan->tanggal_lahir_anak_4);
-        // $templateProcessor->setValue('anak_5', $gugatan->anak_5);
-        // $templateProcessor->setValue('tanggal_lahir_anak_5', $gugatan->tanggal_lahir_anak_5);
-        // $templateProcessor->setValue('anak_6', $gugatan->anak_6);
-        // $templateProcessor->setValue('tanggal_lahir_anak_6', $gugatan->tanggal_lahir_anak_6);
-        // $templateProcessor->setValue('anak_7', $gugatan->anak_7);
-        // $templateProcessor->setValue('tanggal_lahir_anak_7', $gugatan->tanggal_lahir_anak_7);
-        // $templateProcessor->setValue('anak_8', $gugatan->anak_8);
-        // $templateProcessor->setValue('tanggal_lahir_anak_8', $gugatan->tanggal_lahir_anak_8);
-        // $templateProcessor->setValue('anak_9', $gugatan->anak_9);
-        // $templateProcessor->setValue('tanggal_lahir_anak_9', $gugatan->tanggal_lahir_anak_9);
-        // $templateProcessor->setValue('anak_10', $gugatan->anak_10);
-        // $templateProcessor->setValue('tanggal_lahir_anak_10', $gugatan->tanggal_lahir_anak_10);
-
         for ($i = 1; $i <= 10; $i++) {
             $anakKey = 'anak_' . $i;
             $tanggalLahirKey = 'tanggal_lahir_anak_' . $i;
@@ -363,8 +303,6 @@ class GugatanController extends Controller
             $templateProcessor->setValue($anakKey, $anakValue);
             $templateProcessor->setValue($tanggalLahirKey, $tanggalLahirValue);
         }
-
-
         $tanggalperselisihan = $gugatan->tanggal_perselisihan;
         $dateperselisihan = new DateTime($tanggalperselisihan);
 
@@ -391,11 +329,6 @@ class GugatanController extends Controller
         $templateProcessor->setValue('tanggal_perselisihan_hari', $hari);
         $templateProcessor->setValue('tanggal_perselisihan_bulan', $bulan);
         $templateProcessor->setValue('tanggal_perselisihan_tahun', $tahun);
-        // $templateProcessor->setValue('tanggal_perselisihan', $gugatan->tanggal_perselisihan);
-
-        // $templateProcessor->setValue('alasan_perselisihan', $gugatan->alasan_perselisihan);
-
-
         // Definisikan opsi dengan placeholder dan teks coret default
         $options = [
             'alasan_a' => new TextRun(),
@@ -408,7 +341,6 @@ class GugatanController extends Controller
             'alasan_h' => new TextRun(),
             'alasan_i' => new TextRun()
         ];
-
         $options['alasan_a']->addText('Mengkonsumsi minum-minuman keras.', ['strikethrough' => true]);
         $options['alasan_b']->addText('Bermain judi.', ['strikethrough' => true]);
         $options['alasan_c']->addText('Memukul Penggugat.', ['strikethrough' => true]);
@@ -418,7 +350,6 @@ class GugatanController extends Controller
         $options['alasan_g']->addText('Tidak memberi biaya untuk keperluan rumah tangga sehingga tidak mencukupi.', ['strikethrough' => true]);
         $options['alasan_h']->addText('Perkawinan Penggugat dan Tergugat dijodohkan oleh orang tua masing-masing.', ['strikethrough' => true]);
         $options['alasan_i']->addText('Alasan lainnya / Penjelasan kejadian', ['strikethrough' => true]);
-
         // Tentukan opsi mana yang dipilih berdasarkan data Anda
         switch ($gugatan->alasan_perselisihan) {
             case 'minum_keras':
@@ -461,7 +392,6 @@ class GugatanController extends Controller
                 // Tangani kasus default jika diperlukan
                 break;
         }
-
         // Setel nilai dalam template
         $templateProcessor->setComplexValue('alasan_a', $options['alasan_a']);
         $templateProcessor->setComplexValue('alasan_b', $options['alasan_b']);
@@ -472,14 +402,10 @@ class GugatanController extends Controller
         $templateProcessor->setComplexValue('alasan_g', $options['alasan_g']);
         $templateProcessor->setComplexValue('alasan_h', $options['alasan_h']);
         $templateProcessor->setComplexValue('alasan_i', $options['alasan_i']);
-
         $templateProcessor->setValue('detail_alasan', $gugatan->detail_alasan);
         $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
-
-
         $tanggalperpisahan = $gugatan->tanggal_perpisahan;
         $dateperpisahan = new DateTime($tanggalperpisahan);
-
         $bulanIndonesia = [
             1 => 'Januari',
             2 => 'Februari',
@@ -494,33 +420,24 @@ class GugatanController extends Controller
             11 => 'November',
             12 => 'Desember'
         ];
-
         $hari = $dateperpisahan->format('j');
         $bulan = $bulanIndonesia[(int)$dateperpisahan->format('n')];
         $tahun = $dateperpisahan->format('Y');
-
         // Setel nilai dalam template
         $templateProcessor->setValue('tanggal_perpisahan_hari', $hari);
         $templateProcessor->setValue('tanggal_perpisahan_bulan', $bulan);
         $templateProcessor->setValue('tanggal_perpisahan_tahun', $tahun);
-        // $templateProcessor->setValue('tanggal_perpisahan', $gugatan->tanggal_perpisahan);
-        // $templateProcessor->setValue('jenis_perpisahan', $gugatan->jenis_perpisahan);
-
-
         // Definisikan opsi dengan placeholder dan teks coret default
         $options = [
             'jenis_perpisahan_tempat_tinggal' => new TextRun(),
             'jenis_perpisahan_tempat_tidur' => new TextRun()
         ];
-
         // Tambahkan teks coret ke opsi
         $options['jenis_perpisahan_tempat_tinggal']->addText('berpisah tempat tinggal', ['strikethrough' => true]);
         $options['jenis_perpisahan_tempat_tidur']->addText('berpisah tempat tidur', ['strikethrough' => true]);
-
         // Buat TextRun baru untuk opsi yang dipilih tanpa coretan
         $selectedOptionTempatTinggal = new TextRun();
         $selectedOptionTempatTidur = new TextRun();
-
         if ($gugatan->jenis_perpisahan == 'Berpisah tempat tinggal') {
             $selectedOptionTempatTinggal->addText('berpisah tempat tinggal', ['strikethrough' => false]);
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $selectedOptionTempatTinggal);
@@ -534,34 +451,22 @@ class GugatanController extends Controller
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tinggal', $options['jenis_perpisahan_tempat_tinggal']);
             $templateProcessor->setComplexValue('jenis_perpisahan_tempat_tidur', $options['jenis_perpisahan_tempat_tidur']);
         }
-
-
         // $templateProcessor->setValue('siapa_meninggalkan', $gugatan->siapa_meninggalkan);
-
-
         // Buat TextRun untuk pilihan yang terpilih
         $selectedTextRun = new TextRun();
         $selectedTextRun->addText($gugatan->siapa_meninggalkan);
-
         // Buat TextRun untuk pilihan yang tidak terpilih dan tambahkan coretan
         $unselectedTextRun = new TextRun();
         $unselectedText = $gugatan->siapa_meninggalkan == 'Tergugat' ? 'Penggugat' : 'Tergugat';
         $unselectedTextRun->addText($unselectedText, ['strikethrough' => true]);
-
         // Gabungkan kedua TextRun ke dalam satu placeholder
         $templateProcessor->setComplexValue('siapa_meninggalkan', $selectedTextRun);
         $templateProcessor->setComplexValue('siapa_meninggalkan_coret', $unselectedTextRun);
-
         $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
-
         $fileName = 'Gugatan_cerai_' . Str::slug($gugatan->nama_penggugat) . '.docx';
-
         // Path untuk menyimpan file Word yang dihasilkan
         $outputPath = 'public/Blanko_Pendaftaran_CG_' . $id . '.docx';
-
-
-
         try {
             $templateProcessor->saveAs(storage_path('app/' . $outputPath));
             return response()->download(storage_path('app/' . $outputPath))->deleteFileAfterSend(true);
@@ -570,24 +475,6 @@ class GugatanController extends Controller
             return redirect()->back()->withErrors(['msg' => 'Error generating Word document.']);
         }
     }
-
-
-
-    // public function update(Request $request, $id)
-    // {
-    //     // Validate and update the data
-    //     $validatedData = $request->validate([
-    //         'nama_penggugat' => 'required|string|max:255',
-    //         'nama_tergugat' => 'required|string|max:255',
-    //         // Add other validation rules as needed
-    //     ]);
-
-    //     $gugatan = Gugatan::findOrFail($id);
-    //     $gugatan->update($validatedData);
-
-    //     return redirect()->route('gugatan.index')->with('success', 'Gugatan updated successfully.');
-    // }
-
     public function destroy($id)
     {
         $gugatan = Gugatan::findOrFail($id);
@@ -595,13 +482,11 @@ class GugatanController extends Controller
 
         return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
-
     public function page2(Request $request)
     {
         // Logika untuk halaman page2
         return view('gugatan.page2', ['type_menu' => 'gugatan']);
     }
-
     public function storePage2(Request $request)
     {
         // Simpan data dari halaman kedua ke session
@@ -610,7 +495,6 @@ class GugatanController extends Controller
         // Redirect ke halaman page3
         return redirect()->route('gugatan.page3');
     }
-
     public function page3(Request $request)
     {
         // Logika untuk halaman page3
