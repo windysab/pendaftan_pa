@@ -608,6 +608,7 @@ class GugatanController extends Controller
     {
         // Simpan data dari halaman kedua ke session
         $request->session()->put('gugatan_page2', $request->all());
+        // Logika untuk menangani permintaan GET
         return view('gugatan.page3', ['type_menu' => 'gugatan']);
     }
 
@@ -656,7 +657,7 @@ class GugatanController extends Controller
         }
     }
 
-    public function store2(Request $request)
+    public function storePage3(Request $request)
     {
         // Ambil data dari session
         $sessionData1 = $request->session()->get('gugatan.create', []);

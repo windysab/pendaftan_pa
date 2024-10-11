@@ -43,7 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.update');
 
     Route::post('/gugatan/{id}/page2', [GugatanController::class, 'page2'])->name('gugatan.edit.page2');
-    Route::post('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.edit.page3');Route::get('/gugatan/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.get');
+    Route::post('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.edit.page3');
+    // Tambahkan rute GET untuk page3 di sini
+    Route::get('/gugatan/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.get');
 
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
@@ -56,6 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/gugatan-form', function () {
         return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
     })->name('gugatan.form');
+    Route::post('/gugatan/store2', [GugatanController::class, 'store2'])->name('gugatan.store2');
 
     Route::post('/gugatan-page2', function (Request $request) {
         // Simpan data dari halaman pertama ke session
@@ -70,6 +73,7 @@ Route::middleware('auth')->group(function () {
     })->name('gugatan.page3.store'); // Ubah nama rute ini menjadi unik
 
     Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugatan.store.post'); // Ubah nama rute ini menjadi unik
+    Route::post('/gugatan/page3', [GugatanController::class, 'storePage3'])->name('gugatan.page3.post');
 
     Route::get('/gugatan-sukses', function () {
         $gugatan = session('gugatan');
