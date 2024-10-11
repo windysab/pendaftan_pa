@@ -3,7 +3,7 @@
 @section('title', 'Gugatan - Data Tergugat')
 
 @push('style')
-    <!-- CSS Libraries -->
+<!-- CSS Libraries -->
 @endpush
 
 @section('main')
@@ -24,9 +24,9 @@
                 Silahkan isi data tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
             </p>
             {{-- <form method="POST" action="{{ route('gugatan.page3', ['id' => $gugatan->id ?? 1]) }}" onsubmit="validateForm(event)" id="gugatanForm2">
-                @csrf --}}
-                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.edit.page3', $gugatan->id) : route('gugatan.page3.post') }}" onsubmit="validateForm(event)" id="gugatanForm2">
-                    @csrf
+            @csrf --}}
+            <form method="POST" action="{{ isset($gugatan) ? route('gugatan.edit.page2', $gugatan->id) : route('gugatan.page2') }}" onsubmit="validateForm(event)" id="gugatanForm">
+                @csrf
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="card">
@@ -153,8 +153,7 @@
                                     </div>
                                 </div>
 
-                                @for ($i = 1; $i <= 10; $i++)
-                                <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
+                                @for ($i = 1; $i <= 10; $i++) <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="anak_{{ $i }}"><b>{{ $i }}. Nama Anak</b></label>
@@ -169,21 +168,21 @@
                                             <span id="error_tanggal_lahir_anak_{{ $i }}" class="text-danger"></span>
                                         </div>
                                     </div>
-                                </div>
-                                @endfor
                             </div>
+                            @endfor
                         </div>
                     </div>
                 </div>
         </div>
+</div>
 
-        <button type="submit" class="btn btn-primary btn-right">Selanjutnya</button>
-        </form>
+<button type="submit" class="btn btn-primary btn-right">Selanjutnya</button>
+</form>
 </div>
 </section>
 </div>
 @endsection
 
 @push('scripts')
-    <!-- JS Libraries -->
+<!-- JS Libraries -->
 @endpush

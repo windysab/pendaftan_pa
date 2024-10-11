@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/gugatan/{id}', [GugatanController::class, 'destroy'])->name('gugatan.destroy');
 
     Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2');
+    Route::get('/gugatan/page2', [GugatanController::class, 'page2'])->name('gugatan.page2.get'); // Tambahkan rute GET
     Route::post('/gugatan/page3', [GugatanController::class, 'storePage3'])->name('gugatan.page3.post');
     Route::get('/gugatan/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.get');
     Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.update');
@@ -133,48 +134,48 @@ $componentRoutes = [
     'user',
     'wizard'
 ];
-foreach ($componentRoutes as $route) {
-    Route::view("/components-$route", "pages.components-$route", ['type_menu' => 'components']);
-}
+// foreach ($componentRoutes $route) {
+//     Route::view("/components-$route", "pages.components-$route", ['type_menu' => 'components']);
+// }
 
-// Forms
-$formRoutes = ['advanced-form', 'editor', 'validation'];
-foreach ($formRoutes as $route) {
-    Route::view("/forms-$route", "pages.forms-$route", ['type_menu' => 'forms']);
-}
+// // Forms
+// $formRoutes are ['advanced-form', 'editor', 'validation'];
+// foreach ($formRoutes as $ route) {
+//     Route::view("/forms-$route", "pages.forms-$route", ['type_menu' => 'forms']);
+// }
 
-// Modules
-$moduleRoutes = [
-    'calendar',
-    'chartjs',
-    'datatables',
-    'flag',
-    'font-awesome',
-    'ion-icons',
-    'owl-carousel',
-    'sparkline',
-    'sweet-alert',
-    'toastr',
-    'vector-map',
-    'weather-icon'
-];
-foreach ($moduleRoutes as $route) {
-    Route::view("/modules-$route", "pages.modules-$route", ['type_menu' => 'modules']);
-}
+// // Modules
+// $moduleRoutes are [
+//     'calendar',
+//     'chartjs',
+//     'datatables',
+//     'flag',
+//     'font-awesome',
+//     'ion-icons',
+//     'owl-carousel',
+//     'sparkline',
+//     'sweet-alert',
+//     'toastr',
+//     'vector-map',
+//     'weather-icon'
+// ];
+// foreach ($moduleRoutes as $ route) {
+//     Route::view("/modules-$route", "pages.modules-$route", ['type_menu' => 'modules']);
+// }
 
-// Error
-$errorRoutes = ['403', '404', '500', '503'];
-foreach ($errorRoutes as $route) {
-    Route::view("/error-$route", "pages.error-$route", ['type_menu' => 'error']);
-}
+// // Error
+// $errorRoutes are ['403', '404', '500', '503'];
+// foreach ($errorRoutes as $ route) {
+//     Route::view("/error-$route", "pages.error-$route", ['type_menu' => 'error']);
+// }
 
-// Features
-$featureRoutes = ['activities', 'post-create', 'post', 'profile', 'settings', 'setting-detail', 'tickets'];
-foreach ($featureRoutes as $route) {
-    Route::view("/features-$route", "pages.features-$route", ['type_menu' => 'features']);
-}
+// // Features
+// $featureRoutes are ['activities', 'post-create', 'post', 'profile', 'settings', 'setting-detail', 'tickets'];
+// foreach ($featureRoutes as $ route) {
+//     Route::view("/features-$route", "pages.features-$route", ['type_menu' => 'features']);
+// }
 
-// Utilities
+// // Utilities
 // $utilityRoutes are ['contact', 'invoice', 'subscribe'];
 // foreach ($utilityRoutes as $ route) {
 //     Route::view("/utilities-$route", "pages.utilities-$route", ['type_menu' => 'utilities']);
