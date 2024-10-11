@@ -23,7 +23,7 @@
             <p class="section-lead">
                 Silahkan isi data tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima kasih.
             </p>
-            <form method="POST" action="{{ route('gugatan.page3') }}" onsubmit="validateForm(event)" id="gugatanForm2">
+            <form method="POST" action="{{ route('gugatan.page3.store') }}" onsubmit="validateForm(event)" id="gugatanForm2">
                 @csrf
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -120,7 +120,7 @@
                                         <option value="rumah_orangtua_penggugat">Di rumah orangtua Penggugat, di desa</option>
                                         <option value="rumah_orangtua_tergugat">Di rumah orangtua Tergugat, di desa</option>
                                         <option value="rumah_kontrakan">Di rumah kontrakan / kos, di desa</option>
-                                        
+
                                     </select>
                                     <div id="desa_input" style="display: none;">
                                         <input type="text" name="desa" class="form-control mt-2" placeholder="Nama desa">

@@ -25,12 +25,13 @@
                     kasih.
                 </p>
 
-                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.page2', $gugatan->id) : route('page2') }}"
+                <form method="POST" action="{{ isset($gugatan) ? route('gugatan.page2', $gugatan->id) : route('gugatan.page2', ['id' => 1]) }}"
                     onsubmit="validateForm(event)" id="gugatanForm">
                   @csrf
                   @if(isset($gugatan))
                       @method('PUT')
                   @endif
+
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="card">

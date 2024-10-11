@@ -30,30 +30,17 @@ Route::middleware('auth')->group(function () {
         return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
     });
 
-
     // Gugatan
-
     Route::get('/gugatan', [GugatanController::class, 'index'])->name('gugatan.index');
     Route::get('/gugatan/create', [GugatanController::class, 'create'])->name('gugatan.create');
     Route::post('/gugatan', [GugatanController::class, 'store'])->name('gugatan.store');
     Route::get('/gugatan/{id}/edit', [GugatanController::class, 'edit'])->name('gugatan.edit');
     Route::put('/gugatan/{id}', [GugatanController::class, 'update'])->name('gugatan.update');
     Route::delete('/gugatan/{id}', [GugatanController::class, 'destroy'])->name('gugatan.destroy');
-    Route::get('/gugatan/{id}/edit', [GugatanController::class, 'edit'])->name('gugatan.edit');
-
-    // Additional routes for multi-step form
-    Route::post('/gugatan/page2', [GugatanController::class, 'page2'])->name('page2');
-    Route::post('/gugatan/page3', [GugatanController::class, 'page3'])->name('page3');
-
-
 
     Route::post('/gugatan/{id}/page2', [GugatanController::class, 'page2'])->name('gugatan.page2');
-    Route::post('/page2', [GugatanController::class, 'page2'])->name('page2');
-    Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3');
-    Route::put('/gugatan/{id}', [GugatanController::class, 'update'])->name('gugatan.update');
-
-
-
+    Route::post('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3');
+    Route::put('/gugatan/{id}/page3', [GugatanController::class, 'page3'])->name('gugatan.page3.update'); // Ubah nama rute ini menjadi unik
 
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
@@ -71,19 +58,15 @@ Route::middleware('auth')->group(function () {
         // Simpan data dari halaman pertama ke session
         $request->session()->put('gugatan_form', $request->all());
         return view('pages.gugatan-page2', ['type_menu' => 'gugatan']);
-    })->name('gugatan.page2');
-
-    Route::get('/gugatan-page3', function () {
-        return view('pages.gugatan-page3', ['type_menu' => 'gugatan']);
-    })->name('gugatan.page3.get');
+    })->name('gugatan.page2.store'); // Ubah nama rute ini menjadi unik
 
     Route::post('/gugatan-page3', function (Request $request) {
         // Simpan data dari halaman kedua ke session
         $request->session()->put('gugatan_page2', $request->all());
         return view('pages.gugatan-page3', ['type_menu' => 'gugatan']);
-    })->name('gugatan.page3');
+    })->name('gugatan.page3.store'); // Ubah nama rute ini menjadi unik
 
-    Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugatan.store');
+    Route::post('/gugatan/store', [GugatanController::class, 'store'])->name('gugatan.store.post'); // Ubah nama rute ini menjadi unik
 
     Route::get('/gugatan-sukses', function () {
         $gugatan = session('gugatan');

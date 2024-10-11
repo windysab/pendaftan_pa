@@ -606,8 +606,9 @@ class GugatanController extends Controller
 
     public function page3(Request $request)
     {
-        $type_menu = 'gugatan'; // Define the type_menu variable
-        return view('gugatan.page3', compact('type_menu'));
+        // Simpan data dari halaman kedua ke session
+        $request->session()->put('gugatan_page2', $request->all());
+        return view('gugatan.page3', ['type_menu' => 'gugatan']);
     }
 
 

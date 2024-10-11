@@ -25,7 +25,7 @@
                     kasih.
                 </p>
 
-                <form method="POST" action="{{ route('gugatan.page2') }}" onsubmit="validateForm(event)" id="gugatanForm">
+                <form method="POST" action="{{ route('gugatan.page2.store') }}" onsubmit="validateForm(event)" id="gugatanForm">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-4">
