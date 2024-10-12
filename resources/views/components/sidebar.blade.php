@@ -19,8 +19,7 @@
                     class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Formulir</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('gugatan') ? 'active' : '' }}">
-                        <a class="nav-link"
-                        href="{{ url('gugatan-form') }}">Form Gugatan</a>
+                        <a class="nav-link" href="{{ url('gugatan/form') }}">Form Gugatan</a>
                     </li>
                     <li class="{{ Request::is('formulir/create') ? 'active' : '' }}">
                         <a class="nav-link"

@@ -523,18 +523,22 @@ class GugatanController extends Controller
         }
     }
 
+
     public function store2(Request $request)
     {
         // Ambil data dari session
-        $sessionData1 = $request->session()->get('gugatan.create', []);
-        $sessionData2 = $request->session()->get('gugatan.page2', []);
+        $sessionData1 = $request->session()->get('gugatan_form', []);
+        $sessionData2 = $request->session()->get('gugatan_page2', []);
+        $sessionData3 = $request->session()->get('gugatan_page3', []);
 
         // Gabungkan data dari session dengan data dari request
         $data = array_merge(
             $sessionData1,
             $sessionData2,
+            $sessionData3,
             $request->all()
         );
+
         // Validasi data
         $validatedData = $this->validateData($data);
 
