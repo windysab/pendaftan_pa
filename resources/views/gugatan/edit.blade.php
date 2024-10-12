@@ -31,7 +31,7 @@
             <form method="POST" action="{{ route('gugatan.update', $gugatan->id) }}">
                 @csrf
                 @method('PUT')
-                @include('gugatan.form')
+                @include('pages.gugatan-form')
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
