@@ -26,6 +26,7 @@
                 </p>
 
                 <form method="POST" action="{{ isset($gugatan) ? route('gugatan.edit.page2', $gugatan->id) : route('gugatan.page2') }}" onsubmit="validateForm(event)" id="gugatanForm">
+                    
                     @csrf
                   <!-- Hapus metode PUT -->
                     <div class="row">
