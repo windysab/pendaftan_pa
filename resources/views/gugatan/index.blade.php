@@ -33,7 +33,7 @@
                             <div class="card-header">
                                 <h4>All Gugatan</h4>
                                 <div class="section-header-button">
-                                    <a href="{{ route('gugatan.create') }}" class="btn btn-primary">New Gugatan</a>
+                                    <a href="{{ route('gugatan.form') }}" class="btn btn-primary">New Gugatan</a>
                                 </div>
                             </div>
                             <div class="card-body">
