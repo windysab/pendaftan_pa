@@ -45,8 +45,8 @@
                                                     class="form-control"
                                                     value="{{ old('nama_penggugat', $gugatan->nama_penggugat ?? '') }}">
                                                 <span id="error_nama_penggugat" class="text-danger"></span>
-                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai
-                                                    dengan</small>
+                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan
+                                                    surat nikah</small>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -138,8 +138,8 @@
                                                     class="form-control"
                                                     value="{{ old('nama_tergugat', $gugatan->nama_tergugat ?? '') }}">
                                                 <span id="error_nama_tergugat" class="text-danger"></span>
-                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai
-                                                    dengan</small>
+                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan
+                                                    surat nikah</small>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

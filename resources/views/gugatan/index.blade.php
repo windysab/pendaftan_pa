@@ -85,7 +85,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-sm btn-danger btn-icon confirm-delete"
-                                                                    data-confirm="Apakah Anda yakin?|Apakah Anda ingin melanjutkan?"
+                                                                    data-confirm="Apakah Anda ingin menghapus ?|Apakah Anda ingin melanjutkan?"
                                                                     data-confirm-yes="document.querySelector('.delete-form').submit()">
                                                                 <i class="fas fa-times"></i> Delete
                                                             </button>
