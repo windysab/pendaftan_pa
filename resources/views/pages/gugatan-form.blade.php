@@ -1,4 +1,4 @@
- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Gugatan')
 
@@ -25,8 +25,11 @@
                     kasih.
                 </p>
 
-                <form method="POST" action="{{ route('gugatan.page2.store') }}" onsubmit="validateForm(event)" id="gugatanForm">
+                <form method="POST"
+                    action="{{ isset($gugatan) ? route('gugatan.update.form', $gugatan->id) : route('gugatan.page2.store') }}"
+                    onsubmit="validateForm(event)" id="gugatanForm">
                     @csrf
+                    <!-- Hapus metode PUT -->
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="card">
@@ -39,17 +42,19 @@
                                             <div class="form-group">
                                                 <label for="nama_penggugat"><b>Nama Penggugat</b></label>
                                                 <input type="text" id="nama_penggugat" name="nama_penggugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('nama_penggugat', $gugatan->nama_penggugat ?? '') }}">
                                                 <span id="error_nama_penggugat" class="text-danger"></span>
-                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan
-                                                    surat nikah</small>
+                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai
+                                                    dengan</small>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="binti_penggugat"><b>Binti Penggugat</b></label>
                                                 <input type="text" id="binti_penggugat" name="binti_penggugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('binti_penggugat', $gugatan->binti_penggugat ?? '') }}">
                                                 <span id="error_binti_penggugat" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -59,20 +64,22 @@
                                             <div class="form-group">
                                                 <label for="umur_penggugat"><b>Umur Penggugat</b></label>
                                                 <input type="number" id="umur_penggugat" name="umur_penggugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('umur_penggugat', $gugatan->umur_penggugat ?? '') }}">
                                                 <span id="error_umur_penggugat" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="agama_penggugat"><b>Agama Penggugat</b></label>
-                                                <select id="agama_penggugat" name="agama_penggugat" class="form-control"
-                                                    v-model="form.agama_penggugat">
-                                                    <option>Islam</option>
-                                                    <option>Kristen</option>
-                                                    <option>Khatolik</option>
-                                                    <option>Hindu</option>
-                                                    <option>Budha</option>
+                                                <select id="agama_penggugat" name="agama_penggugat" class="form-control">
+                                                    <!-- Add options here -->
+                                                    <option value="islam">Islam</option>
+                                                    <option value="kristen">Kristen</option>
+                                                    <option value="katolik">Katolik</option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="budha">Budha</option>
+
                                                 </select>
                                                 <span id="error_agama_penggugat" class="text-danger"></span>
                                             </div>
@@ -83,7 +90,8 @@
                                             <div class="form-group">
                                                 <label for="pekerjaan_penggugat"><b>Pekerjaan Penggugat</b></label>
                                                 <input type="text" id="pekerjaan_penggugat" name="pekerjaan_penggugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('pekerjaan_penggugat', $gugatan->pekerjaan_penggugat ?? '') }}">
                                                 <span id="error_pekerjaan_penggugat" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -91,15 +99,16 @@
                                             <div class="form-group">
                                                 <label for="pendidikan_penggugat"><b>Pendidikan Penggugat</b></label>
                                                 <select id="pendidikan_penggugat" name="pendidikan_penggugat"
-                                                    class="form-control" v-model="form.pendidikan_penggugat">
-                                                    <option>Tidak Tamat SD</option>
-                                                    <option>SD</option>
-                                                    <option>SLTP</option>
-                                                    <option>SLTA</option>
-                                                    <option>DI</option>
-                                                    <option>DII</option>
-                                                    <option>DIII</option>
-                                                    <option>S1</option>
+                                                    class="form-control">
+                                                    <!-- Add options here -->
+                                                    <option value="tidak tamat sd">Tidak Tamat SD</option>
+                                                    <option value="sd">SD</option>
+                                                    <option value="smp">SMP</option>
+                                                    <option value="sma">SMA</option>
+                                                    <option value="d1">D1</option>
+                                                    <option value="d3">D3</option>
+                                                    <option value="s1">S1</option>
+
                                                 </select>
                                                 <span id="error_pendidikan_penggugat" class="text-danger"></span>
                                             </div>
@@ -108,7 +117,7 @@
                                     <div class="form-group">
                                         <label for="alamat_penggugat"><b>Alamat Lengkap</b></label>
                                         <textarea id="alamat_penggugat" name="alamat_penggugat" class="form-control" data-height="100" readonly
-                                            onclick="openPenggugatAddressModal()"></textarea>
+                                            onclick="openPenggugatAddressModal()">{{ old('alamat_penggugat', $gugatan->alamat_penggugat ?? '') }}</textarea>
                                         <span id="error_alamat_penggugat" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -126,17 +135,19 @@
                                             <div class="form-group">
                                                 <label for="nama_tergugat"><b>Nama Tergugat</b></label>
                                                 <input type="text" id="nama_tergugat" name="nama_tergugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('nama_tergugat', $gugatan->nama_tergugat ?? '') }}">
                                                 <span id="error_nama_tergugat" class="text-danger"></span>
-                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan
-                                                    surat nikah</small>
+                                                <small class="text-muted" style="font-style: italic;">Diisi sesuai
+                                                    dengan</small>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="bin_tergugat"><b>Bin Tergugat</b></label>
                                                 <input type="text" id="bin_tergugat" name="bin_tergugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('bin_tergugat', $gugatan->bin_tergugat ?? '') }}">
                                                 <span id="error_bin_tergugat" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -146,20 +157,21 @@
                                             <div class="form-group">
                                                 <label for="umur_tergugat"><b>Umur Tergugat</b></label>
                                                 <input type="number" id="umur_tergugat" name="umur_tergugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('umur_tergugat', $gugatan->umur_tergugat ?? '') }}">
                                                 <span id="error_umur_tergugat" class="text-danger"></span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="agama_tergugat"><b>Agama Tergugat</b></label>
-                                                <select id="agama_tergugat" name="agama_tergugat" class="form-control"
-                                                    v-model="form.agama_tergugat">
-                                                    <option>Islam</option>
-                                                    <option>Kristen</option>
-                                                    <option>Khatolik</option>
-                                                    <option>Hindu</option>
-                                                    <option>Budha</option>
+                                                <select id="agama_tergugat" name="agama_tergugat" class="form-control">
+                                                    <!-- Add options here -->
+                                                    <option value="islam">Islam</option>
+                                                    <option value="kristen">Kristen</option>
+                                                    <option value="katolik">Katolik</option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="budha">Budha</option>
                                                 </select>
                                                 <span id="error_agama_tergugat" class="text-danger"></span>
                                             </div>
@@ -170,7 +182,8 @@
                                             <div class="form-group">
                                                 <label for="pekerjaan_tergugat"><b>Pekerjaan Tergugat</b></label>
                                                 <input type="text" id="pekerjaan_tergugat" name="pekerjaan_tergugat"
-                                                    class="form-control">
+                                                    class="form-control"
+                                                    value="{{ old('pekerjaan_tergugat', $gugatan->pekerjaan_tergugat ?? '') }}">
                                                 <span id="error_pekerjaan_tergugat" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -178,15 +191,16 @@
                                             <div class="form-group">
                                                 <label for="pendidikan_tergugat"><b>Pendidikan Tergugat</b></label>
                                                 <select id="pendidikan_tergugat" name="pendidikan_tergugat"
-                                                    class="form-control" v-model="form.pendidikan_tergugat">
-                                                    <option>Tidak Tamat SD</option>
-                                                    <option>SD</option>
-                                                    <option>SLTP</option>
-                                                    <option>SLTA</option>
-                                                    <option>DI</option>
-                                                    <option>DII</option>
-                                                    <option>DIII</option>
-                                                    <option>S1</option>
+                                                    class="form-control">
+                                                    <!-- Add options here -->
+                                                    <option value="tidak tamat sd">Tidak Tamat SD</option>
+                                                    <option value="sd">SD</option>
+                                                    <option value="smp">SMP</option>
+                                                    <option value="sma">SMA</option>
+                                                    <option value="d1">D1</option>
+                                                    <option value="d3">D3</option>
+                                                    <option value="s1">S1</option>
+
                                                 </select>
                                                 <span id="error_pendidikan_tergugat" class="text-danger"></span>
                                             </div>
@@ -195,17 +209,15 @@
                                     <div class="form-group">
                                         <label for="alamat_tergugat"><b>Alamat Lengkap</b></label>
                                         <textarea id="alamat_tergugat" name="alamat_tergugat" class="form-control" data-height="100" readonly
-                                            onclick="openAddressModal()"></textarea>
+                                            onclick="openAddressModal()">{{ old('alamat_tergugat', $gugatan->alamat_tergugat ?? '') }}</textarea>
                                         <span id="error_alamat_tergugat" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-right">Selanjutnya</button>
+                    <button type="submit" class="btn btn-primary btn-right">{{ isset($gugatan) ? 'Update' : 'Selanjutnya' }}</button>
                 </form>
-
-
             </div>
         </section>
 

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -33,9 +34,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/page2', [GugatanController::class, 'page2'])->name('page2.get');
         Route::post('/page3', [GugatanController::class, 'page3'])->name('page3');
         Route::get('/page3', [GugatanController::class, 'page3'])->name('page3.get');
-        Route::put('/{id}/page3', [GugatanController::class, 'page3'])->name('page3.update');
-        Route::post('/{id}/page2', [GugatanController::class, 'page2'])->name('edit.page2');
-        Route::post('/{id}/page3', [GugatanController::class, 'page3'])->name('edit.page3');
+        Route::put('/{id}/page3', [GugatanController::class, 'updatePage3'])->name('page3.update');
+        Route::put('/{id}/edit/page2', [GugatanController::class, 'updatePage2'])->name('update.page2');
+        Route::put('/{id}/edit/page3', [GugatanController::class, 'updatePage3'])->name('update.page3');
         Route::get('/form', function () {
             return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
         })->name('form');
@@ -57,6 +58,18 @@ Route::middleware('auth')->group(function () {
             return view('pages.gugatan-sukses', ['type_menu' => 'gugatan', 'gugatan' => $gugatan]);
         })->name('success');
         Route::get('/{id}/generate-word', [GugatanController::class, 'generateWordDocument'])->name('generateWord');
+
+        // Rute untuk halaman edit form
+        Route::get('/{id}/edit/form', [GugatanController::class, 'editForm'])->name('edit.form');
+        Route::post('/{id}/edit/form', [GugatanController::class, 'updateForm'])->name('update.form');
+
+        // Rute untuk halaman edit page2
+        Route::get('/{id}/edit/page2', [GugatanController::class, 'editPage2'])->name('edit.page2');
+        Route::put('/{id}/edit/page2', [GugatanController::class, 'updatePage2'])->name('update.page2');
+
+        // Rute untuk halaman edit page3
+        Route::get('/{id}/edit/page3', [GugatanController::class, 'editPage3'])->name('edit.page3');
+        Route::put('/{id}/edit/page3', [GugatanController::class, 'updatePage3'])->name('update.page3');
     });
 
     // Users
@@ -78,7 +91,26 @@ Route::view('/blank-page', 'pages.blank-page', ['type_menu' => '']);
 
 // Bootstrap
 $bootstrapRoutes = [
-    'alert', 'badge', 'breadcrumb', 'buttons', 'card', 'carousel', 'collapse', 'dropdown', 'form', 'list-group', 'media-object', 'modal', 'nav', 'navbar', 'pagination', 'popover', 'progress', 'table', 'tooltip', 'typography'
+    'alert',
+    'badge',
+    'breadcrumb',
+    'buttons',
+    'card',
+    'carousel',
+    'collapse',
+    'dropdown',
+    'form',
+    'list-group',
+    'media-object',
+    'modal',
+    'nav',
+    'navbar',
+    'pagination',
+    'popover',
+    'progress',
+    'table',
+    'tooltip',
+    'typography'
 ];
 foreach ($bootstrapRoutes as $route) {
     Route::view("/bootstrap-$route", "pages.bootstrap-$route", ['type_menu' => 'bootstrap']);

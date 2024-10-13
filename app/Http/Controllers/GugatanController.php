@@ -561,4 +561,50 @@ class GugatanController extends Controller
         // Redirect ke halaman page3
         return redirect()->route('gugatan.page3.get');
     }
+
+    // edit function to edit the data
+
+    public function editForm($id)
+    {
+        $gugatan = Gugatan::find($id);
+        $type_menu = 'gugatan';
+        return view('pages.gugatan-form', compact('gugatan', 'type_menu'));
+    }
+    public function updateForm(Request $request, $id)
+    {
+        $gugatan = Gugatan::findOrFail($id);
+        $data = $request->all();
+        $gugatan->update($data);
+        return redirect()->route('gugatan.edit.page2', $id);
+    }
+
+    public function editPage2($id)
+    {
+        $gugatan = Gugatan::find($id);
+        $type_menu = 'gugatan';
+        return view('pages.gugatan-page2', compact('gugatan', 'type_menu'));
+    }
+
+    public function updatePage2(Request $request, $id)
+    {
+        $gugatan = Gugatan::findOrFail($id);
+        $data = $request->all();
+        $gugatan->update($data);
+        return redirect()->route('gugatan.edit.page3', $id);
+    }
+
+    public function editPage3($id)
+    {
+        $gugatan = Gugatan::find($id);
+        $type_menu = 'gugatan';
+        return view('pages.gugatan-page3', compact('gugatan', 'type_menu'));
+    }
+
+    public function updatePage3(Request $request, $id)
+    {
+        $gugatan = Gugatan::findOrFail($id);
+        $data = $request->all();
+        $gugatan->update($data);
+        return redirect()->route('gugatan.index')->with('success', 'Gugatan berhasil diperbarui.');
+    }
 }
