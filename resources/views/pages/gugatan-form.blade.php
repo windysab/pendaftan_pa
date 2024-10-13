@@ -101,13 +101,14 @@
                                                 <select id="pendidikan_penggugat" name="pendidikan_penggugat"
                                                     class="form-control">
                                                     <!-- Add options here -->
-                                                    <option value="tidak tamat sd">Tidak Tamat SD</option>
-                                                    <option value="sd">SD</option>
-                                                    <option value="smp">SMP</option>
-                                                    <option value="sma">SMA</option>
-                                                    <option value="d1">D1</option>
-                                                    <option value="d3">D3</option>
-                                                    <option value="s1">S1</option>
+                                                    <option>Tidak Tamat SD</option>
+                                                    <option>SD</option>
+                                                    <option>SLTP</option>
+                                                    <option>SLTA</option>
+                                                    <option>DI</option>
+                                                    <option>DII</option>
+                                                    <option>DIII</option>
+                                                    <option>S1</option>
 
                                                 </select>
                                                 <span id="error_pendidikan_penggugat" class="text-danger"></span>
@@ -193,13 +194,14 @@
                                                 <select id="pendidikan_tergugat" name="pendidikan_tergugat"
                                                     class="form-control">
                                                     <!-- Add options here -->
-                                                    <option value="tidak tamat sd">Tidak Tamat SD</option>
-                                                    <option value="sd">SD</option>
-                                                    <option value="smp">SMP</option>
-                                                    <option value="sma">SMA</option>
-                                                    <option value="d1">D1</option>
-                                                    <option value="d3">D3</option>
-                                                    <option value="s1">S1</option>
+                                                    <option>Tidak Tamat SD</option>
+                                                    <option>SD</option>
+                                                    <option>SLTP</option>
+                                                    <option>SLTA</option>
+                                                    <option>DI</option>
+                                                    <option>DII</option>
+                                                    <option>DIII</option>
+                                                    <option>S1</option>
 
                                                 </select>
                                                 <span id="error_pendidikan_tergugat" class="text-danger"></span>
