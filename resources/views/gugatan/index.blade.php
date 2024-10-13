@@ -68,21 +68,33 @@
                                                 <td>{{ $gugatan->created_at }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('gugatan.edit', $gugatan->id) }}' class="btn btn-sm btn-info btn-icon">
+                                                        <a href='{{ route('gugatan.edit', $gugatan->id) }}'
+                                                            class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i> Edit
                                                         </a>
 
-                                                        <form action="{{ route('gugatan.destroy', $gugatan->id) }}" method="POST" class="ml-2">
+                                                        {{-- <form action="{{ route('gugatan.destroy', $gugatan->id) }}"
+                                                            method="POST" class="ml-2">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-sm btn-danger btn-icon confirm-delete">
                                                                 <i class="fas fa-times"></i> Delete
                                                             </button>
+                                                        </form> --}}
+                                                        <form action="{{ route('gugatan.destroy', $gugatan->id) }}" method="POST" class="ml-2 delete-form">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger btn-icon confirm-delete"
+                                                                    data-confirm="Apakah Anda yakin?|Apakah Anda ingin melanjutkan?"
+                                                                    data-confirm-yes="document.querySelector('.delete-form').submit()">
+                                                                <i class="fas fa-times"></i> Delete
+                                                            </button>
                                                         </form>
-
-                                                        <a href="{{ route('gugatan.generateWord', $gugatan->id) }}" class="btn btn-sm btn-primary btn-icon ml-2">
-                                                            <i class="fas fa-file-word"></i> Download Word
+                                                        <a href="{{ route('gugatan.generateWord', $gugatan->id) }}"
+                                                            class="btn btn-sm btn-primary btn-icon ml-2">
+                                                            <i class="fas fa-download"></i> Download Word
                                                         </a>
+
                                                     </div>
                                                 </td>
                                             </tr>
