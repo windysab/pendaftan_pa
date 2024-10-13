@@ -79,6 +79,10 @@
                                                                 <i class="fas fa-times"></i> Delete
                                                             </button>
                                                         </form>
+
+                                                        <a href="{{ route('gugatan.generateWord', $gugatan->id) }}" class="btn btn-sm btn-primary btn-icon ml-2">
+                                                            <i class="fas fa-file-word"></i> Download Word
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
