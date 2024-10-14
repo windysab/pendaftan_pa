@@ -14,10 +14,19 @@ use PhpOffice\PhpWord\Element\TextRun;
 
 class GugatanController extends Controller
 {
-    public function index()
+
+
+    public function index(Request $request)
     {
-        $gugatans = Gugatan::paginate(10); // Adjust the pagination as needed
+        $query = Gugatan::query();
+
+        if ($request->has('nama')) {
+            $query->where('nama_penggugat', 'like', '%' . $request->input('nama') . '%');
+        }
+
+        $gugatans = $query->paginate(10); // Adjust the pagination as needed
         $type_menu = 'gugatan'; // Define the type_menu variable
+
         return view('gugatan.index', compact('gugatans', 'type_menu'));
     }
     public function create()
