@@ -81,6 +81,14 @@ Route::middleware('auth')->group(function () {
         Route::put('/{user}', [UserController::class, 'update'])->name('update');
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
     });
+
+
+
+
+    Route::get('/gugatan/page2', [App\Http\Controllers\GugatanController::class, 'page2'])->name('gugatan.page2');
+    Route::get('/get-kabupaten/{provinsi_id}', [App\Http\Controllers\GugatanController::class, 'getKabupaten']);
+    Route::get('/get-kecamatan/{kabupaten_id}', [App\Http\Controllers\GugatanController::class, 'getKecamatan']);
+    Route::get('/get-desa/{kecamatan_id}', [App\Http\Controllers\GugatanController::class, 'getDesa']);
 });
 
 // Layout

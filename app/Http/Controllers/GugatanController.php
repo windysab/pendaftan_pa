@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Models\Gugatan;
+use App\Models\Regency;
+use App\Models\Village;
+use App\Models\District;
+use App\Models\Province; // Tambahkan ini
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use PhpOffice\PhpWord\Element\TextRun;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\Element\TextRun;
+
 
 
 class GugatanController extends Controller
@@ -491,11 +496,11 @@ class GugatanController extends Controller
 
         return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
-    public function page2(Request $request)
-    {
-        // Logika untuk halaman page2
-        return view('gugatan.page2', ['type_menu' => 'gugatan']);
-    }
+    // public function page2(Request $request)
+    // {
+    //     // Logika untuk halaman page2
+    //     return view('gugatan.page2', ['type_menu' => 'gugatan']);
+    // }
     public function storePage2(Request $request)
     {
         // Simpan data dari halaman kedua ke session
@@ -576,5 +581,29 @@ class GugatanController extends Controller
         $data = $request->all();
         $gugatan->update($data);
         return redirect()->route('gugatan.index')->with('success', 'Gugatan berhasil diperbarui.');
+    }
+
+    public function getKabupaten($provinsi_id)
+    {
+        $kabupaten = Regency::where('province_id', $provinsi_id)->pluck('name', 'id');
+        return response()->json($kabupaten);
+    }
+
+    public function getKecamatan($kabupaten_id)
+    {
+        $kecamatan = District::where('regency_id', $kabupaten_id)->pluck('name', 'id');
+        return response()->json($kecamatan);
+    }
+
+    public function getDesa($kecamatan_id)
+    {
+        $desa = Village::where('district_id', $kecamatan_id)->pluck('name', 'id');
+        return response()->json($desa);
+    }
+
+    public function page2()
+    {
+        $provinces = Province::all();
+        return view('gugatan.page2', compact('provinces'));
     }
 }
