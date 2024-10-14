@@ -532,45 +532,6 @@ class GugatanController extends Controller
         }
     }
 
-
-    public function store2(Request $request)
-    {
-        // Ambil data dari session
-        $sessionData1 = $request->session()->get('gugatan_form', []);
-        $sessionData2 = $request->session()->get('gugatan_page2', []);
-        $sessionData3 = $request->session()->get('gugatan_page3', []);
-
-        // Gabungkan data dari session dengan data dari request
-        $data = array_merge(
-            $sessionData1,
-            $sessionData2,
-            $sessionData3,
-            $request->all()
-        );
-
-        // Validasi data
-        $validatedData = $this->validateData($data);
-
-        // Simpan data ke database
-        try {
-            $gugatan = Gugatan::create($validatedData);
-            Log::info('Data stored successfully.');
-            return redirect()->route('gugatan.success')->with('gugatan', $gugatan);
-        } catch (\Exception $e) {
-            Log::error('Error storing data:', ['error' => $e->getMessage()]);
-            return redirect()->back()->withErrors(['msg' => 'Error storing data.']);
-        }
-    }
-
-    public function storePage3(Request $request)
-    {
-        // Simpan data dari halaman kedua ke session
-        $request->session()->put('gugatan_page2', $request->all());
-
-        // Redirect ke halaman page3
-        return redirect()->route('gugatan.page3.get');
-    }
-
     // edit function to edit the data
 
     public function editForm($id)
