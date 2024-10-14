@@ -26,18 +26,11 @@ Route::middleware('auth')->group(function () {
     // Gugatan
     Route::prefix('gugatan')->name('gugatan.')->group(function () {
         Route::get('/', [GugatanController::class, 'index'])->name('index');
-        Route::get('/create', [GugatanController::class, 'create'])->name('create');
-        Route::post('/', [GugatanController::class, 'store'])->name('store');
+        
         Route::get('/{id}/edit', [GugatanController::class, 'edit'])->name('edit');
         Route::put('/{id}', [GugatanController::class, 'update'])->name('update');
         Route::delete('/{id}', [GugatanController::class, 'destroy'])->name('destroy');
-        Route::post('/page2', [GugatanController::class, 'page2'])->name('page2');
-        Route::get('/page2', [GugatanController::class, 'page2'])->name('page2.get');
-        Route::post('/page3', [GugatanController::class, 'page3'])->name('page3');
-        Route::get('/page3', [GugatanController::class, 'page3'])->name('page3.get');
-        Route::put('/{id}/page3', [GugatanController::class, 'updatePage3'])->name('page3.update');
-        Route::put('/{id}/edit/page2', [GugatanController::class, 'updatePage2'])->name('update.page2');
-        Route::put('/{id}/edit/page3', [GugatanController::class, 'updatePage3'])->name('update.page3');
+
         Route::get('/form', function () {
             return view('pages.gugatan-form', ['type_menu' => 'gugatan']);
         })->name('form');

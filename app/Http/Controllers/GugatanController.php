@@ -7,9 +7,10 @@ use App\Models\Gugatan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use PhpOffice\PhpWord\Element\TextRun;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\Element\TextRun;
+use AzisHapidin\IndoRegion\RawDataGetter;
 
 
 class GugatanController extends Controller
@@ -29,11 +30,7 @@ class GugatanController extends Controller
 
         return view('gugatan.index', compact('gugatans', 'type_menu'));
     }
-    public function create()
-    {
-        $type_menu = 'gugatan'; // Define the type_menu variable
-        return view('gugatan.create', compact('type_menu'));
-    }
+
     public function edit($id)
     {
         $gugatan = Gugatan::findOrFail($id);
@@ -491,24 +488,7 @@ class GugatanController extends Controller
 
         return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
-    public function page2(Request $request)
-    {
-        // Logika untuk halaman page2
-        return view('gugatan.page2', ['type_menu' => 'gugatan']);
-    }
-    public function storePage2(Request $request)
-    {
-        // Simpan data dari halaman kedua ke session
-        $request->session()->put('gugatan_page2', $request->all());
 
-        // Redirect ke halaman page3
-        return redirect()->route('gugatan.page3');
-    }
-    public function page3(Request $request)
-    {
-        // Logika untuk halaman page3
-        return view('gugatan.page3', ['type_menu' => 'gugatan']);
-    }
 
     public function update(Request $request, $id)
     {
@@ -548,11 +528,14 @@ class GugatanController extends Controller
         return redirect()->route('gugatan.edit.page2', $id);
     }
 
+
     public function editPage2($id)
     {
-        $gugatan = Gugatan::find($id);
+        $gugatan = Gugatan::findOrFail($id);
         $type_menu = 'gugatan';
-        return view('pages.gugatan-page2', compact('gugatan', 'type_menu'));
+        $provinces = RawDataGetter::getProvinces(); // Ambil data provinsi
+
+        return view('pages.gugatan-page2', compact('gugatan', 'type_menu', 'provinces'));
     }
 
     public function updatePage2(Request $request, $id)
