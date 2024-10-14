@@ -54,26 +54,45 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="desa_pernikahan"><b>Desa</b></label>
-                                            <input type="text" id="desa_pernikahan" name="desa_pernikahan" class="form-control" value="{{ old('desa_pernikahan', $gugatan->desa_pernikahan ?? '') }}">
-                                            <span id="error_desa_pernikahan" class="text-danger"></span>
+                                            <label for="provinsi"><b>Provinsi</b></label>
+                                            <select name="province_id" id="province_id" class="form-control">
+                                                <option value="">Pilih Provinsi</option>
+                                                @foreach($provinces as $province)
+                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <span id="error_provinsi" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kecamatan_pernikahan"><b>Kecamatan</b></label>
-                                            <input type="text" id="kecamatan_pernikahan" name="kecamatan_pernikahan" class="form-control" value="{{ old('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan ?? '') }}">
-                                            <span id="error_kecamatan_pernikahan" class="text-danger"></span>
+                                            <label for="kabupaten"><b>Kabupaten</b></label>
+                                            <select id="kabupaten" name="kabupaten" class="form-control">
+                                                <option value="">Pilih Kabupaten</option>
+                                            </select>
+                                            <span id="error_kabupaten" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
-                                            <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control" value="{{ old('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan ?? '') }}">
-                                            <span id="error_kabupaten_pernikahan" class="text-danger"></span>
+                                            <label for="kecamatan"><b>Kecamatan</b></label>
+                                            <select id="kecamatan" name="kecamatan" class="form-control">
+                                                <option value="">Pilih Kecamatan</option>
+                                            </select>
+                                            <span id="error_kecamatan" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="desa"><b>Desa</b></label>
+                                            <select id="desa" name="desa" class="form-control">
+                                                <option value="">Pilih Desa</option>
+                                            </select>
+                                            <span id="error_desa" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -197,6 +216,65 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         toggleDesaInput();
+    });
+
+    $(document).ready(function() {
+        $('#provinsi').on('change', function() {
+            var provinceId = $(this).val();
+            if(provinceId) {
+                $.ajax({
+                    url: '{{ route('get.kabupaten') }}',
+                    type: 'GET',
+                    data: { province_id: provinceId },
+                    success: function(data) {
+                        $('#kabupaten').empty().append('<option value="">Pilih Kabupaten</option>');
+                        $.each(data, function(key, value) {
+                            $('#kabupaten').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#kabupaten').empty().append('<option value="">Pilih Kabupaten</option>');
+            }
+        });
+
+        $('#kabupaten').on('change', function() {
+            var regencyId = $(this).val();
+            if(regencyId) {
+                $.ajax({
+                    url: '{{ route('get.kecamatan') }}',
+                    type: 'GET',
+                    data: { regency_id: regencyId },
+                    success: function(data) {
+                        $('#kecamatan').empty().append('<option value="">Pilih Kecamatan</option>');
+                        $.each(data, function(key, value) {
+                            $('#kecamatan').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#kecamatan').empty().append('<option value="">Pilih Kecamatan</option>');
+            }
+        });
+
+        $('#kecamatan').on('change', function() {
+            var districtId = $(this).val();
+            if(districtId) {
+                $.ajax({
+                    url: '{{ route('get.desa') }}',
+                    type: 'GET',
+                    data: { district_id: districtId },
+                    success: function(data) {
+                        $('#desa').empty().append('<option value="">Pilih Desa</option>');
+                        $.each(data, function(key, value) {
+                            $('#desa').append('<option value="'+ value.id +'">'+ value.name +'</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#desa').empty().append('<option value="">Pilih Desa</option>');
+            }
+        });
     });
 </script>
 @endpush

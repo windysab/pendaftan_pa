@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Models\Gugatan;
+use App\Models\Regency;
+use App\Models\Village;
+use App\Models\District;
+use App\Models\Province;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use PhpOffice\PhpWord\Element\TextRun;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\Element\TextRun;
 
 
 class GugatanController extends Controller
@@ -491,10 +495,12 @@ class GugatanController extends Controller
 
         return redirect()->route('gugatan.index')->with('success', 'Gugatan deleted successfully.');
     }
+
+
     public function page2(Request $request)
     {
-        // Logika untuk halaman page2
-        return view('gugatan.page2', ['type_menu' => 'gugatan']);
+        $provinces = Province::all(); // Ambil semua data provinsi
+        return view('pages.gugatan-page2', compact('provinces')); // Kirimkan variabel ke view
     }
     public function storePage2(Request $request)
     {
@@ -576,5 +582,24 @@ class GugatanController extends Controller
         $data = $request->all();
         $gugatan->update($data);
         return redirect()->route('gugatan.index')->with('success', 'Gugatan berhasil diperbarui.');
+    }
+
+
+    public function getKabupaten(Request $request)
+    {
+        $kabupatens = Regency::where('province_id', $request->province_id)->get();
+        return response()->json($kabupatens);
+    }
+
+    public function getKecamatan(Request $request)
+    {
+        $kecamatans = District::where('regency_id', $request->regency_id)->get();
+        return response()->json($kecamatans);
+    }
+
+    public function getDesa(Request $request)
+    {
+        $desas = Village::where('district_id', $request->district_id)->get();
+        return response()->json($desas);
     }
 }
