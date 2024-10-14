@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegionController;
 use App\Http\Controllers\GugatanController;
 
 // Redirect root to dashboard
@@ -81,6 +82,13 @@ Route::middleware('auth')->group(function () {
         Route::put('/{user}', [UserController::class, 'update'])->name('update');
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
     });
+
+
+
+    Route::get('/provinces', [RegionController::class, 'getProvinces']);
+    Route::get('/regencies/{province_id}', [RegionController::class, 'getRegencies']);
+    Route::get('/districts/{regency_id}', [RegionController::class, 'getDistricts']);
+    Route::get('/villages/{district_id}', [RegionController::class, 'getVillages']);
 });
 
 // Layout

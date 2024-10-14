@@ -54,23 +54,38 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="desa_pernikahan"><b>Desa</b></label>
-                                            <input type="text" id="desa_pernikahan" name="desa_pernikahan" class="form-control" value="{{ old('desa_pernikahan', $gugatan->desa_pernikahan ?? '') }}">
-                                            <span id="error_desa_pernikahan" class="text-danger"></span>
+                                            <label for="province"><b>Provinsi</b></label>
+                                            <select id="province" name="province" class="form-control">
+                                                <option value="">Pilih Provinsi</option>
+                                            </select>
+                                            <span id="error_province" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kecamatan_pernikahan"><b>Kecamatan</b></label>
-                                            <input type="text" id="kecamatan_pernikahan" name="kecamatan_pernikahan" class="form-control" value="{{ old('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan ?? '') }}">
-                                            <span id="error_kecamatan_pernikahan" class="text-danger"></span>
+                                            <label for="regency"><b>Kabupaten</b></label>
+                                            <select id="regency" name="regency" class="form-control">
+                                                <option value="">Pilih Kabupaten</option>
+                                            </select>
+                                            <span id="error_regency" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
-                                            <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control" value="{{ old('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan ?? '') }}">
-                                            <span id="error_kabupaten_pernikahan" class="text-danger"></span>
+                                            <label for="district"><b>Kecamatan</b></label>
+                                            <select id="district" name="district" class="form-control">
+                                                <option value="">Pilih Kecamatan</option>
+                                            </select>
+                                            <span id="error_district" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="village"><b>Desa</b></label>
+                                            <select id="village" name="village" class="form-control">
+                                                <option value="">Pilih Desa</option>
+                                            </select>
+                                            <span id="error_village" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -198,5 +213,53 @@
     document.addEventListener('DOMContentLoaded', function() {
         toggleDesaInput();
     });
+
+    $(document).ready(function() {
+    $.get('/provinces', function(data) {
+        $('#province').append('<option value="">Pilih Provinsi</option>');
+        $.each(data, function(index, province) {
+            $('#province').append('<option value="' + province.id + '">' + province.name + '</option>');
+        });
+    });
+
+    $('#province').change(function() {
+        var province_id = $(this).val();
+        $('#regency').empty().append('<option value="">Pilih Kabupaten</option>');
+        $('#district').empty().append('<option value="">Pilih Kecamatan</option>');
+        $('#village').empty().append('<option value="">Pilih Desa</option>');
+        if (province_id) {
+            $.get('/regencies/' + province_id, function(data) {
+                $.each(data, function(index, regency) {
+                    $('#regency').append('<option value="' + regency.id + '">' + regency.name + '</option>');
+                });
+            });
+        }
+    });
+
+    $('#regency').change(function() {
+        var regency_id = $(this).val();
+        $('#district').empty().append('<option value="">Pilih Kecamatan</option>');
+        $('#village').empty().append('<option value="">Pilih Desa</option>');
+        if (regency_id) {
+            $.get('/districts/' + regency_id, function(data) {
+                $.each(data, function(index, district) {
+                    $('#district').append('<option value="' + district.id + '">' + district.name + '</option>');
+                });
+            });
+        }
+    });
+
+    $('#district').change(function() {
+        var district_id = $(this).val();
+        $('#village').empty().append('<option value="">Pilih Desa</option>');
+        if (district_id) {
+            $.get('/villages/' + district_id, function(data) {
+                $.each(data, function(index, village) {
+                    $('#village').append('<option value="' + village.id + '">' + village.name + '</option>');
+                });
+            });
+        }
+    });
+});
 </script>
 @endpush
