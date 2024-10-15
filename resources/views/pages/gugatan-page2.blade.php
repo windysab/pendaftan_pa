@@ -26,7 +26,7 @@
             <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update.page2', $gugatan->id) : route('gugatan.page3.store') }}" onsubmit="validateForm(event)" id="gugatanForm2">
                 @csrf
                 @if(isset($gugatan))
-                    @method('PUT')
+                @method('PUT')
                 @endif
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -169,32 +169,31 @@
                                     </div>
                                 </div>
 
-                                @for ($i = 1; $i <= 10; $i++)
-                                    <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="anak_{{ $i }}"><b>{{ $i }}. Nama Anak</b></label>
-                                                <input type="text" id="anak_{{ $i }}" name="anak_{{ $i }}" class="form-control" placeholder="Nama Anak" value="{{ old('anak_'.$i, $gugatan->{'anak_'.$i} ?? '') }}">
-                                                <span id="error_anak_{{ $i }}" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="tanggal_lahir_anak_{{ $i }}"><b>Tanggal Lahir</b></label>
-                                                <input type="date" id="tanggal_lahir_anak_{{ $i }}" name="tanggal_lahir_anak_{{ $i }}" class="form-control" value="{{ old('tanggal_lahir_anak_'.$i, $gugatan->{'tanggal_lahir_anak_'.$i} ?? '') }}">
-                                                <span id="error_tanggal_lahir_anak_{{ $i }}" class="text-danger"></span>
-                                            </div>
+                                @for ($i = 1; $i <= 10; $i++) <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="anak_{{ $i }}"><b>{{ $i }}. Nama Anak</b></label>
+                                            <input type="text" id="anak_{{ $i }}" name="anak_{{ $i }}" class="form-control" placeholder="Nama Anak" value="{{ old('anak_'.$i, $gugatan->{'anak_'.$i} ?? '') }}">
+                                            <span id="error_anak_{{ $i }}" class="text-danger"></span>
                                         </div>
                                     </div>
-                                @endfor
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tanggal_lahir_anak_{{ $i }}"><b>Tanggal Lahir</b></label>
+                                            <input type="date" id="tanggal_lahir_anak_{{ $i }}" name="tanggal_lahir_anak_{{ $i }}" class="form-control" value="{{ old('tanggal_lahir_anak_'.$i, $gugatan->{'tanggal_lahir_anak_'.$i} ?? '') }}">
+                                            <span id="error_tanggal_lahir_anak_{{ $i }}" class="text-danger"></span>
+                                        </div>
+                                    </div>
                             </div>
+                            @endfor
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-right">{{ isset($gugatan) ? 'Update' : 'Selanjutnya' }}</button>
-            </form>
         </div>
-    </section>
+        <button type="submit" class="btn btn-primary btn-right">{{ isset($gugatan) ? 'Update' : 'Selanjutnya' }}</button>
+        </form>
+</div>
+</section>
 </div>
 @endsection
 
@@ -215,51 +214,57 @@
     });
 
     $(document).ready(function() {
-    $.get('/provinces', function(data) {
-        $('#province').append('<option value="">Pilih Provinsi</option>');
-        $.each(data, function(index, province) {
-            $('#province').append('<option value="' + province.id + '">' + province.name + '</option>');
+        $.get('/provinces', function(data) {
+            $('#province').append('<option value="">Pilih Provinsi</option>');
+            $.each(data, function(index, province) {
+                $('#province').append('<option value="' + province.id + '">' + province.name + '</option>');
+            });
         });
+
+        $('#province').change(function() {
+            var province_id = $(this).val();
+            $('#regency').empty().append('<option value="">Pilih Kabupaten</option>');
+            $('#district').empty().append('<option value="">Pilih Kecamatan</option>');
+            $('#village').empty().append('<option value="">Pilih Desa</option>');
+            if (province_id) {
+                $.get('/regencies/' + province_id, function(data) {
+                    $.each(data, function(index, regency) {
+                        $('#regency').append('<option value="' + regency.id + '">' + regency.name + '</option>');
+                    });
+                });
+            }
+        });
+
+        $('#regency').change(function() {
+            var regency_id = $(this).val();
+            $('#district').empty().append('<option value="">Pilih Kecamatan</option>');
+            $('#village').empty().append('<option value="">Pilih Desa</option>');
+            if (regency_id) {
+                $.get('/districts/' + regency_id, function(data) {
+                    $.each(data, function(index, district) {
+                        $('#district').append('<option value="' + district.id + '">' + district.name + '</option>');
+                    });
+                });
+            }
+        });
+
+        $('#district').change(function() {
+            var district_id = $(this).val();
+            $('#village').empty().append('<option value="">Pilih Desa</option>');
+            if (district_id) {
+                console.log('Fetching villages for district_id:', district_id); // Logging
+                $.get('/villages/' + district_id, function(data) {
+                    console.log('Villages data:', data); // Logging
+                    $.each(data, function(index, village) {
+                        $('#village').append('<option value="' + village.id + '">' + village.name + '</option>');
+                    });
+                }).fail(function() {
+                    console.error('Failed to fetch villages'); // Logging
+                });
+            }
+        });
+        
     });
 
-    $('#province').change(function() {
-        var province_id = $(this).val();
-        $('#regency').empty().append('<option value="">Pilih Kabupaten</option>');
-        $('#district').empty().append('<option value="">Pilih Kecamatan</option>');
-        $('#village').empty().append('<option value="">Pilih Desa</option>');
-        if (province_id) {
-            $.get('/regencies/' + province_id, function(data) {
-                $.each(data, function(index, regency) {
-                    $('#regency').append('<option value="' + regency.id + '">' + regency.name + '</option>');
-                });
-            });
-        }
-    });
-
-    $('#regency').change(function() {
-        var regency_id = $(this).val();
-        $('#district').empty().append('<option value="">Pilih Kecamatan</option>');
-        $('#village').empty().append('<option value="">Pilih Desa</option>');
-        if (regency_id) {
-            $.get('/districts/' + regency_id, function(data) {
-                $.each(data, function(index, district) {
-                    $('#district').append('<option value="' + district.id + '">' + district.name + '</option>');
-                });
-            });
-        }
-    });
-
-    $('#district').change(function() {
-        var district_id = $(this).val();
-        $('#village').empty().append('<option value="">Pilih Desa</option>');
-        if (district_id) {
-            $.get('/villages/' + district_id, function(data) {
-                $.each(data, function(index, village) {
-                    $('#village').append('<option value="' + village.id + '">' + village.name + '</option>');
-                });
-            });
-        }
-    });
-});
 </script>
 @endpush

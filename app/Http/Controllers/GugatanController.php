@@ -24,8 +24,9 @@ class GugatanController extends Controller
         if ($request->has('nama')) {
             $query->where('nama_penggugat', 'like', '%' . $request->input('nama') . '%');
         }
-
-        $gugatans = $query->paginate(10); // Adjust the pagination as needed
+        // Mengambil data gugatan dengan pagination dan eager loading
+        $gugatans = Gugatan::with('relatedModel')->paginate(10);
+        // $gugatans = $query->paginate(10); // Adjust the pagination as needed
         $type_menu = 'gugatan'; // Define the type_menu variable
 
         return view('gugatan.index', compact('gugatans', 'type_menu'));

@@ -1,14 +1,23 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use AzisHapidin\IndoRegion\RawDataGetter;
+use Illuminate\Support\Facades\Cache;
 
 class RegionController extends Controller
 {
+
+
+
     public function getProvinces()
     {
-        return response()->json(RawDataGetter::getProvinces());
+        $provinces = Cache::remember('provinces', 60 * 60, function () {
+            return RawDataGetter::getProvinces();
+        });
+
+        return response()->json($provinces);
     }
 
     public function getRegencies($province_id)
@@ -20,6 +29,7 @@ class RegionController extends Controller
     {
         return response()->json(RawDataGetter::getDistricts($regency_id));
     }
+
 
     public function getVillages($district_id)
     {
