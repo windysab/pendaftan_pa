@@ -142,7 +142,7 @@
                                         <option value="rumah_kontrakan" {{ old('tempat_tinggal', $gugatan->tempat_tinggal ?? '') == 'rumah_kontrakan' ? 'selected' : '' }}>Di rumah kontrakan / kos, di desa</option>
                                     </select>
                                     <div id="desa_input" style="display: none;">
-                                        <input type="text" name="desa" class="form-control mt-2" placeholder="Nama desa" value="{{ old('desa', $gugatan->desa ?? '') }}">
+                                        <input type="text" name="desa" class="form-control mt-2" style="width: 50%;" placeholder="Nama desa" value="{{ old('desa', $gugatan->desa ?? '') }}">
                                         <span id="error_desa" class="text-danger"></span>
                                     </div>
                                     <span id="error_tempat_tinggal" class="text-danger"></span>
