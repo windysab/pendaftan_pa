@@ -663,9 +663,22 @@ function saveAddress(event) {
     const no = form.querySelector('#no').value;
     const rt = form.querySelector('#rt').value;
     const rw = form.querySelector('#rw').value;
-    const desa = form.querySelector('#desa').value;
-    const kecamatan = form.querySelector('#kecamatan').value;
-    const kabupaten = form.querySelector('#kabupaten').value;
+    function toSentenceCase(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    const desa = toSentenceCase(form.querySelector('#desa').value);
+    const kecamatan = toSentenceCase(form.querySelector('#kecamatan').value);
+
+    function toSentenceCase(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    let kabupaten = form.querySelector('#kabupaten').value;
+    kabupaten = kabupaten.replace(/kabupaten\s*/i, ''); // Remove "kabupaten" (case insensitive)
+    kabupaten = toSentenceCase(kabupaten);
+
+    
 
     document.getElementById('alamat_tergugat').value = `Jalan ${jalan}, No ${no}, RT ${rt}, RW ${rw}, Desa ${desa}, Kecamatan ${kecamatan}, Kabupaten ${kabupaten}`;
     closeAddressModal();
@@ -689,9 +702,21 @@ function savePenggugatAddress(event) {
     const no = form.querySelector('#no_penggugat').value;
     const rt = form.querySelector('#rt_penggugat').value;
     const rw = form.querySelector('#rw_penggugat').value;
-    const desa = form.querySelector('#desa_penggugat').value;
-    const kecamatan = form.querySelector('#kecamatan_penggugat').value;
-    const kabupaten = form.querySelector('#kabupaten_penggugat').value;
+    function toSentenceCase(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    const desa = toSentenceCase(form.querySelector('#desa_penggugat').value);
+    const kecamatan = toSentenceCase(form.querySelector('#kecamatan_penggugat').value);
+    // const kabupaten = toSentenceCase(form.querySelector('#kabupaten_penggugat').value);
+
+    function toSentenceCase(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    let kabupaten = form.querySelector('#kabupaten_penggugat').value;
+    kabupaten = kabupaten.replace(/kabupaten\s*/i, ''); // Remove "kabupaten" (case insensitive)
+    kabupaten = toSentenceCase(kabupaten);
 
     document.getElementById('alamat_penggugat').value = `Jalan ${jalan}, No ${no}, RT ${rt}, RW ${rw}, Desa ${desa}, Kecamatan ${kecamatan}, Kabupaten ${kabupaten}`;
     closePenggugatAddressModal();
