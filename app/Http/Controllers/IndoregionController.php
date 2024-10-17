@@ -5,15 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Regency;
 use App\Models\Village;
 use App\Models\District;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 
 class IndoregionController extends Controller
 {
+    public function searchKabupaten(Request $request)
+    {
+        $query = $request->input('query');
+        $kabupaten = Regency::where('name', 'LIKE', "%{$query}%")->get(['id', 'name']);
+        return response()->json($kabupaten);
+    }
     public function getKabupaten()
     {
         return Regency::all();
-        Log::info('Kabupaten data:', $kabupaten->toArray());
+        // Log::info('Kabupaten data:', $kabupaten->toArray());
         return $kabupaten;
     }
 

@@ -4,6 +4,16 @@
 
 @push('style')
 <!-- CSS Libraries -->
+<style>
+    /* .list-group {
+        position: absolute;
+        z-index: 1000;
+        width: 100%;
+        background-color: white;
+        border: 1px solid #ccc;
+    } */
+
+</style>
 @endpush
 
 @section('main')
@@ -75,10 +85,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
-                                            <select id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control">
-                                                <option value="">Pilih Kabupaten</option>
-                                                <!-- Options will be populated by JavaScript -->
-                                            </select>
+                                            <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control" placeholder="Cari Kabupaten">
+                                            <div id="kabupaten_suggestions" class="list-group"></div>
                                             <span id="error_kabupaten_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -208,24 +216,37 @@
         toggleDesaInput();
     });
 
-
     $(document).ready(function() {
-
-        // Fetch and populate Kabupaten
-        $.get('/api/kabupaten', function(data) {
-            console.log("Kabupaten data:", data); // Log data untuk debugging
-            $('#kabupaten_pernikahan').append(data.map(function(kabupaten) {
-                return `<option value="${kabupaten.id}">${kabupaten.name}</option>`;
-            }));
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-            console.error("Failed to fetch kabupaten data:", textStatus, errorThrown); // Log error untuk debugging
+        $('#kabupaten_pernikahan').on('input', function() {
+            var query = $(this).val();
+            console.log("User input:", query); // Debugging log
+            if (query.length > 2) {
+                $.get('/api/kabupaten/search', {
+                    query: query
+                }, function(data) {
+                    console.log("Fetched data:", data); // Debugging log
+                    $('#kabupaten_suggestions').empty();
+                    data.forEach(function(kabupaten) {
+                        $('#kabupaten_suggestions').append(`<a href="#" class="list-group-item list-group-item-action kabupaten-suggestion" data-id="${kabupaten.id}" data-name="${kabupaten.name}">${kabupaten.name}</a>`);
+                    });
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error("Failed to fetch kabupaten data:", textStatus, errorThrown); // Debugging log
+                });
+            } else {
+                $('#kabupaten_suggestions').empty();
+            }
         });
 
-        // Fetch and populate Kecamatan based on selected Kabupaten
-        $('#kabupaten_pernikahan').change(function() {
-            var kabupatenId = $(this).val();
+        $(document).on('click', '.kabupaten-suggestion', function(e) {
+            e.preventDefault();
+            var name = $(this).data('name');
+            var id = $(this).data('id');
+            $('#kabupaten_pernikahan').val(name);
+            $('#kabupaten_suggestions').empty();
+
+            // Fetch and populate Kecamatan based on selected Kabupaten
             $('#kecamatan_pernikahan').empty().append('<option value="">Pilih Kecamatan</option>');
-            $.get(`/api/kecamatan/${kabupatenId}`, function(data) {
+            $.get(`/api/kecamatan/${id}`, function(data) {
                 $('#kecamatan_pernikahan').append(data.map(function(kecamatan) {
                     return `<option value="${kecamatan.id}">${kecamatan.name}</option>`;
                 }));
@@ -235,10 +256,11 @@
         // Fetch and populate Desa based on selected Kecamatan
         $('#kecamatan_pernikahan').change(function() {
             var kecamatanId = $(this).val();
+            var name = $(this).data('name');
             $('#desa_pernikahan').empty().append('<option value="">Pilih Desa</option>');
             $.get(`/api/desa/${kecamatanId}`, function(data) {
                 $('#desa_pernikahan').append(data.map(function(desa) {
-                    return `<option value="${desa.id}">${desa.name}</option>`;
+                    return `<option value="${desa.name}">${desa.name}</option>`;
                 }));
             });
         });
