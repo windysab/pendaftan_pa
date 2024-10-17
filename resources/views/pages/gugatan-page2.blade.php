@@ -64,14 +64,13 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="desa_pernikahan"><b>Desa</b></label>
-                                            <select id="desa_pernikahan" name="desa_pernikahan" class="form-control">
-                                                <option value="">Pilih Desa</option>
-                                                <!-- Options will be populated by JavaScript -->
-                                            </select>
-                                            <span id="error_desa_pernikahan" class="text-danger"></span>
+                                            <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
+                                            <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control" placeholder="Cari Kabupaten">
+                                            <div id="kabupaten_suggestions" class="list-group"></div>
+                                            <span id="error_kabupaten_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kecamatan_pernikahan"><b>Kecamatan</b></label>
@@ -84,12 +83,15 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
-                                            <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control" placeholder="Cari Kabupaten">
-                                            <div id="kabupaten_suggestions" class="list-group"></div>
-                                            <span id="error_kabupaten_pernikahan" class="text-danger"></span>
+                                            <label for="desa_pernikahan"><b>Desa</b></label>
+                                            <select id="desa_pernikahan" name="desa_pernikahan" class="form-control">
+                                                <option value="">Pilih Desa</option>
+                                                <!-- Options will be populated by JavaScript -->
+                                            </select>
+                                            <span id="error_desa_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
