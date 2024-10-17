@@ -29,8 +29,24 @@ class IndoregionController extends Controller
         return District::where('regency_id', $kabupatenId)->get();
     }
 
+    // public function getDesa($kecamatanId)
+    // {
+    //     return Village::where('district_id', $kecamatanId)->get();
+    // }
+
+
     public function getDesa($kecamatanId)
     {
-        return Village::where('district_id', $kecamatanId)->get();
+        // Tambahkan log untuk memastikan parameter yang diterima benar
+        Log::info("Fetching desa for kecamatan ID: " . $kecamatanId);
+
+        // Ambil data desa berdasarkan kecamatan ID
+        // Pastikan nama kolom sesuai dengan yang ada di database
+        $desa = Village::where('district_id', $kecamatanId)->get();
+
+        // Tambahkan log untuk memastikan data yang dikembalikan benar
+        Log::info("Fetched desa data: " . $desa);
+
+        return response()->json($desa);
     }
 }
