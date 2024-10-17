@@ -199,7 +199,7 @@ class GugatanController extends Controller
         // Get the numbered value for pendidikan_tergugat
         $numberedPendidikan = $educationMapping[$gugatan->pendidikan_tergugat] ?? $gugatan->pendidikan_tergugat;
         $templateProcessor->setValue('pendidikan_tergugat', $numberedPendidikan);
-        $templateProcessor->setValue('alamat_tergugat', $gugatan->alamat_tergugat);
+        $templateProcessor->setValue('alamat_tergugat', ucwords(strtolower($gugatan->alamat_tergugat)));
         $templateProcessor->setValue('hari_pernikahan', $gugatan->hari_pernikahan);
         // Ambil tanggal dari objek $gugatan
         $tanggalPernikahan = $gugatan->tanggal_pernikahan;
@@ -224,9 +224,9 @@ class GugatanController extends Controller
         $tanggalFormatted = $date->format('j') . ' ' . $bulanIndonesia[(int)$date->format('n')] . ' ' . $date->format('Y');
         // Set nilai di template
         $templateProcessor->setValue('tanggal_pernikahan', $tanggalFormatted);
-        $templateProcessor->setValue('desa_pernikahan', $gugatan->desa_pernikahan);
-        $templateProcessor->setValue('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan);
-        $templateProcessor->setValue('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan);
+        $templateProcessor->setValue('desa_pernikahan', ucwords(strtolower($gugatan->desa_pernikahan)));
+        $templateProcessor->setValue('kecamatan_pernikahan', ucwords(strtolower($gugatan->kecamatan_pernikahan)));
+        $templateProcessor->setValue('kabupaten_pernikahan', ucwords(strtolower(str_replace('KABUPATEN ', '', $gugatan->kabupaten_pernikahan))));
         $templateProcessor->setValue('nomor_akta_nikah', $gugatan->nomor_akta_nikah);
         // Ambil tanggal dari objek $gugatan
         $tanggalAktaNikah = $gugatan->tanggal_akta_nikah;
