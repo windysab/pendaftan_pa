@@ -563,22 +563,6 @@ class GugatanController extends Controller
         return redirect()->route('gugatan.edit.page3', $id);
     }
 
-    // public function updatePage2(Request $request, $id)
-    // {
-    //     $gugatan = Gugatan::find($id);
-
-    //     // Pastikan nilai desa tidak null
-    //     $gugatan->desa_pernikahan = $request->input('desa_pernikahan');
-    //     $gugatan->kecamatan_pernikahan = $request->input('kecamatan_pernikahan');
-    //     $gugatan->kabupaten_pernikahan = $request->input('kabupaten_pernikahan');
-    //     $gugatan->tempat_tinggal = $request->input('tempat_tinggal');
-    //     $gugatan->desa = $request->input('desa') ?? 'default_value'; // Ganti 'default_value' dengan nilai yang sesuai
-
-    //     $gugatan->save();
-
-    //     return redirect()->back()->with('success', 'Data updated successfully.');
-    // }
-
     public function editPage3($id)
     {
         $gugatan = Gugatan::find($id);

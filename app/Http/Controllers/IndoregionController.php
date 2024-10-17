@@ -37,15 +37,9 @@ class IndoregionController extends Controller
 
     public function getDesa($kecamatanId)
     {
-        // Tambahkan log untuk memastikan parameter yang diterima benar
-        Log::info("Fetching desa for kecamatan ID: " . $kecamatanId);
 
-        // Ambil data desa berdasarkan kecamatan ID
-        // Pastikan nama kolom sesuai dengan yang ada di database
         $desa = Village::where('district_id', $kecamatanId)->get();
 
-        // Tambahkan log untuk memastikan data yang dikembalikan benar
-        Log::info("Fetched desa data: " . $desa);
 
         return response()->json($desa);
     }
