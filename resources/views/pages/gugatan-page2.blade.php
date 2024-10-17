@@ -70,7 +70,6 @@
                                             <span id="error_kabupaten_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kecamatan_pernikahan"><b>Kecamatan</b></label>
@@ -91,7 +90,6 @@
                                             <span id="error_desa_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
