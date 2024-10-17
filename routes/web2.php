@@ -1,11 +1,11 @@
 <?php
-// routes/web.php
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GugatanController;
+use App\Http\Controllers\IndoregionController;
 
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard-general-dashboard');
@@ -86,6 +86,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/gugatan/{id}/generate-word', [GugatanController::class, 'generateWordDocument'])->name('gugatan.generateWord');
 });
 
+Route::get('/api/kabupaten', [IndoregionController::class, 'getKabupaten']);
+Route::get('/api/kecamatan/{kabupatenId}', [IndoregionController::class, 'getKecamatan']);
+Route::get('/api/desa/{kecamatanId}', [IndoregionController::class, 'getDesa']);
 // Layout
 Route::view('/layout-default-layout', 'pages.layout-default-layout', ['type_menu' => 'layout']);
 
@@ -135,7 +138,7 @@ foreach ($bootstrapRoutes as $route) {
 //     'user',
 //     'wizard'
 // ];
-// foreach ($componentRoutes as $route) {
+// foreach ($componentRoutes $route) {
 //     Route::view("/components-$route", "pages.components-$route", ['type_menu' => 'components']);
 // }
 

@@ -26,7 +26,7 @@
             <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update.page2', $gugatan->id) : route('gugatan.page3.store') }}" onsubmit="validateForm(event)" id="gugatanForm2">
                 @csrf
                 @if(isset($gugatan))
-                    @method('PUT')
+                @method('PUT')
                 @endif
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -55,21 +55,30 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="desa_pernikahan"><b>Desa</b></label>
-                                            <input type="text" id="desa_pernikahan" name="desa_pernikahan" class="form-control" value="{{ old('desa_pernikahan', $gugatan->desa_pernikahan ?? '') }}">
+                                            <select id="desa_pernikahan" name="desa_pernikahan" class="form-control">
+                                                <option value="">Pilih Desa</option>
+                                                <!-- Options will be populated by JavaScript -->
+                                            </select>
                                             <span id="error_desa_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kecamatan_pernikahan"><b>Kecamatan</b></label>
-                                            <input type="text" id="kecamatan_pernikahan" name="kecamatan_pernikahan" class="form-control" value="{{ old('kecamatan_pernikahan', $gugatan->kecamatan_pernikahan ?? '') }}">
+                                            <select id="kecamatan_pernikahan" name="kecamatan_pernikahan" class="form-control">
+                                                <option value="">Pilih Kecamatan</option>
+                                                <!-- Options will be populated by JavaScript -->
+                                            </select>
                                             <span id="error_kecamatan_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
-                                            <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control" value="{{ old('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan ?? '') }}">
+                                            <select id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control">
+                                                <option value="">Pilih Kabupaten</option>
+                                                <!-- Options will be populated by JavaScript -->
+                                            </select>
                                             <span id="error_kabupaten_pernikahan" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -154,36 +163,36 @@
                                     </div>
                                 </div>
 
-                                @for ($i = 1; $i <= 10; $i++)
-                                    <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="anak_{{ $i }}"><b>{{ $i }}. Nama Anak</b></label>
-                                                <input type="text" id="anak_{{ $i }}" name="anak_{{ $i }}" class="form-control" placeholder="Nama Anak" value="{{ old('anak_'.$i, $gugatan->{'anak_'.$i} ?? '') }}">
-                                                <span id="error_anak_{{ $i }}" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="tanggal_lahir_anak_{{ $i }}"><b>Tanggal Lahir</b></label>
-                                                <input type="date" id="tanggal_lahir_anak_{{ $i }}" name="tanggal_lahir_anak_{{ $i }}" class="form-control" value="{{ old('tanggal_lahir_anak_'.$i, $gugatan->{'tanggal_lahir_anak_'.$i} ?? '') }}">
-                                                <span id="error_tanggal_lahir_anak_{{ $i }}" class="text-danger"></span>
-                                            </div>
+                                @for ($i = 1; $i <= 10; $i++) <div id="anak_{{ $i }}_fields" class="row" style="display: none;">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="anak_{{ $i }}"><b>{{ $i }}. Nama Anak</b></label>
+                                            <input type="text" id="anak_{{ $i }}" name="anak_{{ $i }}" class="form-control" placeholder="Nama Anak" value="{{ old('anak_'.$i, $gugatan->{'anak_'.$i} ?? '') }}">
+                                            <span id="error_anak_{{ $i }}" class="text-danger"></span>
                                         </div>
                                     </div>
-                                @endfor
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tanggal_lahir_anak_{{ $i }}"><b>Tanggal Lahir</b></label>
+                                            <input type="date" id="tanggal_lahir_anak_{{ $i }}" name="tanggal_lahir_anak_{{ $i }}" class="form-control" value="{{ old('tanggal_lahir_anak_'.$i, $gugatan->{'tanggal_lahir_anak_'.$i} ?? '') }}">
+                                            <span id="error_tanggal_lahir_anak_{{ $i }}" class="text-danger"></span>
+                                        </div>
+                                    </div>
                             </div>
+                            @endfor
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-right">{{ isset($gugatan) ? 'Update' : 'Selanjutnya' }}</button>
-            </form>
         </div>
-    </section>
+        <button type="submit" class="btn btn-primary btn-right">{{ isset($gugatan) ? 'Update' : 'Selanjutnya' }}</button>
+        </form>
+</div>
+</section>
 </div>
 @endsection
 
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     function toggleDesaInput() {
         var tempatTinggal = document.getElementById('tempat_tinggal').value;
@@ -198,5 +207,42 @@
     document.addEventListener('DOMContentLoaded', function() {
         toggleDesaInput();
     });
+
+
+    $(document).ready(function() {
+
+        // Fetch and populate Kabupaten
+        $.get('/api/kabupaten', function(data) {
+            console.log("Kabupaten data:", data); // Log data untuk debugging
+            $('#kabupaten_pernikahan').append(data.map(function(kabupaten) {
+                return `<option value="${kabupaten.id}">${kabupaten.name}</option>`;
+            }));
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to fetch kabupaten data:", textStatus, errorThrown); // Log error untuk debugging
+        });
+
+        // Fetch and populate Kecamatan based on selected Kabupaten
+        $('#kabupaten_pernikahan').change(function() {
+            var kabupatenId = $(this).val();
+            $('#kecamatan_pernikahan').empty().append('<option value="">Pilih Kecamatan</option>');
+            $.get(`/api/kecamatan/${kabupatenId}`, function(data) {
+                $('#kecamatan_pernikahan').append(data.map(function(kecamatan) {
+                    return `<option value="${kecamatan.id}">${kecamatan.name}</option>`;
+                }));
+            });
+        });
+
+        // Fetch and populate Desa based on selected Kecamatan
+        $('#kecamatan_pernikahan').change(function() {
+            var kecamatanId = $(this).val();
+            $('#desa_pernikahan').empty().append('<option value="">Pilih Desa</option>');
+            $.get(`/api/desa/${kecamatanId}`, function(data) {
+                $('#desa_pernikahan').append(data.map(function(desa) {
+                    return `<option value="${desa.id}">${desa.name}</option>`;
+                }));
+            });
+        });
+    });
+
 </script>
 @endpush
