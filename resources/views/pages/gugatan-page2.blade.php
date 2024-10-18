@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
@@ -86,6 +86,42 @@
                                             <select id="desa_pernikahan" name="desa_pernikahan" class="form-control">
                                                 <option value="">Pilih Desa</option>
                                                 <!-- Options will be populated by JavaScript -->
+                                            </select>
+                                            <span id="error_desa_pernikahan" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="kabupaten_pernikahan"><b>Kabupaten</b></label>
+                                            <input type="text" id="kabupaten_pernikahan" name="kabupaten_pernikahan" class="form-control" placeholder="Cari Kabupaten" value="{{ old('kabupaten_pernikahan', $gugatan->kabupaten_pernikahan ?? '') }}">
+                                            <div id="kabupaten_suggestions" class="list-group"></div>
+                                            <span id="error_kabupaten_pernikahan" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="kecamatan_pernikahan"><b>Kecamatan</b></label>
+                                            <select id="kecamatan_pernikahan" name="kecamatan_pernikahan" class="form-control">
+                                                <option value="">Pilih Kecamatan</option>
+                                                <!-- Options will be populated by JavaScript -->
+                                                @if(isset($gugatan->kecamatan_pernikahan))
+                                                <option value="{{ $gugatan->kecamatan_pernikahan }}" selected>{{ $gugatan->kecamatan_pernikahan }}</option>
+                                                @endif
+                                            </select>
+                                            <span id="error_kecamatan_pernikahan" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="desa_pernikahan"><b>Desa</b></label>
+                                            <select id="desa_pernikahan" name="desa_pernikahan" class="form-control">
+                                                <option value="">Pilih Desa</option>
+                                                <!-- Options will be populated by JavaScript -->
+                                                @if(isset($gugatan->desa_pernikahan))
+                                                <option value="{{ $gugatan->desa_pernikahan }}" selected>{{ $gugatan->desa_pernikahan }}</option>
+                                                @endif
                                             </select>
                                             <span id="error_desa_pernikahan" class="text-danger"></span>
                                         </div>
@@ -217,6 +253,55 @@
     });
 
 
+    // $(document).ready(function() {
+    //     $('#kabupaten_pernikahan').on('input', function() {
+    //         var query = $(this).val();
+    //         if (query.length > 2) {
+    //             $.get('/api/kabupaten/search', {
+    //                 query: query
+    //             }, function(data) {
+    //                 $('#kabupaten_suggestions').empty();
+    //                 data.forEach(function(kabupaten) {
+    //                     $('#kabupaten_suggestions').append(`<a href="#" class="list-group-item list-group-item-action kabupaten-suggestion" data-id="${kabupaten.id}" data-name="${kabupaten.name}">${kabupaten.name}</a>`);
+    //                 });
+    //             }).fail(function() {
+    //                 // Handle error
+    //             });
+    //         } else {
+    //             $('#kabupaten_suggestions').empty();
+    //         }
+    //     });
+
+    //     $(document).on('click', '.kabupaten-suggestion', function(e) {
+    //         e.preventDefault();
+    //         var name = $(this).data('name');
+    //         var id = $(this).data('id');
+    //         $('#kabupaten_pernikahan').val(name);
+    //         $('#kabupaten_suggestions').empty();
+
+    //         // Fetch and populate Kecamatan based on selected Kabupaten
+    //         $('#kecamatan_pernikahan').empty().append('<option value="">Pilih Kecamatan</option>');
+    //         $.get(`/api/kecamatan/${id}`, function(data) {
+    //             $('#kecamatan_pernikahan').append(data.map(function(kecamatan) {
+    //                 return `<option value="${kecamatan.name}" data-id="${kecamatan.id}">${kecamatan.name}</option>`;
+    //             }));
+    //         });
+    //     });
+
+    //     // Fetch and populate Desa based on selected Kecamatan
+    //     $('#kecamatan_pernikahan').change(function() {
+    //         var kecamatanId = $('#kecamatan_pernikahan option:selected').data('id');
+    //         $('#desa_pernikahan').empty().append('<option value="">Pilih Desa</option>');
+    //         $.get(`/api/desa/${kecamatanId}`, function(data) {
+    //             $('#desa_pernikahan').append(data.map(function(desa) {
+    //                 return `<option value="${desa.name}">${desa.name}</option>`;
+    //             }));
+    //         }).fail(function() {
+    //             // Handle error
+    //         });
+    //     });
+    // });
+
     $(document).ready(function() {
         $('#kabupaten_pernikahan').on('input', function() {
             var query = $(this).val();
@@ -264,6 +349,29 @@
                 // Handle error
             });
         });
+
+        // Populate Kecamatan and Desa if old data exists
+        if ($('#kabupaten_pernikahan').val()) {
+            var kabupatenId = $('#kabupaten_pernikahan').data('id');
+            if (kabupatenId) {
+                $.get(`/api/kecamatan/${kabupatenId}`, function(data) {
+                    $('#kecamatan_pernikahan').append(data.map(function(kecamatan) {
+                        return `<option value="${kecamatan.name}" data-id="${kecamatan.id}" ${kecamatan.name == '{{ $gugatan->kecamatan_pernikahan ?? '' }}' ? 'selected' : ''}>${kecamatan.name}</option>`;
+                    }));
+                });
+            }
+        }
+
+        if ($('#kecamatan_pernikahan').val()) {
+            var kecamatanId = $('#kecamatan_pernikahan option:selected').data('id');
+            if (kecamatanId) {
+                $.get(`/api/desa/${kecamatanId}`, function(data) {
+                    $('#desa_pernikahan').append(data.map(function(desa) {
+                        return `<option value="${desa.name}" ${desa.name == '{{ $gugatan->desa_pernikahan ?? '' }}' ? 'selected' : ''}>${desa.name}</option>`;
+                    }));
+                });
+            }
+        }
     });
 
 </script>
