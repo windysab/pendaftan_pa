@@ -1,0 +1,63 @@
+Langkah-langkah untuk Menyediakan File Word untuk Diunduh atau Dilihat dan Menyediakan Tombol Print
+Menyediakan File Word untuk Diunduh atau Dilihat:
+Buat rute untuk mengunduh file Word.
+Tambahkan file .docx di dalam folder public.
+Rute untuk Mengunduh File Word
+Tambahkan rute di file web.php:
+<?php
+use Illuminate\Support\Facades\Route;
+
+Route::get('/download-word/{filename}', function ($filename) {
+    $filePath = storage_path('app/public/' . $filename);
+
+    if (file_exists($filePath)) {
+        return response()->download($filePath);
+    } else {
+        return response()->json(['message' => 'File not found.'], 404);
+    }
+});
+Tombol Print untuk Cetak File:
+Buat tombol di Blade view untuk mengunduh file Word dan mencetak halaman.
+Tombol Print di Blade View
+Tambahkan tombol di view gugatan-form.blade.php:
+<a href="{{ url('/download-word/contoh.docx') }}" class="btn btn-primary">Unduh File Word</a>
+<button onclick="window.print()" class="btn btn-secondary">Cetak Halaman</button>
+
+Konversi Word ke PDF untuk Dicetak:
+Gunakan library seperti PhpWord atau DOMPDF untuk mengonversi file Word ke PDF.
+Instalasi Paket PhpWord dan DOMPDF
+Jalankan perintah berikut di terminal:
+composer require phpoffice/phpword
+composer require barryvdh/laravel-dompdf
+
+Rute untuk Mengonversi Word ke PDF
+Tambahkan rute di file web.php:
+
+<?php
+use PhpOffice\PhpWord\IOFactory;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+Route::get('/convert-word-to-pdf/{filename}', function ($filename) {
+    $filePath = storage_path('app/public/' . $filename);
+
+    if (file_exists($filePath)) {
+        $phpWord = IOFactory::load($filePath);
+        $tempFile = tempnam(sys_get_temp_dir(), 'temp_pdf');
+
+        $objWriter = IOFactory::createWriter($phpWord, 'PDF');
+        $objWriter->save($tempFile);
+
+        return response()->download($tempFile, 'converted.pdf')->deleteFileAfterSend(true);
+    } else {
+        return response()->json(['message' => 'File not found.'], 404);
+    }
+});
+
+Tombol untuk Mengonversi dan Mengunduh PDF di Blade View
+Tambahkan tombol di view gugatan-form.blade.php:
+
+Kesimpulan
+Menyediakan File Word untuk Diunduh atau Dilihat: Buat rute untuk mengunduh file Word dan tambahkan file .docx di folder public.
+Tombol Print untuk Cetak File: Buat tombol di Blade view untuk mengunduh file Word dan mencetak halaman.
+Konversi Word ke PDF untuk Dicetak: Gunakan library PhpWord atau DOMPDF untuk mengonversi file Word ke PDF dan buat rute untuk mengunduh file PDF.
+Dengan langkah-langkah ini, Anda dapat menyiapkan tombol cetak di Laravel yang dapat digunakan untuk menampilkan file Word di browser, mengonversinya menjadi PDF, dan menggunakan fungsi print di browser atau sistem untuk mencetak file tersebut.
