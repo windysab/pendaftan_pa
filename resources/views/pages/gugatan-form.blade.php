@@ -65,13 +65,11 @@
                                         <div class="form-group">
                                             <label for="agama_penggugat"><b>Agama Penggugat</b></label>
                                             <select id="agama_penggugat" name="agama_penggugat" class="form-control">
-                                                <!-- Add options here -->
-                                                <option value="islam">Islam</option>
-                                                <option value="kristen">Kristen</option>
-                                                <option value="katolik">Katolik</option>
-                                                <option value="hindu">Hindu</option>
-                                                <option value="budha">Budha</option>
-
+                                                <option value="islam" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'islam' ? 'selected' : '' }}>Islam</option>
+                                                <option value="kristen" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'kristen' ? 'selected' : '' }}>Kristen</option>
+                                                <option value="katolik" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'katolik' ? 'selected' : '' }}>Katolik</option>
+                                                <option value="hindu" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'hindu' ? 'selected' : '' }}>Hindu</option>
+                                                <option value="budha" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'budha' ? 'selected' : '' }}>Budha</option>
                                             </select>
                                             <span id="error_agama_penggugat" class="text-danger"></span>
                                         </div>
@@ -89,16 +87,14 @@
                                         <div class="form-group">
                                             <label for="pendidikan_penggugat"><b>Pendidikan Penggugat</b></label>
                                             <select id="pendidikan_penggugat" name="pendidikan_penggugat" class="form-control">
-                                                <!-- Add options here -->
-                                                <option>Tidak Tamat SD</option>
-                                                <option>SD</option>
-                                                <option>SLTP</option>
-                                                <option>SLTA</option>
-                                                <option>DI</option>
-                                                <option>DII</option>
-                                                <option>DIII</option>
-                                                <option>S1</option>
-
+                                                <option value="Tidak Tamat SD" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'Tidak Tamat SD' ? 'selected' : '' }}>Tidak Tamat SD</option>
+                                                <option value="SD" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'SD' ? 'selected' : '' }}>SD</option>
+                                                <option value="SLTP" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'SLTP' ? 'selected' : '' }}>SLTP</option>
+                                                <option value="SLTA" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'SLTA' ? 'selected' : '' }}>SLTA</option>
+                                                <option value="DI" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'DI' ? 'selected' : '' }}>DI</option>
+                                                <option value="DII" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'DII' ? 'selected' : '' }}>DII</option>
+                                                <option value="DIII" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'DIII' ? 'selected' : '' }}>DIII</option>
+                                                <option value="S1" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'S1' ? 'selected' : '' }}>S1</option>
                                             </select>
                                             <span id="error_pendidikan_penggugat" class="text-danger"></span>
                                         </div>
@@ -149,12 +145,11 @@
                                         <div class="form-group">
                                             <label for="agama_tergugat"><b>Agama Tergugat</b></label>
                                             <select id="agama_tergugat" name="agama_tergugat" class="form-control">
-                                                <!-- Add options here -->
-                                                <option value="islam">Islam</option>
-                                                <option value="kristen">Kristen</option>
-                                                <option value="katolik">Katolik</option>
-                                                <option value="hindu">Hindu</option>
-                                                <option value="budha">Budha</option>
+                                                <option value="islam" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'islam' ? 'selected' : '' }}>Islam</option>
+                                                <option value="kristen" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'kristen' ? 'selected' : '' }}>Kristen</option>
+                                                <option value="katolik" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'katolik' ? 'selected' : '' }}>Katolik</option>
+                                                <option value="hindu" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'hindu' ? 'selected' : '' }}>Hindu</option>
+                                                <option value="budha" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'budha' ? 'selected' : '' }}>Budha</option>
                                             </select>
                                             <span id="error_agama_tergugat" class="text-danger"></span>
                                         </div>
@@ -172,16 +167,14 @@
                                         <div class="form-group">
                                             <label for="pendidikan_tergugat"><b>Pendidikan Tergugat</b></label>
                                             <select id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control">
-                                                <!-- Add options here -->
-                                                <option>Tidak Tamat SD</option>
-                                                <option>SD</option>
-                                                <option>SLTP</option>
-                                                <option>SLTA</option>
-                                                <option>DI</option>
-                                                <option>DII</option>
-                                                <option>DIII</option>
-                                                <option>S1</option>
-
+                                                <option value="Tidak Tamat SD" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'Tidak Tamat SD' ? 'selected' : '' }}>Tidak Tamat SD</option>
+                                                <option value="SD" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'SD' ? 'selected' : '' }}>SD</option>
+                                                <option value="SLTP" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'SLTP' ? 'selected' : '' }}>SLTP</option>
+                                                <option value="SLTA" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'SLTA' ? 'selected' : '' }}>SLTA</option>
+                                                <option value="DI" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'DI' ? 'selected' : '' }}>DI</option>
+                                                <option value="DII" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'DII' ? 'selected' : '' }}>DII</option>
+                                                <option value="DIII" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'DIII' ? 'selected' : '' }}>DIII</option>
+                                                <option value="S1" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'S1' ? 'selected' : '' }}>S1</option>
                                             </select>
                                             <span id="error_pendidikan_tergugat" class="text-danger"></span>
                                         </div>
