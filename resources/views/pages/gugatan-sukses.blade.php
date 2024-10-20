@@ -47,6 +47,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <a href="{{ route('gugatan.generateWord', $gugatan->id) }}" class="btn btn-primary">Download Word</a>
+                                            <button onclick="printDocument()" class="btn btn-secondary">Cetak</button>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +71,63 @@
     </div>
 @endsection
 
+{{-- @push('scripts')
+    <!-- JS Libraries -->
+    <!-- Page Specific JS File -->
+
+    <script>
+        function printDocument() {
+            // URL file yang akan dicetak
+            var fileUrl = "{{ route('gugatan.generateWord', $gugatan->id) }}";
+
+            // Membuka file di tab baru
+            var win = window.open(fileUrl, '_blank');
+            if (!win) {
+                alert('Pop-up blocked. Please allow pop-ups for this website.');
+                return;
+            }
+            win.focus();
+
+            // Memicu dialog cetak setelah file terbuka
+            win.onload = function() {
+                win.print();
+            };
+
+            // Penanganan kesalahan jika file tidak dapat dimuat
+            win.onerror = function() {
+                alert('Failed to load the document. Please try again.');
+            };
+        }
+    </script>
+@endpush --}}
 @push('scripts')
     <!-- JS Libraries -->
     <!-- Page Specific JS File -->
+
+    <script>
+        function printDocument() {
+            // URL file yang akan dicetak
+            var fileUrl = "{{ route('gugatan.generateWord', $gugatan->id) }}";
+
+            // Membuka file di tab baru
+            var win = window.open(fileUrl, '_blank');
+            if (!win) {
+                alert('Pop-up blocked. Please allow pop-ups for this website.');
+                return;
+            }
+            win.focus();
+
+            // Memicu dialog cetak setelah file terbuka dengan penundaan
+            win.onload = function() {
+                setTimeout(function() {
+                    win.print();
+                }, 1000); // Penundaan 1 detik
+            };
+
+            // Penanganan kesalahan jika file tidak dapat dimuat
+            win.onerror = function() {
+                alert('Failed to load the document. Please try again.');
+            };
+        }
+    </script>
 @endpush
