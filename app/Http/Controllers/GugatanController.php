@@ -473,6 +473,8 @@ class GugatanController extends Controller
         $templateProcessor->setComplexValue('siapa_meninggalkan_coret', $unselectedTextRun);
         $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
+        //upaya merukunkan
+        $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
         $fileName = 'Gugatan_cerai_' . Str::slug($gugatan->nama_penggugat) . '.docx';
         // Path untuk menyimpan file Word yang dihasilkan
         $outputPath = 'public/Blanko_Pendaftaran_CG_' . $id . '.docx';
