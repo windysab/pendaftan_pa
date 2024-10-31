@@ -19,9 +19,9 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Formulir Gugatan - Data Penggugat dan Tergugat</h2>
+            <h2 class="section-title">Formulir Permohonan Dispensasi Kawin</h2>
             <p class="section-lead">
-                Silahkan isi data penggugat dan tergugat dibawah ini. Pastikan data yang anda masukkan benar. Terima
+                Silahkan isi data pemohon dibawah ini. Pastikan data yang anda masukkan benar. Terima
                 kasih.
             </p>
 
