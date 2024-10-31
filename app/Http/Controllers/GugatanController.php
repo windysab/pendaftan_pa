@@ -412,7 +412,7 @@ class GugatanController extends Controller
         $templateProcessor->setComplexValue('alasan_h', $options['alasan_h']);
         $templateProcessor->setComplexValue('alasan_i', $options['alasan_i']);
         $templateProcessor->setValue('detail_alasan', $gugatan->detail_alasan);
-        $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
+        // $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
         $tanggalperpisahan = $gugatan->tanggal_perpisahan;
         $dateperpisahan = new DateTime($tanggalperpisahan);
         $bulanIndonesia = [
@@ -474,7 +474,30 @@ class GugatanController extends Controller
         $templateProcessor->setValue('desa_meninggalkan', $gugatan->desa_meninggalkan);
         $templateProcessor->setValue('alasan_meninggalkan', $gugatan->alasan_meninggalkan);
         //upaya merukunkan
-        $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
+        // $templateProcessor->setValue('upaya_merukunkan', $gugatan->upaya_merukunkan);
+        // Definisikan opsi dengan placeholder dan teks coret default
+        $options = [
+            'upaya_merukunkan_ada' => new TextRun(),
+            'upaya_merukunkan_tidak_ada' => new TextRun()
+        ];
+
+        $options['upaya_merukunkan_ada']->addText('ada', ['strikethrough' => true]);
+        $options['upaya_merukunkan_tidak_ada']->addText('sudah tidak ada', ['strikethrough' => true]);
+
+        // Tentukan opsi mana yang dipilih berdasarkan data Anda
+        if ($gugatan->upaya_merukunkan == 'ada') {
+            $options['upaya_merukunkan_ada'] = new TextRun();
+            $options['upaya_merukunkan_ada']->addText('ada', ['strikethrough' => false]);
+        } else {
+            $options['upaya_merukunkan_tidak_ada'] = new TextRun();
+            $options['upaya_merukunkan_tidak_ada']->addText('sudah tidak ada', ['strikethrough' => false]);
+        }
+
+        // Setel nilai dalam template
+        $templateProcessor->setComplexValue('upaya_merukunkan_ada', $options['upaya_merukunkan_ada']);
+        $templateProcessor->setComplexValue('upaya_merukunkan_tidak_ada', $options['upaya_merukunkan_tidak_ada']);
+
+        
         $fileName = 'Gugatan_cerai_' . Str::slug($gugatan->nama_penggugat) . '.docx';
         // Path untuk menyimpan file Word yang dihasilkan
         $outputPath = 'public/Blanko_Pendaftaran_CG_' . $id . '.docx';
