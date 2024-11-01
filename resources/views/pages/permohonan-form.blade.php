@@ -25,170 +25,11 @@
                 kasih.
             </p>
 
-            <form method="POST" action="{{ isset($gugatan) ? route('gugatan.update.form', $gugatan->id) : route('gugatan.page2.store') }}" onsubmit="validateForm(event)" id="gugatanForm">
+            <form method="POST" action="{{ isset($permohonan) ? route('permohonan.update', $permohonan->id) : route('permohonan.store') }}" onsubmit="validateForm(event)" id="permohonanForm">
                 @csrf
-                <!-- Hapus metode PUT -->
-                {{-- <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="text-center-custom">Data Penggugat/ Istri</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nama_penggugat"><b>Nama Penggugat</b></label>
-                                            <input type="text" id="nama_penggugat" name="nama_penggugat" class="form-control" value="{{ old('nama_penggugat', $gugatan->nama_penggugat ?? '') }}">
-                                            <span id="error_nama_penggugat" class="text-danger"></span>
-                                            <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan
-                                                surat nikah</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="binti_penggugat"><b>Binti Penggugat</b></label>
-                                            <input type="text" id="binti_penggugat" name="binti_penggugat" class="form-control" value="{{ old('binti_penggugat', $gugatan->binti_penggugat ?? '') }}">
-                                            <span id="error_binti_penggugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="umur_penggugat"><b>Umur Penggugat</b></label>
-                                            <input type="number" id="umur_penggugat" name="umur_penggugat" class="form-control" value="{{ old('umur_penggugat', $gugatan->umur_penggugat ?? '') }}">
-                                            <span id="error_umur_penggugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="agama_penggugat"><b>Agama Penggugat</b></label>
-                                            <select id="agama_penggugat" name="agama_penggugat" class="form-control">
-                                                <option value="islam" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'islam' ? 'selected' : '' }}>Islam</option>
-                                                <option value="kristen" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'kristen' ? 'selected' : '' }}>Kristen</option>
-                                                <option value="katolik" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'katolik' ? 'selected' : '' }}>Katolik</option>
-                                                <option value="hindu" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'hindu' ? 'selected' : '' }}>Hindu</option>
-                                                <option value="budha" {{ old('agama_penggugat', $gugatan->agama_penggugat ?? '') == 'budha' ? 'selected' : '' }}>Budha</option>
-                                            </select>
-                                            <span id="error_agama_penggugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="pekerjaan_penggugat"><b>Pekerjaan Penggugat</b></label>
-                                            <input type="text" id="pekerjaan_penggugat" name="pekerjaan_penggugat" class="form-control" value="{{ old('pekerjaan_penggugat', $gugatan->pekerjaan_penggugat ?? '') }}">
-                                            <span id="error_pekerjaan_penggugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="pendidikan_penggugat"><b>Pendidikan Penggugat</b></label>
-                                            <select id="pendidikan_penggugat" name="pendidikan_penggugat" class="form-control">
-                                                <option value="Tidak Tamat SD" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'Tidak Tamat SD' ? 'selected' : '' }}>Tidak Tamat SD</option>
-                                                <option value="SD" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'SD' ? 'selected' : '' }}>SD</option>
-                                                <option value="SLTP" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'SLTP' ? 'selected' : '' }}>SLTP</option>
-                                                <option value="SLTA" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'SLTA' ? 'selected' : '' }}>SLTA</option>
-                                                <option value="DI" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'DI' ? 'selected' : '' }}>DI</option>
-                                                <option value="DII" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'DII' ? 'selected' : '' }}>DII</option>
-                                                <option value="DIII" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'DIII' ? 'selected' : '' }}>DIII</option>
-                                                <option value="S1" {{ old('pendidikan_penggugat', $gugatan->pendidikan_penggugat ?? '') == 'S1' ? 'selected' : '' }}>S1</option>
-                                            </select>
-                                            <span id="error_pendidikan_penggugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="alamat_penggugat"><b>Alamat Lengkap</b></label>
-                                    <textarea id="alamat_penggugat" name="alamat_penggugat" class="form-control" data-height="100" readonly onclick="openPenggugatAddressModal()">{{ old('alamat_penggugat', $gugatan->alamat_penggugat ?? '') }}</textarea>
-                                    <span id="error_alamat_penggugat" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header text-center-custom">
-                                <h4 class="text-center-custom">Data Tergugat/ Suami</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nama_tergugat"><b>Nama Tergugat</b></label>
-                                            <input type="text" id="nama_tergugat" name="nama_tergugat" class="form-control" value="{{ old('nama_tergugat', $gugatan->nama_tergugat ?? '') }}">
-                                            <span id="error_nama_tergugat" class="text-danger"></span>
-                                            <small class="text-muted" style="font-style: italic;">Diisi sesuai dengan
-                                                surat nikah</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="bin_tergugat"><b>Bin Tergugat</b></label>
-                                            <input type="text" id="bin_tergugat" name="bin_tergugat" class="form-control" value="{{ old('bin_tergugat', $gugatan->bin_tergugat ?? '') }}">
-                                            <span id="error_bin_tergugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="umur_tergugat"><b>Umur Tergugat</b></label>
-                                            <input type="number" id="umur_tergugat" name="umur_tergugat" class="form-control" value="{{ old('umur_tergugat', $gugatan->umur_tergugat ?? '') }}">
-                                            <span id="error_umur_tergugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="agama_tergugat"><b>Agama Tergugat</b></label>
-                                            <select id="agama_tergugat" name="agama_tergugat" class="form-control">
-                                                <option value="islam" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'islam' ? 'selected' : '' }}>Islam</option>
-                                                <option value="kristen" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'kristen' ? 'selected' : '' }}>Kristen</option>
-                                                <option value="katolik" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'katolik' ? 'selected' : '' }}>Katolik</option>
-                                                <option value="hindu" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'hindu' ? 'selected' : '' }}>Hindu</option>
-                                                <option value="budha" {{ old('agama_tergugat', $gugatan->agama_tergugat ?? '') == 'budha' ? 'selected' : '' }}>Budha</option>
-                                            </select>
-                                            <span id="error_agama_tergugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="pekerjaan_tergugat"><b>Pekerjaan Tergugat</b></label>
-                                            <input type="text" id="pekerjaan_tergugat" name="pekerjaan_tergugat" class="form-control" value="{{ old('pekerjaan_tergugat', $gugatan->pekerjaan_tergugat ?? '') }}">
-                                            <span id="error_pekerjaan_tergugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="pendidikan_tergugat"><b>Pendidikan Tergugat</b></label>
-                                            <select id="pendidikan_tergugat" name="pendidikan_tergugat" class="form-control">
-                                                <option value="Tidak Tamat SD" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'Tidak Tamat SD' ? 'selected' : '' }}>Tidak Tamat SD</option>
-                                                <option value="SD" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'SD' ? 'selected' : '' }}>SD</option>
-                                                <option value="SLTP" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'SLTP' ? 'selected' : '' }}>SLTP</option>
-                                                <option value="SLTA" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'SLTA' ? 'selected' : '' }}>SLTA</option>
-                                                <option value="DI" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'DI' ? 'selected' : '' }}>DI</option>
-                                                <option value="DII" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'DII' ? 'selected' : '' }}>DII</option>
-                                                <option value="DIII" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'DIII' ? 'selected' : '' }}>DIII</option>
-                                                <option value="S1" {{ old('pendidikan_tergugat', $gugatan->pendidikan_tergugat ?? '') == 'S1' ? 'selected' : '' }}>S1</option>
-                                            </select>
-                                            <span id="error_pendidikan_tergugat" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="alamat_tergugat"><b>Alamat Lengkap</b></label>
-                                    <textarea id="alamat_tergugat" name="alamat_tergugat" class="form-control" data-height="100" readonly onclick="openAddressModal()">{{ old('alamat_tergugat', $gugatan->alamat_tergugat ?? '') }}</textarea>
-                                    <span id="error_alamat_tergugat" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
+                @if(isset($permohonan))
+                    @method('PUT')
+                @endif
 
                 <!-- Data Pemohon I (Ayah) -->
                 <div class="row">
@@ -410,7 +251,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-right">{{ isset($gugatan) ? 'Update' : 'Selanjutnya' }}</button>
+                <button type="submit" class="btn btn-primary btn-right">{{ isset($permohonan) ? 'Update' : 'Submit' }}</button>
             </form>
         </div>
     </section>

@@ -72,6 +72,17 @@ Route::middleware('auth')->group(function () {
         Route::put('/{id}/edit/page3', [GugatanController::class, 'updatePage3'])->name('update.page3');
     });
 
+    // Permohonan
+    Route::prefix('permohonan')->name('permohonan.')->group(function () {
+        Route::get('/form', function () {
+            return view('pages.permohonan-form', ['type_menu' => 'permohonan']);
+        })->name('form');
+        Route::post('/store', [GugatanController::class, 'storePermohonan'])->name('store');
+        Route::get('/{id}/edit', [GugatanController::class, 'editPermohonan'])->name('edit');
+        Route::put('/{id}', [GugatanController::class, 'updatePermohonan'])->name('update');
+        Route::delete('/{id}', [GugatanController::class, 'destroyPermohonan'])->name('destroy');
+    });
+
     // Users
     Route::prefix('users')->name('user.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');

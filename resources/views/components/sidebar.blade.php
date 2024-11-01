@@ -27,6 +27,17 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown {{ $type_menu === 'permohonan' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-file-alt"></i><span>Permohonan</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('permohonan/form') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('permohonan/form') }}">Form Permohonan</a>
+                    </li>
+                    <li class="{{ Request::is('permohonan') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('permohonan') }}">List Permohonan</a>
+                    </li>
+                </ul>
+            </li>
             <li class="menu-header">Tambah User</li>
             <li class="nav-item dropdown {{ $type_menu === 'user' ? 'active' : '' }}">
                 <a href="#"
