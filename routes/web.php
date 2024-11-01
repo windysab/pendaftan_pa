@@ -82,6 +82,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/{id}/edit', [PermohonanController::class, 'edit'])->name('edit');
         Route::put('/{id}', [PermohonanController::class, 'update'])->name('update');
         Route::delete('/{id}', [PermohonanController::class, 'destroy'])->name('destroy');
+        Route::post('/permohonan/store', [PermohonanController::class, 'store'])->name('permohonan.store');
+        Route::put('/permohonan/update/{id}', [PermohonanController::class, 'update'])->name('permohonan.update');
     });
 
     // Users

@@ -12,6 +12,8 @@ class PermohonanController extends Controller
     {
         $validatedData = $this->validateData($request->all());
 
+        dd($validatedData); // Tambahkan dd() ini untuk debugging
+
         try {
             $permohonan = Permohonan::create($validatedData);
             Log::info('Permohonan stored successfully.');
@@ -91,3 +93,5 @@ class PermohonanController extends Controller
         ])->validate();
     }
 }
+
+

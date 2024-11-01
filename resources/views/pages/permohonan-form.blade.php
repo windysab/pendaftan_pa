@@ -41,23 +41,23 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nama_ayah"><b>Nama</b></label>
-                                    <input type="text" id="nama_ayah" name="nama_ayah" class="form-control">
+                                    <input type="text" id="nama_ayah" name="nama_ayah" class="form-control" value="{{ old('nama_ayah', $permohonan->nama_ayah ?? '') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="umur_ayah"><b>Umur</b></label>
-                                    <input type="number" id="umur_ayah" name="umur_ayah" class="form-control">
+                                    <input type="number" id="umur_ayah" name="umur_ayah" class="form-control" value="{{ old('umur_ayah', $permohonan->umur_ayah ?? '') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="pekerjaan_ayah"><b>Pekerjaan</b></label>
-                                    <input type="text" id="pekerjaan_ayah" name="pekerjaan_ayah" class="form-control">
+                                    <input type="text" id="pekerjaan_ayah" name="pekerjaan_ayah" class="form-control" value="{{ old('pekerjaan_ayah', $permohonan->pekerjaan_ayah ?? '') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="pendidikan_ayah"><b>Pendidikan</b></label>
-                                    <input type="text" id="pendidikan_ayah" name="pendidikan_ayah" class="form-control">
+                                    <input type="text" id="pendidikan_ayah" name="pendidikan_ayah" class="form-control" value="{{ old('pendidikan_ayah', $permohonan->pendidikan_ayah ?? '') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat_ayah"><b>Alamat</b></label>
-                                    <textarea id="alamat_ayah" name="alamat_ayah" class="form-control" data-height="100"></textarea>
+                                    <textarea id="alamat_ayah" name="alamat_ayah" class="form-control" data-height="100">{{ old('alamat_ayah', $permohonan->alamat_ayah ?? '') }}</textarea>
                                 </div>
                             </div>
                         </div>
