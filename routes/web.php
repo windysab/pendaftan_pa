@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GugatanController;
+use App\Http\Controllers\PermohonanController;
 
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard-general-dashboard');
@@ -77,10 +78,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/form', function () {
             return view('pages.permohonan-form', ['type_menu' => 'permohonan']);
         })->name('form');
-        Route::post('/store', [GugatanController::class, 'storePermohonan'])->name('store');
-        Route::get('/{id}/edit', [GugatanController::class, 'editPermohonan'])->name('edit');
-        Route::put('/{id}', [GugatanController::class, 'updatePermohonan'])->name('update');
-        Route::delete('/{id}', [GugatanController::class, 'destroyPermohonan'])->name('destroy');
+        Route::post('/store', [PermohonanController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [PermohonanController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [PermohonanController::class, 'update'])->name('update');
+        Route::delete('/{id}', [PermohonanController::class, 'destroy'])->name('destroy');
     });
 
     // Users

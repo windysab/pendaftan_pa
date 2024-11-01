@@ -28,7 +28,7 @@
             <form method="POST" action="{{ isset($permohonan) ? route('permohonan.update', $permohonan->id) : route('permohonan.store') }}" onsubmit="validateForm(event)" id="permohonanForm">
                 @csrf
                 @if(isset($permohonan))
-                    @method('PUT')
+                @method('PUT')
                 @endif
 
                 <!-- Data Pemohon I (Ayah) -->

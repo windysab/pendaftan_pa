@@ -678,7 +678,7 @@ function saveAddress(event) {
     kabupaten = kabupaten.replace(/kabupaten\s*/i, ''); // Remove "kabupaten" (case insensitive)
     kabupaten = toSentenceCase(kabupaten);
 
-    
+
 
     document.getElementById('alamat_tergugat').value = `Jalan ${jalan}, No ${no}, RT ${rt}, RW ${rw}, Desa ${desa}, Kecamatan ${kecamatan}, Kabupaten ${kabupaten}`;
     closeAddressModal();
