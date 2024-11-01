@@ -120,4 +120,10 @@ class PermohonanController extends Controller
 
         return redirect()->route('permohonan.index')->with('success', 'Permohonan berhasil dihapus.');
     }
+
+    public function show($id)
+    {
+        $permohonan = Permohonan::findOrFail($id);
+        return view('pages.permohonan-detail', compact('permohonan'))->with('type_menu', 'permohonan');
+    }
 }

@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{id}/edit', [PermohonanController::class, 'edit'])->name('edit');
         Route::put('/{id}', [PermohonanController::class, 'update'])->name('update');
         Route::delete('/{id}', [PermohonanController::class, 'destroy'])->name('destroy');
+        Route::get('/{id}', [PermohonanController::class, 'show'])->name('show'); // Add this line
     });
 
     // Users
