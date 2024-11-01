@@ -52,8 +52,12 @@
                                                 <td>{{ $permohonan->nama_calon_isteri }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-primary">Detail</a>
-                                                    <a href="#" class="btn btn-warning">Edit</a>
-                                                    <a href="#" class="btn btn-danger">Hapus</a>
+                                                    <a href="{{ route('permohonan.edit', $permohonan->id) }}" class="btn btn-warning">Edit</a>
+                                                    <form action="{{ route('permohonan.destroy', $permohonan->id) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus permohonan ini?')">Hapus</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
