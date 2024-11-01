@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GugatanController;
 use App\Http\Controllers\PermohonanController;
+use App\Http\Controllers\IndoregionController;
 
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard-general-dashboard');
@@ -132,3 +133,6 @@ foreach ($bootstrapRoutes as $route) {
 
 // Credits
 Route::view('/credits', 'pages.credits', ['type_menu' => '']);
+
+// Route for fetching desa data
+Route::get('/api/desa/{kecamatanId}', [IndoregionController::class, 'getDesa']);

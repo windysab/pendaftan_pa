@@ -12,6 +12,8 @@ class PermohonanController extends Controller
     {
         $validatedData = $this->validateData($request->all());
 
+        dd($validatedData); // Tambahkan dd() ini untuk debugging
+
         Log::info('Data yang diterima:', $validatedData); // Tambahkan log ini
 
         try {
