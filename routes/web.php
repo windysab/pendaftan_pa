@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GugatanController;
+use App\Http\Controllers\PermohonanController;
 
 // Redirect root to dashboard
 Route::redirect('/', '/dashboard-general-dashboard');
@@ -70,6 +71,13 @@ Route::middleware('auth')->group(function () {
         // Rute untuk halaman edit page3
         Route::get('/{id}/edit/page3', [GugatanController::class, 'editPage3'])->name('edit.page3');
         Route::put('/{id}/edit/page3', [GugatanController::class, 'updatePage3'])->name('update.page3');
+    });
+
+    // Permohonan
+    Route::prefix('permohonan')->name('permohonan.')->group(function () {
+        Route::get('/', [PermohonanController::class, 'index'])->name('index');
+        Route::get('/create', [PermohonanController::class, 'create'])->name('create');
+        Route::post('/', [PermohonanController::class, 'store'])->name('store');
     });
 
     // Users

@@ -25,6 +25,9 @@
                         <a class="nav-link"
                             href="{{ url('formulir/create') }}">Tambah Formulir</a>
                     </li>
+                    <li class="{{ Request::is('permohonan/create') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('permohonan/create') }}">Form Permohonan</a>
+                    </li>
                 </ul>
             </li>
             <li class="menu-header">Tambah User</li>
